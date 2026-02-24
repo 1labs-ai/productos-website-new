@@ -43,7 +43,7 @@ const quoteVariants = {
     scale: 1, 
     opacity: 1, 
     rotate: 0,
-    transition: { type: "spring", stiffness: 200, damping: 15 }
+    transition: { type: "spring" as const, stiffness: 200, damping: 15 }
   },
 };
 

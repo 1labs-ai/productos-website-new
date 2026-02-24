@@ -47,7 +47,7 @@ const lineVariants = {
   visible: { 
     scaleX: 1, 
     opacity: 1,
-    transition: { duration: 1.2, ease: "easeOut", delay: 0.3 }
+    transition: { duration: 1.2, ease: "easeOut" as const, delay: 0.3 }
   },
 };
 
@@ -58,7 +58,7 @@ const iconVariants = {
     opacity: 1,
     transition: {
       delay: 0.1 + i * 0.15,
-      type: "spring",
+      type: "spring" as const,
       stiffness: 200,
       damping: 15,
     },
