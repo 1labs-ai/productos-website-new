@@ -1,1 +1,1 @@
-export { HeroSection } from "./hero";
+export { FeaturesSection } from "./features";
