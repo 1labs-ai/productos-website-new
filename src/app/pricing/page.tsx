@@ -76,7 +76,7 @@ export default function PricingPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
           <motion.div
@@ -84,7 +84,7 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Simple, <span className="text-gradient">transparent</span> pricing
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
@@ -93,7 +93,7 @@ export default function PricingPage() {
           </motion.div>
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 sm:mb-24">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.name}
