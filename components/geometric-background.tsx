@@ -105,14 +105,12 @@ export function GeometricBackground({
         )}
       </svg>
       
-      {/* Gradient overlays for depth */}
+      {/* Subtle edge fade only - no full overlays */}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"
-        style={{ opacity: 0.9 }}
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent"
       />
       <div 
-        className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"
-        style={{ opacity: 0.5 }}
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"
       />
     </div>
   )

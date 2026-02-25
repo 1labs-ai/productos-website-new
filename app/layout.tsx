@@ -125,7 +125,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <GeometricBackground variant="subtle" opacity={0.05} />
+          <GeometricBackground variant="subtle" opacity={0.015} />
           <Navbar />
           <main className="min-h-screen bg-background pt-16">
             {children}
