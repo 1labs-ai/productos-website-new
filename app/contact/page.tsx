@@ -4,9 +4,9 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { AnimatedSection } from "@/components/ui/animated-section"
+import { PageHero } from "@/components/shared"
 import {
   Mail,
   MessageSquare,
@@ -76,28 +76,14 @@ export default function ContactPage() {
 
   return (
     <>
-      
       {/* Hero */}
-      <section className="relative pt-32 pb-16 px-4">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <AnimatedSection>
-            <Badge variant="secondary" className="mb-6 px-4 py-2 bg-muted/50 border border-border">
-              <MessageSquare className="w-4 h-4 mr-2 text-primary" />
-              Get in Touch
-            </Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6" style={{ letterSpacing: '-0.025em' }}>
-              Let&apos;s <span className="text-primary">talk</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have questions about ProductOS? Want to explore Enterprise options? 
-              We&apos;d love to hear from you.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+      <PageHero
+        badge={{ icon: MessageSquare, text: "Get in Touch" }}
+        title="Let's"
+        titleHighlight="talk"
+        description="Have questions about ProductOS? Want to explore Enterprise options? We'd love to hear from you."
+        className="min-h-0 pt-32 pb-16"
+      />
 
       {/* Contact Options */}
       <section className="py-12 px-4">
