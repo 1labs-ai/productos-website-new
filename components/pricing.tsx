@@ -58,12 +58,15 @@ const plans = [
 function BorderBeam() {
   return (
     <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+      {/* Animated border beam */}
       <div
-        className="absolute w-24 h-24 bg-white/20 blur-xl border-beam"
+        className="absolute w-32 h-32 bg-white/30 blur-2xl border-beam"
         style={{
           offsetPath: "rect(0 100% 100% 0 round 16px)",
         }}
       />
+      {/* Subtle glow effect on the border */}
+      <div className="absolute inset-0 rounded-2xl border border-white/20" />
     </div>
   )
 }
