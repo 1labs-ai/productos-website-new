@@ -1,9 +1,8 @@
 "use client";
 
-
-
 import { Button } from "@/components/ui/button";
 import { AnimatedSection, AnimatedScale } from "@/components/ui/animated-section";
+import { SectionHeader, CTASection } from "@/components/shared";
 import { Check, X, HelpCircle, Zap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -233,10 +232,10 @@ export default function PricingPage() {
         {/* Feature Comparison */}
         <section className="py-24 px-4">
           <div className="max-w-6xl mx-auto">
-            <AnimatedSection className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Compare plans</h2>
-              <p className="text-muted-foreground">See which plan is right for you</p>
-            </AnimatedSection>
+            <SectionHeader
+              title="Compare plans"
+              description="See which plan is right for you"
+            />
 
             <AnimatedSection>
               <div className="overflow-x-auto">
@@ -308,43 +307,20 @@ export default function PricingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 px-4">
-          <div className="max-w-6xl mx-auto">
-            <AnimatedSection>
-              <div className="relative overflow-hidden p-8 md:p-16 rounded-lg bg-card border border-border">
-                <div className="relative text-center">
-                  <Zap className="w-12 h-12 mx-auto mb-6 text-emerald-500" />
-                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                    Ready to start building?
-                  </h2>
-                  <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                    Join thousands of founders who are building their products with ProductOS.
-                    Start for free, no credit card required.
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button
-                      size="lg"
-                      className="bg-white text-zinc-950 hover:bg-zinc-200 rounded-lg px-8"
-                      asChild
-                    >
-                      <a href="https://build.productos.dev/sign-up">
-                        Get Started Free <ArrowRight className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="rounded-lg px-8 border-border bg-secondary hover:bg-secondary/80"
-                      asChild
-                    >
-                      <a href="mailto:founders@productos.dev">Talk to Sales</a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
+        <CTASection
+          badge={{ icon: Zap, text: "Start Building" }}
+          title="Ready to start building?"
+          description="Join thousands of founders who are building their products with ProductOS. Start for free, no credit card required."
+          primaryAction={{
+            label: "Get Started Free",
+            href: "https://build.productos.dev/sign-up",
+            icon: ArrowRight,
+          }}
+          secondaryAction={{
+            label: "Talk to Sales",
+            href: "mailto:founders@productos.dev",
+          }}
+        />
     </>
   );
 }
