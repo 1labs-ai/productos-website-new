@@ -160,7 +160,7 @@ export function StickyStages() {
                 <button
                   key={stage.id}
                   onClick={() => setActiveStage(stage.id)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all text-left ${
+                  className={`w-full flex items-center gap-4 p-4 rounded-sm transition-all text-left ${
                     activeStage === stage.id
                       ? "bg-card border border-border"
                       : "hover:bg-card/50"
@@ -183,7 +183,7 @@ export function StickyStages() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="mt-4 p-4 rounded-xl bg-card border border-border"
+              className="mt-4 p-4 rounded-sm bg-card border border-border"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-secondary">
@@ -224,7 +224,7 @@ export function StickyStages() {
               {currentStage.id === "ideate" && currentStage.card.details && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   {currentStage.card.details.map((detail, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-secondary/50">
+                    <div key={i} className="p-4 rounded-sm bg-secondary/50">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{detail.label}</div>
                       <div className="text-sm text-foreground/80">{detail.value}</div>
                     </div>
@@ -243,7 +243,7 @@ export function StickyStages() {
               )}
 
               {currentStage.card.next && (
-                <div className="p-4 rounded-xl bg-secondary/50">
+                <div className="p-4 rounded-sm bg-secondary/50">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Next</div>
                   <ul className="space-y-1">
                     {currentStage.card.next.map((item) => (
@@ -254,7 +254,7 @@ export function StickyStages() {
               )}
 
               {currentStage.card.score && (
-                <div className="p-4 rounded-xl bg-secondary/50 mb-4">
+                <div className="p-4 rounded-sm bg-secondary/50 mb-4">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{currentStage.card.scoreLabel}</div>
                   <div className="text-3xl font-bold text-white">{currentStage.card.score}</div>
                   <p className="text-sm text-muted-foreground mt-2">{currentStage.card.insight}</p>
@@ -263,7 +263,7 @@ export function StickyStages() {
 
               {currentStage.card.checklist && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-xl bg-secondary/50">
+                  <div className="p-4 rounded-sm bg-secondary/50">
                     <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Checklist</div>
                     <ul className="space-y-1">
                       {currentStage.card.checklist.map((item) => (
@@ -272,7 +272,7 @@ export function StickyStages() {
                     </ul>
                   </div>
                   {currentStage.card.stories && (
-                    <div className="p-4 rounded-xl bg-secondary/50">
+                    <div className="p-4 rounded-sm bg-secondary/50">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">User Stories</div>
                       <ul className="space-y-1">
                         {currentStage.card.stories.map((item) => (
@@ -282,7 +282,7 @@ export function StickyStages() {
                     </div>
                   )}
                   {currentStage.card.metrics && (
-                    <div className="p-4 rounded-xl bg-secondary/50">
+                    <div className="p-4 rounded-sm bg-secondary/50">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Success Metrics</div>
                       <ul className="space-y-1">
                         {currentStage.card.metrics.map((item) => (
@@ -296,11 +296,11 @@ export function StickyStages() {
 
               {currentStage.card.components && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-xl bg-secondary/50">
+                  <div className="p-4 rounded-sm bg-secondary/50">
                     <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Typography</div>
                     <div className="text-sm text-foreground/80">{currentStage.card.tokens?.typography}</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-secondary/50">
+                  <div className="p-4 rounded-sm bg-secondary/50">
                     <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Components</div>
                     <ul className="space-y-1">
                       {currentStage.card.components.map((item) => (
@@ -309,7 +309,7 @@ export function StickyStages() {
                     </ul>
                   </div>
                   {currentStage.card.props && (
-                    <div className="p-4 rounded-xl bg-secondary/50">
+                    <div className="p-4 rounded-sm bg-secondary/50">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Props</div>
                       <ul className="space-y-1">
                         {currentStage.card.props.map((item) => (
@@ -323,11 +323,11 @@ export function StickyStages() {
 
               {currentStage.card.tests && (
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-secondary/50">
+                  <div className="p-4 rounded-sm bg-secondary/50">
                     <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Tests</div>
                     <div className="text-2xl font-bold text-emerald-500">{currentStage.card.tests}</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-secondary/50">
+                  <div className="p-4 rounded-sm bg-secondary/50">
                     <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Deploy</div>
                     <div className="text-2xl font-bold text-white">{currentStage.card.deploy}</div>
                   </div>

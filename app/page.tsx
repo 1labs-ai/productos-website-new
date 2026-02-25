@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { LogoMarquee } from "@/components/logo-marquee"
-import { BentoGrid } from "@/components/bento-grid"
+import { StickyStages } from "@/components/sticky-stages"
 import { Testimonials } from "@/components/testimonials"
 import { Pricing } from "@/components/pricing"
 import { FinalCTA } from "@/components/final-cta"
@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <LogoMarquee />
-      <BentoGrid />
+      <StickyStages />
       <Testimonials />
       <Pricing />
       <FinalCTA />
