@@ -1,17 +1,65 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 interface AnimatedLogoProps {
   size?: number
   className?: string
-  animate?: boolean // kept for backwards compat, but now hover-based
+  animate?: boolean
 }
 
-export function AnimatedLogo({ size = 28, className = "" }: AnimatedLogoProps) {
-  const [isHovered, setIsHovered] = useState(false)
+export function AnimatedLogo({ size = 28, className = "", animate = true }: AnimatedLogoProps) {
+  // Animation sequence: unfolds like origami paper
+  // 1. Back face grows up from bottom (0.1s delay)
+  // 2. Left fold rotates in (0.6s delay)  
+  // 3. Right fold rotates in (1.0s delay)
+  
+  const backVariants = {
+    hidden: { opacity: 0, scaleY: 0 },
+    visible: { 
+      opacity: 1, 
+      scaleY: 1,
+      transition: { duration: 0.5, ease: "easeOut", delay: 0.1 }
+    }
+  }
 
+  const leftVariants = {
+    hidden: { opacity: 0, rotateY: 90 },
+    visible: { 
+      opacity: 1, 
+      rotateY: 0,
+      transition: { duration: 0.4, ease: "easeOut", delay: 0.6 }
+    }
+  }
+
+  const rightVariants = {
+    hidden: { opacity: 0, rotateY: -90 },
+    visible: { 
+      opacity: 1, 
+      rotateY: 0,
+      transition: { duration: 0.4, ease: "easeOut", delay: 1.0 }
+    }
+  }
+
+  // Static version (no animation)
+  if (!animate) {
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+      >
+        <path d="M4 32 L18 4 L32 32 Z" fill="currentColor" fillOpacity={0.35} />
+        <path d="M18 4 L4 32 L18 32 Z" fill="currentColor" fillOpacity={0.65} />
+        <path d="M18 4 L18 32 L32 32 Z" fill="currentColor" />
+      </svg>
+    )
+  }
+
+  // Animated version - plays once on page load
   return (
     <motion.svg
       width={size}
@@ -20,43 +68,30 @@ export function AnimatedLogo({ size = 28, className = "" }: AnimatedLogoProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      style={{ perspective: 100 }}
+      initial="hidden"
+      animate="visible"
     >
-      {/* Back face - pulses on hover */}
+      {/* Back face - grows up from bottom first */}
       <motion.path 
         d="M4 32 L18 4 L32 32 Z" 
         fill="currentColor" 
         fillOpacity={0.35}
-        animate={isHovered ? {
-          opacity: [0.35, 0.15, 0.35],
-          scaleY: [1, 0.85, 1],
-        } : { opacity: 0.35, scaleY: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        variants={backVariants}
         style={{ transformOrigin: "center bottom" }}
       />
-      {/* Left fold - rotates on hover */}
+      {/* Left fold - rotates in from left */}
       <motion.path 
         d="M18 4 L4 32 L18 32 Z" 
         fill="currentColor" 
         fillOpacity={0.65}
-        animate={isHovered ? {
-          rotateY: [0, -25, 0],
-          opacity: [0.65, 0.4, 0.65],
-        } : { rotateY: 0, opacity: 0.65 }}
-        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.08 }}
+        variants={leftVariants}
         style={{ transformOrigin: "right center" }}
       />
-      {/* Right fold - rotates on hover */}
+      {/* Right fold - rotates in from right */}
       <motion.path 
         d="M18 4 L18 32 L32 32 Z" 
         fill="currentColor"
-        animate={isHovered ? {
-          rotateY: [0, 25, 0],
-          opacity: [1, 0.7, 1],
-        } : { rotateY: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.15 }}
+        variants={rightVariants}
         style={{ transformOrigin: "left center" }}
       />
     </motion.svg>
