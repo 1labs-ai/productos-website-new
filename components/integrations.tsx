@@ -25,11 +25,11 @@ export function Integrations() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-zinc-500 uppercase tracking-wider text-sm mb-4">Integrations</p>
+          <p className="text-muted-foreground uppercase tracking-wider text-sm mb-4">Integrations</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Seamless Integrations
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Connect ProductOS with your favorite tools.
           </p>
         </motion.div>
@@ -46,13 +46,13 @@ export function Integrations() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.05 }}
-              className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all text-center group hover:scale-[1.02]"
+              className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all text-center group hover:scale-[1.02]"
             >
-              <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center mx-auto mb-3 group-hover:bg-zinc-700 transition-colors">
-                <span className="text-lg font-bold text-zinc-400">{integration.name[0]}</span>
+              <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mx-auto mb-3 group-hover:bg-secondary transition-colors">
+                <span className="text-lg font-bold text-muted-foreground">{integration.name[0]}</span>
               </div>
               <div className="font-medium text-white text-sm">{integration.name}</div>
-              <div className="text-xs text-zinc-500 mt-1">{integration.description}</div>
+              <div className="text-xs text-muted-foreground mt-1">{integration.description}</div>
             </motion.div>
           ))}
         </motion.div>

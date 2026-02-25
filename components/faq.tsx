@@ -39,7 +39,7 @@ function FAQItem({ faq, index, isInView }: { faq: typeof faqs[0]; index: number;
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-      className="border-b border-zinc-800 last:border-b-0"
+      className="border-b border-border last:border-b-0"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -47,7 +47,7 @@ function FAQItem({ faq, index, isInView }: { faq: typeof faqs[0]; index: number;
       >
         <span className="font-medium text-white pr-4">{faq.question}</span>
         <ChevronDown
-          className={`w-5 h-5 text-zinc-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       <motion.div
@@ -56,7 +56,7 @@ function FAQItem({ faq, index, isInView }: { faq: typeof faqs[0]; index: number;
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <p className="pb-6 text-zinc-400 leading-relaxed">{faq.answer}</p>
+        <p className="pb-6 text-muted-foreground leading-relaxed">{faq.answer}</p>
       </motion.div>
     </motion.div>
   )
@@ -75,11 +75,11 @@ export function FAQ() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-zinc-500 uppercase tracking-wider text-sm mb-4">FAQ</p>
+          <p className="text-muted-foreground uppercase tracking-wider text-sm mb-4">FAQ</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Answers to common questions about ProductOS.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="rounded-2xl bg-zinc-900 border border-zinc-800 px-6"
+          className="rounded-2xl bg-card border border-border px-6"
         >
           {faqs.map((faq, index) => (
             <FAQItem key={faq.question} faq={faq} index={index} isInView={isInView} />

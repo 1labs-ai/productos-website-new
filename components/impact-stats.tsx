@@ -25,7 +25,7 @@ export function ImpactStats() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Ship 6–10x faster than traditional development
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             While others juggle tools and lose context, ProductOS keeps everything connected.
           </p>
         </motion.div>
@@ -42,10 +42,10 @@ export function ImpactStats() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="text-center p-8 rounded-2xl bg-zinc-900 border border-zinc-800"
+              className="text-center p-8 rounded-2xl bg-card border border-border"
             >
               <div className="text-5xl sm:text-6xl font-bold text-white mb-2">{stat.value}</div>
-              <div className="text-zinc-400">{stat.label}</div>
+              <div className="text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

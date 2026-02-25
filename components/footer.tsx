@@ -33,7 +33,7 @@ export function Footer() {
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   return (
-    <footer ref={ref} className="border-t border-zinc-800 bg-zinc-950">
+    <footer ref={ref} className="border-t border-border bg-zinc-950">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,11 +56,11 @@ export function Footer() {
                 ProductOS
               </span>
             </a>
-            <p className="text-sm text-zinc-500 mb-4">The AI-native way to build products. Ship in days, not months.</p>
+            <p className="text-sm text-muted-foreground mb-4">The AI-native way to build products. Ship in days, not months.</p>
             {/* Built by 1Labs */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
-              <span className="text-xs text-zinc-400">Built by</span>
-              <a href="https://1labs.ai" className="text-xs text-zinc-300 hover:text-white transition-colors font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border">
+              <span className="text-xs text-muted-foreground">Built by</span>
+              <a href="https://1labs.ai" className="text-xs text-foreground/80 hover:text-white transition-colors font-medium">
                 1Labs AI
               </a>
             </div>
@@ -73,7 +73,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-sm text-zinc-500 hover:text-white transition-colors">
+                    <a href={link.href} className="text-sm text-muted-foreground hover:text-white transition-colors">
                       {link.label}
                     </a>
                   </li>
@@ -88,17 +88,17 @@ export function Footer() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-zinc-500">&copy; {new Date().getFullYear()} 1Labs AI. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} 1Labs AI. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="https://twitter.com/1labsai" className="text-sm text-zinc-500 hover:text-white transition-colors">
+            <a href="https://twitter.com/1labsai" className="text-sm text-muted-foreground hover:text-white transition-colors">
               Twitter
             </a>
-            <a href="https://github.com/1labs-ai" className="text-sm text-zinc-500 hover:text-white transition-colors">
+            <a href="https://github.com/1labs-ai" className="text-sm text-muted-foreground hover:text-white transition-colors">
               GitHub
             </a>
-            <a href="https://linkedin.com/company/1labsai" className="text-sm text-zinc-500 hover:text-white transition-colors">
+            <a href="https://linkedin.com/company/1labsai" className="text-sm text-muted-foreground hover:text-white transition-colors">
               LinkedIn
             </a>
           </div>

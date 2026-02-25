@@ -40,11 +40,11 @@ export function WhyAINative() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-zinc-500 uppercase tracking-wider text-sm mb-4">Why AI-Native Matters</p>
+          <p className="text-muted-foreground uppercase tracking-wider text-sm mb-4">Why AI-Native Matters</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Built for AI from the ground up
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Not AI bolted on. AI woven into every stage—research, requirements, design, and code.
           </p>
         </motion.div>
@@ -63,13 +63,13 @@ export function WhyAINative() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all hover:scale-[1.02]"
+                className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all hover:scale-[1.02]"
               >
-                <div className="p-3 rounded-xl bg-zinc-800 w-fit mb-4">
-                  <Icon className="w-6 h-6 text-zinc-400" strokeWidth={1.5} />
+                <div className="p-3 rounded-xl bg-secondary w-fit mb-4">
+                  <Icon className="w-6 h-6 text-muted-foreground" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">{feature.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             )
           })}

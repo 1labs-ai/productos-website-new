@@ -26,7 +26,7 @@ export function Navbar() {
     >
       <nav
         ref={navRef}
-        className="relative flex items-center justify-between px-4 py-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800"
+        className="relative flex items-center justify-between px-4 py-3 rounded-full bg-card/60 backdrop-blur-md border border-border"
       >
         {/* ProductOS Logo */}
         <a href="#" className="flex items-center gap-2">
@@ -49,14 +49,14 @@ export function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="relative px-4 py-2 text-sm text-zinc-400 hover:text-white transition-colors"
+              className="relative px-4 py-2 text-sm text-muted-foreground hover:text-white transition-colors"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               {hoveredIndex === index && (
                 <motion.div
                   layoutId="navbar-hover"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
+                  className="absolute inset-0 bg-secondary rounded-full"
                   initial={false}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
@@ -71,7 +71,7 @@ export function Navbar() {
           <Button 
             variant="ghost" 
             size="sm" 
-            className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            className="text-muted-foreground hover:text-white hover:bg-secondary"
             asChild
           >
             <a href="https://build.productos.dev/sign-in">Sign In</a>
@@ -87,7 +87,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-zinc-400 hover:text-white"
+          className="md:hidden p-2 text-muted-foreground hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -101,21 +101,21 @@ export function Navbar() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="absolute top-full left-0 right-0 mt-2 p-4 rounded-2xl bg-zinc-900/95 backdrop-blur-md border border-zinc-800"
+          className="absolute top-full left-0 right-0 mt-2 p-4 rounded-2xl bg-card/95 backdrop-blur-md border border-border"
         >
           <div className="flex flex-col gap-2">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="px-4 py-3 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
+                className="px-4 py-3 text-sm text-muted-foreground hover:text-white hover:bg-secondary rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
-            <hr className="border-zinc-800 my-2" />
-            <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white" asChild>
+            <hr className="border-border my-2" />
+            <Button variant="ghost" className="justify-start text-muted-foreground hover:text-white" asChild>
               <a href="https://build.productos.dev/sign-in">Sign In</a>
             </Button>
             <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full" asChild>

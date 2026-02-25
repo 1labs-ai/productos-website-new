@@ -49,18 +49,18 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-zinc-500 uppercase tracking-wider text-sm mb-4">Customer Success</p>
+          <p className="text-muted-foreground uppercase tracking-wider text-sm mb-4">Customer Success</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Hear From Our Customers
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-            <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm text-zinc-400">
+            <span className="px-3 py-1 rounded-full bg-card border border-border text-sm text-muted-foreground">
               200+ founders shipped with ProductOS
             </span>
-            <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm text-zinc-400">
+            <span className="px-3 py-1 rounded-full bg-card border border-border text-sm text-muted-foreground">
               Context-preserving handoffs
             </span>
-            <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm text-zinc-400">
+            <span className="px-3 py-1 rounded-full bg-card border border-border text-sm text-muted-foreground">
               MVPs in 3–12 days
             </span>
           </div>
@@ -78,18 +78,18 @@ export function Testimonials() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all"
+              className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all"
             >
-              <p className="text-zinc-300 mb-6 leading-relaxed">"{testimonial.quote}"</p>
+              <p className="text-foreground/80 mb-6 leading-relaxed">"{testimonial.quote}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
-                  <span className="text-sm font-medium text-zinc-400">
+                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+                  <span className="text-sm font-medium text-muted-foreground">
                     {testimonial.name.split(" ").map(n => n[0]).join("")}
                   </span>
                 </div>
                 <div>
                   <div className="font-medium text-white">{testimonial.name}</div>
-                  <div className="text-sm text-zinc-500">{testimonial.title}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.title}</div>
                 </div>
               </div>
             </motion.div>

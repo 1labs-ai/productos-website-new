@@ -21,7 +21,7 @@ export function FinalCTA() {
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
           Ready to ship your product?
         </h2>
-        <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
           Join 200+ founders already building with ProductOS. From idea to production in days, not months.
         </p>
 
@@ -39,14 +39,14 @@ export function FinalCTA() {
           <Button
             variant="outline"
             size="lg"
-            className="rounded-full px-8 h-14 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
+            className="rounded-full px-8 h-14 text-base font-medium border-border text-foreground/80 hover:bg-card hover:text-white hover:border-border bg-transparent"
             asChild
           >
             <a href="mailto:hello@1labs.ai">Talk to Sales</a>
           </Button>
         </div>
 
-        <p className="mt-8 text-sm text-zinc-500">Free tier available. Pro starts at $49/month.</p>
+        <p className="mt-8 text-sm text-muted-foreground">Free tier available. Pro starts at $49/month.</p>
       </motion.div>
     </section>
   )

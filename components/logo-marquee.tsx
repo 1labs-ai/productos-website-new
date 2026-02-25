@@ -27,7 +27,7 @@ export function LogoMarquee() {
         transition={{ duration: 0.6 }}
         className="text-center mb-10"
       >
-        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">Products shipped on ProductOS</p>
+        <p className="text-sm text-muted-foreground uppercase tracking-wider font-medium">Products shipped on ProductOS</p>
       </motion.div>
 
       <div className="relative">
@@ -44,7 +44,7 @@ export function LogoMarquee() {
                 key={index}
                 className="flex items-center justify-center min-w-[160px] h-16 mx-8 opacity-60 hover:opacity-100 transition-all duration-300"
               >
-                <div className="flex items-center gap-2 text-zinc-400 px-4 py-2 rounded-full bg-zinc-900/50 border border-zinc-800/50">
+                <div className="flex items-center gap-2 text-muted-foreground px-4 py-2 rounded-full bg-card/50 border border-border/50">
                   <Icon className="w-4 h-4" />
                   <span className="text-sm font-medium whitespace-nowrap">
                     {item.name}
