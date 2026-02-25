@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button"
 const navItems = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Docs", href: "#docs" },
-  { label: "Blog", href: "#blog" },
+  { label: "Docs", href: "https://docs.productos.dev" },
+  { label: "Blog", href: "/blog" },
 ]
 
 export function Navbar() {
@@ -28,12 +28,19 @@ export function Navbar() {
         ref={navRef}
         className="relative flex items-center justify-between px-4 py-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800"
       >
-        {/* Logo */}
+        {/* ProductOS Logo */}
         <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-            <span className="text-zinc-950 font-bold text-sm">A</span>
-          </div>
-          <span className="font-semibold text-white hidden sm:block">Apex</span>
+          <span 
+            className="text-xl font-bold tracking-tight"
+            style={{
+              background: "linear-gradient(180deg, #a1a1aa 0%, #52525b 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            ProductOS
+          </span>
         </a>
 
         {/* Desktop Nav Items */}
@@ -61,11 +68,20 @@ export function Navbar() {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white hover:bg-zinc-800">
-            Sign In
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            asChild
+          >
+            <a href="https://build.productos.dev/sign-in">Sign In</a>
           </Button>
-          <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
-            Get Started
+          <Button 
+            size="sm" 
+            className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4"
+            asChild
+          >
+            <a href="https://build.productos.dev/sign-up">Get Started</a>
           </Button>
         </div>
 
@@ -99,10 +115,12 @@ export function Navbar() {
               </a>
             ))}
             <hr className="border-zinc-800 my-2" />
-            <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white">
-              Sign In
+            <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white" asChild>
+              <a href="https://build.productos.dev/sign-in">Sign In</a>
             </Button>
-            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">Get Started</Button>
+            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full" asChild>
+              <a href="https://build.productos.dev/sign-up">Get Started</a>
+            </Button>
           </div>
         </motion.div>
       )}

@@ -7,41 +7,48 @@ import { Button } from "@/components/ui/button"
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for side projects and small teams",
+    name: "Free",
+    description: "For individuals getting started",
     price: { monthly: 0, yearly: 0 },
-    features: ["3 team members", "10 projects", "Basic analytics", "Community support", "1GB storage"],
+    features: [
+      "1 project",
+      "Basic AI agents",
+      "5 generations/day",
+      "Community support",
+      "Public templates",
+    ],
     cta: "Get Started",
     highlighted: false,
   },
   {
     name: "Pro",
-    description: "For growing teams that need more power",
-    price: { monthly: 29, yearly: 24 },
+    description: "For founders shipping fast",
+    price: { monthly: 49, yearly: 39 },
     features: [
-      "Unlimited team members",
       "Unlimited projects",
-      "Advanced analytics",
+      "All AI agents",
+      "Unlimited generations",
       "Priority support",
-      "100GB storage",
       "Custom domains",
-      "API access",
+      "GitHub integration",
+      "Export to code",
     ],
     cta: "Start Free Trial",
     highlighted: true,
   },
   {
     name: "Enterprise",
-    description: "For organizations with advanced needs",
-    price: { monthly: 99, yearly: 79 },
+    description: "For teams at scale",
+    price: { monthly: 0, yearly: 0 },
+    priceLabel: "Custom",
     features: [
       "Everything in Pro",
-      "SSO & SAML",
       "Dedicated support",
       "SLA guarantee",
-      "Unlimited storage",
+      "SSO & SAML",
       "Custom integrations",
-      "Audit logs",
+      "On-premise option",
+      "Custom contracts",
     ],
     cta: "Contact Sales",
     highlighted: false,
@@ -75,57 +82,38 @@ export function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-4"
-            style={{ fontFamily: "var(--font-instrument-sans)" }}
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Simple, transparent pricing
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
-            Start free, scale as you grow. No hidden fees, no surprises.
+            Start free, scale as you ship. No hidden fees.
           </p>
 
           {/* Billing Toggle */}
-          <div className="inline-flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800">
+          <div className="inline-flex items-center gap-3 p-1 rounded-full bg-zinc-900 border border-zinc-800">
             <button
               onClick={() => setBillingCycle("monthly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "monthly" ? "text-white" : "text-zinc-400"
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                billingCycle === "monthly" ? "bg-white text-zinc-950" : "text-zinc-400 hover:text-white"
               }`}
             >
-              {billingCycle === "monthly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Monthly</span>
+              Monthly
             </button>
             <button
               onClick={() => setBillingCycle("yearly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "yearly" ? "text-white" : "text-zinc-400"
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                billingCycle === "yearly" ? "bg-white text-zinc-950" : "text-zinc-400 hover:text-white"
               }`}
             >
-              {billingCycle === "yearly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Yearly</span>
-              <span className="relative z-10 ml-2 px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">
-                -20%
-              </span>
+              Yearly
+              <span className="ml-2 text-xs text-emerald-500">Save 20%</span>
             </button>
           </div>
         </motion.div>
 
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -135,54 +123,64 @@ export function Pricing() {
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className={`relative p-6 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
+              transition={{ duration: 0.6, delay: 0.1 * index }}
+              className={`relative p-6 rounded-2xl ${
                 plan.highlighted
-                  ? "bg-zinc-900 border-zinc-700"
-                  : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-600"
+                  ? "bg-white text-zinc-950"
+                  : "bg-zinc-900 border border-zinc-800 text-white"
               }`}
             >
               {plan.highlighted && <BorderBeam />}
 
-              {plan.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-white text-zinc-950 text-xs font-medium rounded-full">
-                  Most Popular
+              <div className="relative z-10">
+                <h3 className={`text-xl font-semibold mb-2 ${plan.highlighted ? "text-zinc-950" : "text-white"}`}>
+                  {plan.name}
+                </h3>
+                <p className={`text-sm mb-6 ${plan.highlighted ? "text-zinc-600" : "text-zinc-400"}`}>
+                  {plan.description}
+                </p>
+
+                <div className="mb-6">
+                  {plan.priceLabel ? (
+                    <span className={`text-4xl font-bold ${plan.highlighted ? "text-zinc-950" : "text-white"}`}>
+                      {plan.priceLabel}
+                    </span>
+                  ) : (
+                    <>
+                      <span className={`text-4xl font-bold ${plan.highlighted ? "text-zinc-950" : "text-white"}`}>
+                        ${billingCycle === "monthly" ? plan.price.monthly : plan.price.yearly}
+                      </span>
+                      {plan.price.monthly > 0 && (
+                        <span className={`text-sm ${plan.highlighted ? "text-zinc-600" : "text-zinc-400"}`}>
+                          /month
+                        </span>
+                      )}
+                    </>
+                  )}
                 </div>
-              )}
 
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
-                <p className="text-zinc-400 text-sm">{plan.description}</p>
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-3 text-sm">
+                      <Check className={`w-4 h-4 ${plan.highlighted ? "text-zinc-950" : "text-zinc-400"}`} />
+                      <span className={plan.highlighted ? "text-zinc-700" : "text-zinc-300"}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  className={`w-full rounded-full ${
+                    plan.highlighted
+                      ? "bg-zinc-950 text-white hover:bg-zinc-800"
+                      : "bg-zinc-800 text-white hover:bg-zinc-700"
+                  }`}
+                  asChild
+                >
+                  <a href={plan.name === "Enterprise" ? "mailto:hello@1labs.ai" : "https://build.productos.dev/sign-up"}>
+                    {plan.cta}
+                  </a>
+                </Button>
               </div>
-
-              <div className="mb-6">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">${plan.price[billingCycle]}</span>
-                  {plan.price.monthly > 0 && <span className="text-zinc-400 text-sm">/month</span>}
-                </div>
-                {billingCycle === "yearly" && plan.price.yearly > 0 && (
-                  <p className="text-xs text-zinc-500 mt-1">Billed annually (${plan.price.yearly * 12}/year)</p>
-                )}
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3 text-sm text-zinc-300">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" strokeWidth={1.5} />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                className={`w-full rounded-full ${
-                  plan.highlighted
-                    ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200"
-                    : "bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-700"
-                }`}
-              >
-                {plan.cta}
-              </Button>
             </motion.div>
           ))}
         </motion.div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const avatars = [
@@ -41,18 +41,17 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-          <span className="text-sm text-zinc-400">Now in Public Beta</span>
+          <Sparkles className="w-4 h-4 text-zinc-400" />
+          <span className="text-sm text-zinc-400">World's First AI-Native Product Platform</span>
         </motion.div>
 
         {/* Headline with text mask animation */}
         <h1
           className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6"
-          style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
         >
           <span className="block overflow-hidden">
             <motion.span className="block" variants={textRevealVariants} initial="hidden" animate="visible" custom={0}>
-              Ship faster.
+              Stop Juggling Tools.
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -63,7 +62,7 @@ export function Hero() {
               animate="visible"
               custom={1}
             >
-              Scale smarter.
+              Start Shipping Products.
             </motion.span>
           </span>
         </h1>
@@ -73,10 +72,22 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-4 leading-relaxed"
         >
-          The modern platform for teams who ship fast. Built for scale, designed for speed. Everything you need to
-          build, deploy, and grow.
+          ProductOS orchestrates research, PRD, design, and code through AI agents that work together—keeping context intact from first idea to production deployment.
+        </motion.p>
+
+        {/* Launch timeline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="text-2xl sm:text-3xl font-light italic text-zinc-300 mb-10"
+          style={{
+            fontFamily: "Georgia, serif"
+          }}
+        >
+          Launch in 3-12 Days
         </motion.p>
 
         {/* CTAs */}
@@ -89,16 +100,20 @@ export function Hero() {
           <Button
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
+            asChild
           >
-            Start Building
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <a href="https://build.productos.dev/sign-up">
+              Start Building
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </a>
           </Button>
           <Button
             variant="outline"
             size="lg"
             className="rounded-full px-8 h-12 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
+            asChild
           >
-            View Demo
+            <a href="https://build.productos.dev/pricing">View Pricing</a>
           </Button>
         </motion.div>
 
@@ -127,7 +142,7 @@ export function Hero() {
             ))}
           </div>
           <p className="text-sm text-zinc-500">
-            Trusted by <span className="text-zinc-300 font-medium">2,000+</span> teams worldwide
+            <span className="text-zinc-300 font-medium">200+</span> founders shipped with ProductOS
           </p>
         </motion.div>
       </div>

@@ -18,34 +18,35 @@ export function FinalCTA() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-4xl mx-auto text-center"
       >
-        <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight"
-          style={{ fontFamily: "var(--font-cal-sans)" }}
-        >
-          Ready to ship faster?
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+          Ready to ship your product?
         </h2>
         <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-          Join thousands of teams already building with Apex. Start free, no credit card required.
+          Join 200+ founders already building with ProductOS. From idea to production in days, not months.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-14 text-base font-medium shadow-lg shadow-white/20"
+            asChild
           >
-            Get Started for Free
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <a href="https://build.productos.dev/sign-up">
+              Start Building Free
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
           </Button>
           <Button
             variant="outline"
             size="lg"
             className="rounded-full px-8 h-14 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
+            asChild
           >
-            Talk to Sales
+            <a href="mailto:hello@1labs.ai">Talk to Sales</a>
           </Button>
         </div>
 
-        <p className="mt-8 text-sm text-zinc-500">Free forever for individuals. Team plans start at $29/month.</p>
+        <p className="mt-8 text-sm text-zinc-500">Free tier available. Pro starts at $49/month.</p>
       </motion.div>
     </section>
   )

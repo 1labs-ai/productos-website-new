@@ -2,16 +2,17 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { BarChart3, Layout, ShoppingCart, FileText, MessageSquare, Wallet, Briefcase, Rocket } from "lucide-react"
 
-const logos = [
-  { name: "Vercel", width: 100 },
-  { name: "Stripe", width: 80 },
-  { name: "Linear", width: 90 },
-  { name: "Notion", width: 100 },
-  { name: "Figma", width: 70 },
-  { name: "Slack", width: 90 },
-  { name: "Discord", width: 100 },
-  { name: "GitHub", width: 90 },
+const productTypes = [
+  { name: "SaaS Analytics", icon: BarChart3 },
+  { name: "Admin Dashboard", icon: Layout },
+  { name: "E-commerce", icon: ShoppingCart },
+  { name: "Docs Hub", icon: FileText },
+  { name: "Chat Apps", icon: MessageSquare },
+  { name: "FinTech", icon: Wallet },
+  { name: "B2B Tools", icon: Briefcase },
+  { name: "Startups", icon: Rocket },
 ]
 
 export function LogoMarquee() {
@@ -26,7 +27,7 @@ export function LogoMarquee() {
         transition={{ duration: 0.6 }}
         className="text-center mb-10"
       >
-        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">Trusted by industry leaders</p>
+        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">Products shipped on ProductOS</p>
       </motion.div>
 
       <div className="relative">
@@ -36,21 +37,22 @@ export function LogoMarquee() {
 
         {/* Marquee container */}
         <div className="flex animate-marquee">
-          {[...logos, ...logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center min-w-[160px] h-16 mx-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-            >
-              <div className="flex items-center gap-2 text-zinc-400">
-                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center">
-                  <span className="text-xs font-bold">{logo.name[0]}</span>
+          {[...productTypes, ...productTypes].map((item, index) => {
+            const Icon = item.icon
+            return (
+              <div
+                key={index}
+                className="flex items-center justify-center min-w-[160px] h-16 mx-8 opacity-60 hover:opacity-100 transition-all duration-300"
+              >
+                <div className="flex items-center gap-2 text-zinc-400 px-4 py-2 rounded-full bg-zinc-900/50 border border-zinc-800/50">
+                  <Icon className="w-4 h-4" />
+                  <span className="text-sm font-medium whitespace-nowrap">
+                    {item.name}
+                  </span>
                 </div>
-                <span className="font-medium" style={{ fontFamily: "var(--font-instrument-sans)" }}>
-                  {logo.name}
-                </span>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

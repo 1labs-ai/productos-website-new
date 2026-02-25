@@ -4,10 +4,28 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const footerLinks = {
-  Product: ["Features", "Pricing", "Changelog", "Roadmap", "API"],
-  Resources: ["Documentation", "Guides", "Blog", "Community", "Templates"],
-  Company: ["About", "Careers", "Press", "Partners", "Contact"],
-  Legal: ["Privacy", "Terms", "Security", "Cookies", "Licenses"],
+  Product: [
+    { label: "Features", href: "#features" },
+    { label: "Pricing", href: "https://build.productos.dev/pricing" },
+    { label: "Changelog", href: "#" },
+    { label: "Roadmap", href: "#" },
+  ],
+  Platform: [
+    { label: "Build", href: "https://build.productos.dev" },
+    { label: "Design", href: "https://design.productos.dev" },
+    { label: "Develop", href: "https://develop.productos.dev" },
+  ],
+  Resources: [
+    { label: "Documentation", href: "#" },
+    { label: "Blog", href: "/blog" },
+    { label: "Templates", href: "#" },
+  ],
+  Company: [
+    { label: "About 1Labs AI", href: "https://1labs.ai" },
+    { label: "Contact", href: "mailto:hello@1labs.ai" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
+  ],
 }
 
 export function Footer() {
@@ -26,16 +44,25 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-                <span className="text-zinc-950 font-bold text-sm">A</span>
-              </div>
-              <span className="font-semibold text-white">Apex</span>
+              <span 
+                className="text-xl font-bold tracking-tight"
+                style={{
+                  background: "linear-gradient(180deg, #a1a1aa 0%, #52525b 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                ProductOS
+              </span>
             </a>
-            <p className="text-sm text-zinc-500 mb-4">The modern platform for teams who ship fast.</p>
-            {/* System Status */}
+            <p className="text-sm text-zinc-500 mb-4">The AI-native way to build products. Ship in days, not months.</p>
+            {/* Built by 1Labs */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-              <span className="text-xs text-zinc-400">All Systems Operational</span>
+              <span className="text-xs text-zinc-400">Built by</span>
+              <a href="https://1labs.ai" className="text-xs text-zinc-300 hover:text-white transition-colors font-medium">
+                1Labs AI
+              </a>
             </div>
           </div>
 
@@ -45,9 +72,9 @@ export function Footer() {
               <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-                      {link}
+                  <li key={link.label}>
+                    <a href={link.href} className="text-sm text-zinc-500 hover:text-white transition-colors">
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -63,16 +90,16 @@ export function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-zinc-500">&copy; {new Date().getFullYear()} Apex, Inc. All rights reserved.</p>
+          <p className="text-sm text-zinc-500">&copy; {new Date().getFullYear()} 1Labs AI. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
+            <a href="https://twitter.com/1labsai" className="text-sm text-zinc-500 hover:text-white transition-colors">
               Twitter
             </a>
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
+            <a href="https://github.com/1labs-ai" className="text-sm text-zinc-500 hover:text-white transition-colors">
               GitHub
             </a>
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              Discord
+            <a href="https://linkedin.com/company/1labsai" className="text-sm text-zinc-500 hover:text-white transition-colors">
+              LinkedIn
             </a>
           </div>
         </motion.div>
