@@ -6,6 +6,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig: NextConfig = {
+  // Set turbopack root to this directory (fixes workspace lockfile detection)
+  turbopack: {
+    root: process.cwd(),
+  },
   // Enable compression for all responses
   compress: true,
 
