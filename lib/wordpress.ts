@@ -151,14 +151,25 @@ function calculateReadingTime(content: string): number {
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 }
 
+/** Author avatar mapping (Unsplash-sourced professional headshots) */
+const AUTHOR_AVATARS: Record<string, string> = {
+  'James Mitchell': '/team/professional-headshot-1.webp',
+  'Maya Chen': '/team/professional-headshot-2.webp',
+  'Priya Sharma': '/team/professional-headshot-3.webp',
+  'David Liu': '/team/professional-headshot-4.webp',
+  'ProductOS Team': '/team/professional-headshot-5.webp',
+};
+
 /** Extract author from embedded response */
 function extractAuthor(embedded?: WPPostRaw['_embedded']): BlogAuthor | undefined {
   const author = embedded?.author?.[0];
   if (!author) return undefined;
   
+  const name = author.name || 'ProductOS Team';
+  
   return {
-    name: author.name || 'ProductOS Team',
-    avatar: author.avatar_urls?.['96'] || author.avatar_urls?.['48'],
+    name,
+    avatar: AUTHOR_AVATARS[name] || author.avatar_urls?.['96'] || author.avatar_urls?.['48'],
   };
 }
 
