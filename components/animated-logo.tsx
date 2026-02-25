@@ -52,11 +52,16 @@ export const AnimatedLogo = forwardRef<AnimatedLogoRef, AnimatedLogoProps>(
       }
     }, [animate, controls])
 
-    // Expose replay method to parent
+    // Expose replay method to parent - subtle animation without hiding
     useImperativeHandle(ref, () => ({
       replay: async () => {
         if (!animate) return
-        await controls.start("hidden")
+        // Quick subtle fold effect without fully hiding
+        await controls.start({
+          opacity: 0.6,
+          scale: 0.95,
+          transition: { duration: 0.15 }
+        })
         controls.start("visible")
       }
     }))
