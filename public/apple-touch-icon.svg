@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- ProductOS Origami - Mono Black (30%/60%/100%) -->
-  <path d="M4 32 L18 4 L32 32 Z" fill="#111" fill-opacity="0.3"/>
-  <path d="M18 4 L4 32 L18 32 Z" fill="#111" fill-opacity="0.6"/>
-  <path d="M18 4 L18 32 L32 4 Z" fill="#111"/>
+  <!-- ProductOS Origami - Light version for dark backgrounds -->
+  <!-- Main triangle (lightest) -->
+  <path d="M4 32 L18 4 L32 32 Z" fill="#E5E5E5"/>
+  <!-- Left fold (medium) -->
+  <path d="M18 4 L4 32 L18 32 Z" fill="#B3B3B3"/>
+  <!-- Right fold overlay (darkest) -->
+  <path d="M18 4 L18 32 L32 4 Z" fill="#808080"/>
 </svg>
