@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Menu, X, Sun, Moon, Monitor } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -84,6 +85,8 @@ function ThemeToggle() {
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isHomepage = pathname === "/"
 
   return (
     <motion.header
@@ -101,7 +104,7 @@ export function Navbar() {
               whileTap={{ scale: 0.98 }}
               className="flex items-center gap-2.5"
             >
-              <AnimatedLogo size={28} className="shrink-0" />
+              <AnimatedLogo size={28} className="shrink-0" animate={isHomepage} />
               <span className="font-semibold text-lg leading-none tracking-tight">
                 ProductOS
               </span>
