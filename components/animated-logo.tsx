@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useAnimation } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect, useImperativeHandle, forwardRef } from "react"
 
 interface AnimatedLogoProps {
   size?: number
@@ -9,78 +9,78 @@ interface AnimatedLogoProps {
   animate?: boolean
 }
 
-export function AnimatedLogo({ size = 28, className = "", animate = true }: AnimatedLogoProps) {
-  const controls = useAnimation()
-  const [isHovering, setIsHovering] = useState(false)
+export interface AnimatedLogoRef {
+  replay: () => void
+}
 
-  // Animation sequence: unfolds like origami paper
-  const backVariants = {
-    hidden: { opacity: 0, scaleY: 0 },
-    visible: { 
-      opacity: 1, 
-      scaleY: 1,
-      transition: { duration: 0.5, ease: "easeOut", delay: 0.1 }
+export const AnimatedLogo = forwardRef<AnimatedLogoRef, AnimatedLogoProps>(
+  ({ size = 28, className = "", animate = true }, ref) => {
+    const controls = useAnimation()
+
+    // Animation sequence: unfolds like origami paper
+    const backVariants = {
+      hidden: { opacity: 0, scaleY: 0 },
+      visible: { 
+        opacity: 1, 
+        scaleY: 1,
+        transition: { duration: 0.5, ease: "easeOut", delay: 0.1 }
+      }
     }
-  }
 
-  const leftVariants = {
-    hidden: { opacity: 0, rotateY: 90 },
-    visible: { 
-      opacity: 1, 
-      rotateY: 0,
-      transition: { duration: 0.4, ease: "easeOut", delay: 0.6 }
+    const leftVariants = {
+      hidden: { opacity: 0, rotateY: 90 },
+      visible: { 
+        opacity: 1, 
+        rotateY: 0,
+        transition: { duration: 0.4, ease: "easeOut", delay: 0.6 }
+      }
     }
-  }
 
-  const rightVariants = {
-    hidden: { opacity: 0, rotateY: -90 },
-    visible: { 
-      opacity: 1, 
-      rotateY: 0,
-      transition: { duration: 0.4, ease: "easeOut", delay: 1.0 }
+    const rightVariants = {
+      hidden: { opacity: 0, rotateY: -90 },
+      visible: { 
+        opacity: 1, 
+        rotateY: 0,
+        transition: { duration: 0.4, ease: "easeOut", delay: 1.0 }
+      }
     }
-  }
 
-  // Play animation on mount
-  useEffect(() => {
-    if (animate) {
-      controls.start("visible")
+    // Play animation on mount
+    useEffect(() => {
+      if (animate) {
+        controls.start("visible")
+      }
+    }, [animate, controls])
+
+    // Expose replay method to parent
+    useImperativeHandle(ref, () => ({
+      replay: async () => {
+        if (!animate) return
+        await controls.start("hidden")
+        controls.start("visible")
+      }
+    }))
+
+    // Static version (no animation)
+    if (!animate) {
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 36 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={className}
+        >
+          <path d="M4 32 L18 4 L32 32 Z" fill="currentColor" fillOpacity={0.35} />
+          <path d="M18 4 L4 32 L18 32 Z" fill="currentColor" fillOpacity={0.65} />
+          <path d="M18 4 L18 32 L32 4 Z" fill="currentColor" />
+        </svg>
+      )
     }
-  }, [animate, controls])
 
-  // Replay animation on hover
-  const handleMouseEnter = async () => {
-    if (!animate || isHovering) return
-    setIsHovering(true)
-    await controls.start("hidden")
-    await controls.start("visible")
-    setIsHovering(false)
-  }
-
-  // Static version (no animation)
-  if (!animate) {
+    // Animated version
     return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-      >
-        <path d="M4 32 L18 4 L32 32 Z" fill="currentColor" fillOpacity={0.35} />
-        <path d="M18 4 L4 32 L18 32 Z" fill="currentColor" fillOpacity={0.65} />
-        <path d="M18 4 L18 32 L32 4 Z" fill="currentColor" />
-      </svg>
-    )
-  }
-
-  // Animated version - plays on load + replays on hover
-  return (
-    <div 
-      onMouseEnter={handleMouseEnter}
-      style={{ display: "inline-flex", cursor: "pointer" }}
-    >
       <motion.svg
         width={size}
         height={size}
@@ -115,6 +115,8 @@ export function AnimatedLogo({ size = 28, className = "", animate = true }: Anim
           style={{ transformOrigin: "left center" }}
         />
       </motion.svg>
-    </div>
-  )
-}
+    )
+  }
+)
+
+AnimatedLogo.displayName = "AnimatedLogo"

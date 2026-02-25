@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { Sun, Moon, Monitor, Globe, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { AnimatedLogo } from "@/components/animated-logo"
+import { AnimatedLogo, type AnimatedLogoRef } from "@/components/animated-logo"
+import { useRef } from "react"
 
 const footerLinks = {
   Product: [
@@ -125,14 +126,20 @@ function LanguageSwitcher() {
 }
 
 export function Footer() {
+  const logoRef = useRef<AnimatedLogoRef>(null)
+  
   return (
     <footer className="border-t border-border py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <a href="/" className="flex items-center gap-2.5 mb-2">
-              <AnimatedLogo size={24} className="shrink-0" />
+            <a 
+              href="/" 
+              className="flex items-center gap-2.5 mb-2"
+              onMouseEnter={() => logoRef.current?.replay()}
+            >
+              <AnimatedLogo ref={logoRef} size={24} className="shrink-0" />
               <span className="font-semibold text-lg tracking-tight">ProductOS</span>
             </a>
             <p className="text-sm text-muted-foreground">

@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Menu, X, Sun, Moon, Monitor } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { AnimatedLogo } from "@/components/animated-logo"
+import { AnimatedLogo, type AnimatedLogoRef } from "@/components/animated-logo"
 
 const navItems = [
   { label: "Product", href: "#features" },
@@ -87,6 +87,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHomepage = pathname === "/"
+  const logoRef = useRef<AnimatedLogoRef>(null)
 
   return (
     <motion.header
@@ -97,9 +98,13 @@ export function Navbar() {
     >
       <nav className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - no grow animation, logo animates on hover */}
-          <a href="/" className="flex items-center gap-2.5">
-            <AnimatedLogo size={28} className="shrink-0" />
+          {/* Logo - animates on hover of entire logo area */}
+          <a 
+            href="/" 
+            className="flex items-center gap-2.5"
+            onMouseEnter={() => logoRef.current?.replay()}
+          >
+            <AnimatedLogo ref={logoRef} size={28} className="shrink-0" />
             <span className="font-semibold text-lg leading-none tracking-tight">
               ProductOS
             </span>
