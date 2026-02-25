@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
+import { useEffect } from "react"
 
 interface AnimatedLogoProps {
   size?: number
@@ -9,11 +10,9 @@ interface AnimatedLogoProps {
 }
 
 export function AnimatedLogo({ size = 28, className = "", animate = true }: AnimatedLogoProps) {
+  const controls = useAnimation()
+
   // Animation sequence: unfolds like origami paper
-  // 1. Back face grows up from bottom (0.1s delay)
-  // 2. Left fold rotates in (0.6s delay)  
-  // 3. Right fold rotates in (1.0s delay)
-  
   const backVariants = {
     hidden: { opacity: 0, scaleY: 0 },
     visible: { 
@@ -41,6 +40,20 @@ export function AnimatedLogo({ size = 28, className = "", animate = true }: Anim
     }
   }
 
+  // Play animation on mount
+  useEffect(() => {
+    if (animate) {
+      controls.start("visible")
+    }
+  }, [animate, controls])
+
+  // Replay animation on hover
+  const handleHoverStart = async () => {
+    if (!animate) return
+    await controls.start("hidden")
+    controls.start("visible")
+  }
+
   // Static version (no animation)
   if (!animate) {
     return (
@@ -59,7 +72,7 @@ export function AnimatedLogo({ size = 28, className = "", animate = true }: Anim
     )
   }
 
-  // Animated version - plays once on page load
+  // Animated version - plays on load + replays on hover
   return (
     <motion.svg
       width={size}
@@ -69,7 +82,9 @@ export function AnimatedLogo({ size = 28, className = "", animate = true }: Anim
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       initial="hidden"
-      animate="visible"
+      animate={controls}
+      onHoverStart={handleHoverStart}
+      style={{ cursor: "pointer" }}
     >
       {/* Back face - grows up from bottom first */}
       <motion.path 
