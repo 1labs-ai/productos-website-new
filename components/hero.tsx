@@ -1,10 +1,55 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useRef, useEffect } from "react"
 
 export function Hero() {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoError, setVideoError] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Check if demo video exists (will fail gracefully if not)
+  const demoVideoSrc = "/demo/productos-demo.mp4"
+  const demoPosterSrc = "/demo/productos-demo-poster.jpg"
+  const demoGifSrc = "/demo/productos-demo.gif"
+
+  useEffect(() => {
+    // Auto-play video on desktop when in viewport
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && videoLoaded) {
+          video.play().catch(() => {})
+          setIsPlaying(true)
+        } else {
+          video.pause()
+          setIsPlaying(false)
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [videoLoaded])
+
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+        setIsPlaying(false)
+      } else {
+        videoRef.current.play()
+        setIsPlaying(true)
+      }
+    }
+  }
+
   return (
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 pt-20 pb-16 overflow-hidden">
       {/* Subtle gradient background */}
@@ -59,7 +104,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
           <Button
             size="lg"
@@ -81,11 +126,98 @@ export function Hero() {
           </Button>
         </motion.div>
 
+        {/* Demo Video/GIF Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="relative max-w-4xl mx-auto mb-12"
+        >
+          <div className="relative rounded-xl overflow-hidden border border-border/50 shadow-2xl shadow-black/20 bg-card">
+            {/* Browser chrome effect */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-muted/50 border-b border-border/50">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              <div className="flex-1 flex justify-center">
+                <div className="px-4 py-1 rounded-md bg-background/50 text-xs text-muted-foreground">
+                  build.productos.dev
+                </div>
+              </div>
+            </div>
+            
+            {/* Video/GIF Container */}
+            <div className="relative aspect-video bg-background">
+              {/* Video for desktop (hidden on error) */}
+              {!videoError && (
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover hidden md:block"
+                  poster={demoPosterSrc}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onLoadedData={() => setVideoLoaded(true)}
+                  onError={() => setVideoError(true)}
+                >
+                  <source src={demoVideoSrc} type="video/mp4" />
+                </video>
+              )}
+              
+              {/* GIF fallback for mobile or video error */}
+              <img
+                src={videoError ? demoGifSrc : demoPosterSrc}
+                alt="ProductOS demo - 5-stage AI product development workflow"
+                className={`w-full h-full object-cover ${!videoError ? 'md:hidden' : ''}`}
+                onError={(e) => {
+                  // Final fallback - show dashboard screenshot
+                  (e.target as HTMLImageElement).src = '/product/dashboard.png'
+                }}
+              />
+              
+              {/* Play/Pause overlay for desktop */}
+              {!videoError && videoLoaded && (
+                <button
+                  onClick={handlePlayClick}
+                  className="hidden md:flex absolute inset-0 items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+                  aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
+                >
+                  <div className="w-16 h-16 rounded-full bg-background/90 flex items-center justify-center shadow-lg">
+                    {isPlaying ? (
+                      <div className="flex gap-1">
+                        <div className="w-1.5 h-6 bg-foreground rounded-full" />
+                        <div className="w-1.5 h-6 bg-foreground rounded-full" />
+                      </div>
+                    ) : (
+                      <Play className="size-6 text-foreground ml-1" fill="currentColor" />
+                    )}
+                  </div>
+                </button>
+              )}
+              
+              {/* Loading state */}
+              {!videoLoaded && !videoError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-background/50 md:flex hidden">
+                  <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* Caption */}
+          <p className="text-sm text-muted-foreground mt-4">
+            Watch: Idea → Research → PRD → Design → Code in under 60 seconds
+          </p>
+        </motion.div>
+
         {/* Stats - Balanced messaging */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="flex items-center justify-center gap-12 sm:gap-20"
         >
           <div className="text-center">
