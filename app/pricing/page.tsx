@@ -8,6 +8,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+function BorderBeam() {
+  return (
+    <div className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none">
+      <div
+        className="absolute w-24 h-24 bg-white/20 blur-xl border-beam"
+        style={{
+          offsetPath: "rect(0 100% 100% 0 round 16px)",
+        }}
+      />
+    </div>
+  );
+}
+
 export default function PricingPage() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
 
@@ -219,6 +232,7 @@ export default function PricingPage() {
                         : "bg-card/50 border-border/50 hover:border-border"
                     }`}
                   >
+                    {plan.highlighted && <BorderBeam />}
                     {plan.highlighted && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-medium rounded-full">
                         Popular
@@ -295,6 +309,7 @@ export default function PricingPage() {
                         : "bg-card/50 border-border/50 hover:border-border"
                     }`}
                   >
+                    {plan.highlighted && <BorderBeam />}
                     {plan.highlighted && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-medium rounded-full flex items-center gap-1">
                         <Users className="w-3 h-3" />
