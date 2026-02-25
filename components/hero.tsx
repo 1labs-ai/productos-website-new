@@ -27,11 +27,12 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
+          className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
+          style={{ lineHeight: 1.05, letterSpacing: '-0.025em' }}
         >
           <span className="text-foreground">Ship Products</span>
           <br />
-          <span className="text-muted-foreground">10x Faster</span>
+          <span className="text-foreground/70">10x Faster</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -77,19 +78,19 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex items-center justify-center gap-8 sm:gap-12"
+          className="flex items-center justify-center gap-10 sm:gap-16"
         >
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-foreground">500+</div>
-            <div className="text-sm text-muted-foreground">Products shipped</div>
+            <div className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">500+</div>
+            <div className="text-sm text-muted-foreground mt-1">Products shipped</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-foreground">3-12</div>
-            <div className="text-sm text-muted-foreground">Days to launch</div>
+            <div className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">3-12</div>
+            <div className="text-sm text-muted-foreground mt-1">Days to launch</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-foreground">50k+</div>
-            <div className="text-sm text-muted-foreground">Launches</div>
+            <div className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">50k+</div>
+            <div className="text-sm text-muted-foreground mt-1">Launches</div>
           </div>
         </motion.div>
       </div>

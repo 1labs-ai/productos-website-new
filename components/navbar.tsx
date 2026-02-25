@@ -67,7 +67,7 @@ export function Navbar() {
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <Logo />
-            <span className="font-semibold text-lg leading-none tracking-tight">
+            <span className="font-semibold text-lg tracking-tight">
               ProductOS
             </span>
           </a>

@@ -32,7 +32,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <span className="font-semibold text-lg leading-none tracking-tight">ProductOS</span>
+            <span className="font-semibold text-lg tracking-tight">ProductOS</span>
             <p className="text-sm text-muted-foreground mt-2">
               Ship products 10x faster with AI.
             </p>
