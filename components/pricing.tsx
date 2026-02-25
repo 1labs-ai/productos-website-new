@@ -192,7 +192,7 @@ export function Pricing() {
                 }`}
                 asChild
               >
-                <a href={plan.name === "Enterprise" ? "mailto:hello@1labs.ai" : "https://build.productos.dev/sign-up"}>
+                <a href={plan.name === "Enterprise" ? "mailto:founders@productos.dev" : "https://build.productos.dev/sign-up"}>
                   {plan.cta}
                 </a>
               </Button>

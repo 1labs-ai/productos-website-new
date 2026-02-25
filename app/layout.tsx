@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 import "./globals.css"
 
 const inter = Inter({
@@ -36,7 +38,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Navbar />
+          <main className="min-h-screen bg-background pt-16">
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
         <Analytics />
       </body>

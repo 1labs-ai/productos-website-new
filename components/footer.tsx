@@ -12,7 +12,7 @@ const footerLinks = {
     { label: "Features", href: "#features" },
     { label: "Pricing", href: "#pricing" },
     { label: "Enterprise", href: "/enterprise" },
-    { label: "Changelog", href: "#" },
+    { label: "Changelog", href: "/changelog" },
   ],
   Resources: [
     { label: "Documentation", href: "https://docs.productos.dev" },
@@ -23,7 +23,7 @@ const footerLinks = {
   Company: [
     { label: "About", href: "#" },
     { label: "Careers", href: "#" },
-    { label: "Contact", href: "mailto:hello@1labs.ai" },
+    { label: "Contact", href: "/contact" },
   ],
   Legal: [
     { label: "Privacy", href: "/privacy" },

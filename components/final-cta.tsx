@@ -55,7 +55,7 @@ export function FinalCTA() {
                 className="rounded-md px-8 h-12 text-base font-medium border-border/50 hover:bg-muted hover:border-border"
                 asChild
               >
-                <a href="mailto:hello@1labs.ai">Talk to Us</a>
+                <a href="mailto:founders@productos.dev">Talk to Us</a>
               </Button>
             </div>
             
