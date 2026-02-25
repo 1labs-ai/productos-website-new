@@ -32,7 +32,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <span className="text-lg font-semibold">ProductOS</span>
+            <span className="font-semibold text-lg leading-none tracking-tight">ProductOS</span>
             <p className="text-sm text-muted-foreground mt-2">
               Ship products 10x faster with AI.
             </p>
@@ -41,7 +41,7 @@ export function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-sm font-medium mb-4">{title}</h4>
+              <h4 className="text-sm font-semibold text-foreground mb-4">{title}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
