@@ -153,10 +153,10 @@ function calculateReadingTime(content: string): number {
 
 /** Author avatar mapping (Unsplash-sourced professional headshots) */
 const AUTHOR_AVATARS: Record<string, string> = {
-  'James Mitchell': '/team/professional-headshot-1.webp',
-  'Maya Chen': '/team/professional-headshot-2.webp',
-  'Priya Sharma': '/team/professional-headshot-3.webp',
-  'David Liu': '/team/professional-headshot-4.webp',
+  'James Mitchell': '/team/james-mitchell.webp',      // Male - Caucasian
+  'David Liu': '/team/david-liu.webp',                // Male - East Asian
+  'Priya Sharma': '/team/professional-headshot-1.webp', // Female - South Asian
+  'Maya Chen': '/team/professional-headshot-3.webp',    // Female - East Asian
   'ProductOS Team': '/team/professional-headshot-5.webp',
 };
 
