@@ -9,7 +9,11 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { AnimatedLogo, type AnimatedLogoRef } from "@/components/animated-logo"
 
-const navItems = [
+type NavItem = 
+  | { label: string; href: string; dropdown?: never }
+  | { label: string; href?: never; dropdown: Array<{ label: string; href: string; icon: typeof BookOpen; description: string }> }
+
+const navItems: NavItem[] = [
   { label: "Product", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
   { label: "Enterprise", href: "/enterprise" },
@@ -24,7 +28,7 @@ const navItems = [
 ]
 
 // Resources dropdown component
-function ResourcesDropdown({ item }: { item: { label: string; dropdown: Array<{ label: string; href: string; icon: any; description: string }> } }) {
+function ResourcesDropdown({ item }: { item: { label: string; dropdown: Array<{ label: string; href: string; icon: typeof BookOpen; description: string }> } }) {
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -189,8 +193,8 @@ export function Navbar() {
           {/* Center Nav Items */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              'dropdown' in item ? (
-                <ResourcesDropdown key={item.label} item={item} />
+              item.dropdown ? (
+                <ResourcesDropdown key={item.label} item={item as { label: string; dropdown: Array<{ label: string; href: string; icon: typeof BookOpen; description: string }> }} />
               ) : (
                 <a
                   key={item.label}
