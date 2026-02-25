@@ -21,7 +21,7 @@ interface CTASectionProps {
     label: string
     href: string
   }
-  footnote?: string
+  footnote?: React.ReactNode
   variant?: "default" | "minimal"
   className?: string
 }
