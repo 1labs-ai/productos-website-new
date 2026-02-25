@@ -56,7 +56,7 @@ export function BentoGrid() {
           {/* Large card - Context Preservation */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-2 group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="md:col-span-2 group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-start justify-between mb-8">
               <div>
@@ -82,7 +82,7 @@ export function BentoGrid() {
           {/* Ideate */}
           <motion.div
             variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
+            className="group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-secondary w-fit mb-4">
               <Lightbulb className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
@@ -95,7 +95,7 @@ export function BentoGrid() {
           {/* Discover */}
           <motion.div
             variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
+            className="group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-secondary w-fit mb-4">
               <Search className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
@@ -108,7 +108,7 @@ export function BentoGrid() {
           {/* Define */}
           <motion.div
             variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
+            className="group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-secondary w-fit mb-4">
               <FileText className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
@@ -121,7 +121,7 @@ export function BentoGrid() {
           {/* Design */}
           <motion.div
             variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
+            className="group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-secondary w-fit mb-4">
               <Palette className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
@@ -134,7 +134,7 @@ export function BentoGrid() {
           {/* Develop */}
           <motion.div
             variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
+            className="group relative p-6 rounded-lg bg-card border border-border hover:border-border hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-secondary w-fit mb-4">
               <Code className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />

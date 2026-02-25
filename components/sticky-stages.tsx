@@ -205,7 +205,7 @@ export function StickyStages() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className="p-6 rounded-2xl bg-card border border-border"
+              className="p-6 rounded-lg bg-card border border-border"
             >
               {/* Badge */}
               <div className="inline-block px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground mb-4">

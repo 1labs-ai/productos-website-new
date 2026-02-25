@@ -46,7 +46,7 @@ export function Integrations() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.05 }}
-              className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all text-center group hover:scale-[1.02]"
+              className="p-6 rounded-lg bg-card border border-border hover:border-border transition-all text-center group hover:scale-[1.02]"
             >
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mx-auto mb-3 group-hover:bg-secondary transition-colors">
                 <span className="text-lg font-bold text-muted-foreground">{integration.name[0]}</span>

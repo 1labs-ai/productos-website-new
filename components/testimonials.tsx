@@ -78,7 +78,7 @@ export function Testimonials() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all"
+              className="p-6 rounded-lg bg-card border border-border hover:border-border transition-all"
             >
               <p className="text-foreground/80 mb-6 leading-relaxed">"{testimonial.quote}"</p>
               <div className="flex items-center gap-3">

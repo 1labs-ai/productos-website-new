@@ -101,7 +101,7 @@ export function Navbar() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="absolute top-full left-0 right-0 mt-2 p-4 rounded-2xl bg-card/95 backdrop-blur-md border border-border"
+          className="absolute top-full left-0 right-0 mt-2 p-4 rounded-lg bg-card/95 backdrop-blur-md border border-border"
         >
           <div className="flex flex-col gap-2">
             {navItems.map((item) => (

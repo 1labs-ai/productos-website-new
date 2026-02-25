@@ -57,7 +57,7 @@ const plans = [
 
 function BorderBeam() {
   return (
-    <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none">
       <div
         className="absolute w-24 h-24 bg-white/20 blur-xl border-beam"
         style={{
@@ -140,7 +140,7 @@ export function Pricing() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className={`relative p-6 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
+              className={`relative p-6 rounded-lg border transition-all duration-300 hover:scale-[1.02] ${
                 plan.highlighted
                   ? "bg-card border-border"
                   : "bg-card/50 border-border hover:border-border"

@@ -42,7 +42,7 @@ export function ImpactStats() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="text-center p-8 rounded-2xl bg-card border border-border"
+              className="text-center p-8 rounded-lg bg-card border border-border"
             >
               <div className="text-5xl sm:text-6xl font-bold text-white mb-2">{stat.value}</div>
               <div className="text-muted-foreground">{stat.label}</div>

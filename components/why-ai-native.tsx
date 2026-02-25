@@ -63,7 +63,7 @@ export function WhyAINative() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                className="p-6 rounded-2xl bg-card border border-border hover:border-border transition-all hover:scale-[1.02]"
+                className="p-6 rounded-lg bg-card border border-border hover:border-border transition-all hover:scale-[1.02]"
               >
                 <div className="p-3 rounded-xl bg-secondary w-fit mb-4">
                   <Icon className="w-6 h-6 text-muted-foreground" strokeWidth={1.5} />
