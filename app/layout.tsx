@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Manrope, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const manrope = Manrope({
@@ -17,7 +18,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ProductOS - Ship Products 10x Faster with AI",
   description: "The AI-native way to build products. Ship in days, not months.",
-  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -26,10 +26,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${inter.variable} font-sans antialiased`}>
-        <div className="noise-overlay" aria-hidden="true" />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
