@@ -126,89 +126,137 @@ export function Hero() {
           </Button>
         </motion.div>
 
-        {/* Demo Video/GIF Section */}
+        {/* Demo Video/GIF Section - 3D Perspective Mockup */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="relative max-w-4xl mx-auto mb-12"
+          className="relative max-w-5xl mx-auto mb-12 px-4"
+          style={{ perspective: "1500px" }}
         >
-          <div className="relative rounded-xl overflow-hidden border border-border/50 shadow-2xl shadow-black/20 bg-card">
-            {/* Browser chrome effect */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-muted/50 border-b border-border/50">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="px-4 py-1 rounded-md bg-background/50 text-xs text-muted-foreground">
-                  build.productos.dev
+          {/* Floating glow effect behind the mockup */}
+          <div 
+            className="absolute inset-0 blur-3xl opacity-20 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 70%)",
+              transform: "translateY(20%)"
+            }}
+          />
+          
+          {/* 3D Perspective Container */}
+          <motion.div
+            initial={{ rotateX: 15 }}
+            animate={{ rotateX: 5 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            whileHover={{ rotateX: 0, scale: 1.02 }}
+            className="relative"
+            style={{ 
+              transformStyle: "preserve-3d",
+              transition: "transform 0.4s ease-out"
+            }}
+          >
+            <div 
+              className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-card to-card/80"
+              style={{
+                boxShadow: `
+                  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                  0 50px 100px -24px rgba(0, 0, 0, 0.3),
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.05)
+                `,
+                border: "1px solid rgba(255, 255, 255, 0.1)"
+              }}
+            >
+              {/* Browser chrome effect */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-gradient-to-b from-muted/60 to-muted/40 border-b border-white/5">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-inner" />
+                  <div className="w-3 h-3 rounded-full bg-[#febc2e] shadow-inner" />
+                  <div className="w-3 h-3 rounded-full bg-[#28c840] shadow-inner" />
                 </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="px-4 py-1.5 rounded-lg bg-background/60 backdrop-blur-sm text-xs text-muted-foreground font-medium">
+                    build.productos.dev
+                  </div>
+                </div>
+                <div className="w-[52px]" /> {/* Spacer for symmetry */}
+              </div>
+              
+              {/* Video/GIF Container */}
+              <div className="relative aspect-[16/10] bg-background">
+                {/* Video for desktop (hidden on error) */}
+                {!videoError && (
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full object-cover object-top hidden md:block"
+                    poster={demoPosterSrc}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    onLoadedData={() => setVideoLoaded(true)}
+                    onError={() => setVideoError(true)}
+                  >
+                    <source src={demoVideoSrc} type="video/mp4" />
+                  </video>
+                )}
+                
+                {/* GIF fallback for mobile or video error */}
+                <img
+                  src={videoError ? demoGifSrc : demoPosterSrc}
+                  alt="ProductOS demo - 5-stage AI product development workflow"
+                  className={`w-full h-full object-cover object-top ${!videoError ? 'md:hidden' : ''}`}
+                  onError={(e) => {
+                    // Final fallback - show dashboard screenshot
+                    (e.target as HTMLImageElement).src = '/product/dashboard.webp'
+                  }}
+                />
+                
+                {/* Play/Pause overlay for desktop */}
+                {!videoError && videoLoaded && (
+                  <button
+                    onClick={handlePlayClick}
+                    className="hidden md:flex absolute inset-0 items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+                    aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-background/90 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      {isPlaying ? (
+                        <div className="flex gap-1">
+                          <div className="w-1.5 h-6 bg-foreground rounded-full" />
+                          <div className="w-1.5 h-6 bg-foreground rounded-full" />
+                        </div>
+                      ) : (
+                        <Play className="size-6 text-foreground ml-1" fill="currentColor" />
+                      )}
+                    </div>
+                  </button>
+                )}
+                
+                {/* Loading state */}
+                {!videoLoaded && !videoError && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/50 md:flex hidden">
+                    <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
+                  </div>
+                )}
+                
+                {/* Bottom fade effect */}
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent pointer-events-none" />
               </div>
             </div>
             
-            {/* Video/GIF Container */}
-            <div className="relative aspect-video bg-background">
-              {/* Video for desktop (hidden on error) */}
-              {!videoError && (
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover hidden md:block"
-                  poster={demoPosterSrc}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  onLoadedData={() => setVideoLoaded(true)}
-                  onError={() => setVideoError(true)}
-                >
-                  <source src={demoVideoSrc} type="video/mp4" />
-                </video>
-              )}
-              
-              {/* GIF fallback for mobile or video error */}
-              <img
-                src={videoError ? demoGifSrc : demoPosterSrc}
-                alt="ProductOS demo - 5-stage AI product development workflow"
-                className={`w-full h-full object-cover ${!videoError ? 'md:hidden' : ''}`}
-                onError={(e) => {
-                  // Final fallback - show dashboard screenshot
-                  (e.target as HTMLImageElement).src = '/product/dashboard.webp'
-                }}
-              />
-              
-              {/* Play/Pause overlay for desktop */}
-              {!videoError && videoLoaded && (
-                <button
-                  onClick={handlePlayClick}
-                  className="hidden md:flex absolute inset-0 items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
-                  aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
-                >
-                  <div className="w-16 h-16 rounded-full bg-background/90 flex items-center justify-center shadow-lg">
-                    {isPlaying ? (
-                      <div className="flex gap-1">
-                        <div className="w-1.5 h-6 bg-foreground rounded-full" />
-                        <div className="w-1.5 h-6 bg-foreground rounded-full" />
-                      </div>
-                    ) : (
-                      <Play className="size-6 text-foreground ml-1" fill="currentColor" />
-                    )}
-                  </div>
-                </button>
-              )}
-              
-              {/* Loading state */}
-              {!videoLoaded && !videoError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/50 md:flex hidden">
-                  <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-                </div>
-              )}
-            </div>
-          </div>
+            {/* Reflection effect */}
+            <div 
+              className="absolute -bottom-px left-[5%] right-[5%] h-[30%] rounded-b-2xl opacity-[0.03] pointer-events-none hidden md:block"
+              style={{
+                background: "linear-gradient(to bottom, rgba(255,255,255,0.1), transparent)",
+                transform: "rotateX(180deg) translateY(-1px)",
+                filter: "blur(1px)"
+              }}
+            />
+          </motion.div>
           
           {/* Caption */}
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-sm text-muted-foreground mt-6 text-center">
             Watch: Idea → Research → PRD → Design → Code in under 60 seconds
           </p>
         </motion.div>
