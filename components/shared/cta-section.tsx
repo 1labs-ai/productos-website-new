@@ -78,8 +78,12 @@ export function CTASection({
 
           <div className="relative z-10 text-center">
             {badge && (
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/50 border border-border/50 mb-6">
-                {BadgeIcon && <BadgeIcon className="size-3.5 text-amber-500" />}
+              <div 
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/50 border border-border/50 mb-6"
+                role="status"
+                aria-label={badge.text}
+              >
+                {BadgeIcon && <BadgeIcon className="size-3.5 text-amber-500" aria-hidden="true" />}
                 <span className="text-sm font-medium text-foreground/80">
                   {badge.text}
                 </span>

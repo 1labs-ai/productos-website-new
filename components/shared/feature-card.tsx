@@ -30,24 +30,28 @@ export function FeatureCard({
   className,
 }: FeatureCardProps) {
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
       className={cn(
-        "p-6 rounded-xl bg-card/50 border border-border/50 hover:border-border transition-colors",
+        "p-6 rounded-xl bg-card/50 border border-border/50 hover:border-border transition-colors focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
         className
       )}
+      aria-labelledby={`feature-${title.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      <div className="w-10 h-10 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center mb-4">
+      <div 
+        className="w-10 h-10 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center mb-4"
+        aria-hidden="true"
+      >
         <Icon className="w-5 h-5 text-foreground/60" />
       </div>
-      <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-2" id={`feature-${title.toLowerCase().replace(/\s+/g, '-')}`}>{title}</h3>
       <p className="text-sm text-muted-foreground leading-relaxed">
         {description}
       </p>
-    </motion.div>
+    </motion.article>
   )
 }
 

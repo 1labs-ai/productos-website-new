@@ -1,16 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
-import { Sun, Moon, Monitor, Globe, ChevronDown } from "lucide-react"
+import { Sun, Moon, Monitor } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AnimatedLogo, type AnimatedLogoRef } from "@/components/animated-logo"
-import { useRef } from "react"
 
 const footerLinks = {
   Product: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
     { label: "Enterprise", href: "/enterprise" },
     { label: "Changelog", href: "/changelog" },
   ],
@@ -21,7 +20,7 @@ const footerLinks = {
     { label: "API Reference", href: "#" },
   ],
   Company: [
-    { label: "About", href: "#" },
+    { label: "About", href: "/about" },
     { label: "Careers", href: "#" },
     { label: "Contact", href: "/contact" },
   ],
@@ -32,14 +31,8 @@ const footerLinks = {
   ],
 }
 
-const languages = [
-  { code: "EN", label: "English" },
-  { code: "ES", label: "Español" },
-  { code: "FR", label: "Français" },
-  { code: "DE", label: "Deutsch" },
-  { code: "JA", label: "日本語" },
-  { code: "ZH", label: "中文" },
-]
+// TODO: Implement i18n with next-intl when ready for internationalization
+// Languages supported: EN, ES, FR, DE, JA, ZH
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -81,46 +74,6 @@ function ThemeToggle() {
           </button>
         )
       })}
-    </div>
-  )
-}
-
-function LanguageSwitcher() {
-  const [language, setLanguage] = useState("EN")
-  const [showMenu, setShowMenu] = useState(false)
-
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setShowMenu(!showMenu)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
-      >
-        <Globe className="size-3.5" />
-        <span>{language}</span>
-        <ChevronDown className={cn("size-3 transition-transform", showMenu && "rotate-180")} />
-      </button>
-
-      {showMenu && (
-        <div className="absolute bottom-full mb-2 right-0 bg-background border border-border rounded-lg shadow-xl py-1.5 min-w-[130px] z-50">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => {
-                setLanguage(lang.code)
-                setShowMenu(false)
-              }}
-              className={cn(
-                "w-full px-3 py-1.5 text-left text-sm transition-colors",
-                language === lang.code
-                  ? "text-foreground bg-muted/50"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
-              )}
-            >
-              {lang.label}
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
@@ -167,15 +120,12 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom - Theme toggle & Language switcher instead of 1Labs branding */}
+        {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} ProductOS. All rights reserved.
           </p>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <LanguageSwitcher />
-          </div>
+          <ThemeToggle />
         </div>
       </div>
     </footer>
