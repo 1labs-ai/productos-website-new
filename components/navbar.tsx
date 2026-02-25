@@ -6,7 +6,7 @@ import { Menu, X, Sun, Moon, Monitor } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Logo } from "@/components/logo"
+import { AnimatedLogo } from "@/components/animated-logo"
 
 const navItems = [
   { label: "Product", href: "#features" },
@@ -101,7 +101,7 @@ export function Navbar() {
               whileTap={{ scale: 0.98 }}
               className="flex items-center gap-2.5"
             >
-              <Logo size={28} className="shrink-0" />
+              <AnimatedLogo size={28} className="shrink-0" />
               <span className="font-semibold text-lg leading-none tracking-tight">
                 ProductOS
               </span>
