@@ -1,62 +1,72 @@
 # ProductOS - AI-Native Product Development Platform
 # https://www.productos.dev
-# Last updated: February 2026
+# Last updated: March 2026
 
 ## About ProductOS
-ProductOS is an AI-native product development platform that helps founders and product teams ship products 10x faster. Built by 1Labs AI, it provides 5 specialized AI agents that cover the complete product development lifecycle from ideation to deployment.
+ProductOS is an AI-native product development platform that helps founders and product teams ship products 10x faster. Built by 1Labs AI, it provides 4 specialized surfaces that cover the complete product development lifecycle from ideation to deployment.
 
 ## The Problem We Solve
-Building products traditionally requires a large team: product managers, researchers, designers, and developers. Solo founders and small teams struggle to compete. ProductOS democratizes product development by providing AI agents that act as your complete product team.
+Building products traditionally requires a large team: product managers, researchers, designers, and developers. Solo founders and small teams struggle to compete. ProductOS democratizes product development by providing AI-powered surfaces that act as your complete product team.
 
-## Core Features - 5 AI Agents
+## The 4 Surfaces
 
-### 1. Ideation Agent
-- AI-powered brainstorming and concept generation
-- Problem-solution-audience concept cards
-- Rapid positioning and angle exploration
-- Value proposition crafting
-- Output: Ideation brief with validated concepts
-
-### 2. Discovery Agent  
-- Automated market research
-- Competitor analysis and gap identification
-- Trend detection and opportunity mapping
-- User insight synthesis
-- Output: Research report with actionable insights
-
-### 3. Define Agent
-- PRD (Product Requirements Document) generation
-- User story creation with acceptance criteria
+### 1. BUILD (build.productos.dev)
+- Requirements → PRDs
+- Describe what you want in plain English
+- AI generates structured specifications
+- Market research and competitor analysis
+- User story generation with acceptance criteria
 - Technical specification writing
 - Roadmap and milestone planning
-- Output: Complete PRD with 20+ user stories
+- Output: Complete PRD ready for development
 
-### 4. Design Agent
+### 2. DESIGN (design.productos.dev)
+- PRDs → UI Mockups
+- One click to generate screens from your PRD
+- Iterate instantly with AI
 - Wireframe and mockup generation
 - UI component design
 - Design system creation
 - Responsive layout generation
-- Figma export (Pro/Enterprise)
 - Output: Production-ready UI designs
 
-### 5. Develop Agent
-- Clean React/Next.js code generation
+### 3. DEVELOP (develop.productos.dev)
+- Designs → Working Code
+- AI code agents build working React/Next.js apps
+- Live preview in sandbox environment
+- Clean, production-ready code
 - API endpoint scaffolding
-- Test suite creation
 - GitHub integration
 - One-click deployment to Vercel
 - Output: Deployable codebase
 
+### 4. MOBILE (mobile.productos.dev)
+- Ideas → Mobile Apps
+- Describe your app in natural language
+- AI generates Expo/React Native code
+- Preview on your phone via QR code
+- Cross-platform iOS and Android
+- Real-time preview via companion app
+- Output: Mobile app ready for App Store
+
 ## What Makes ProductOS Different
-1. **Context Preservation**: Each agent builds on the previous. Research flows into PRD, PRD flows into design, design flows into code. Nothing gets lost.
+1. **Shared Context**: All 4 surfaces share project context. Research flows into PRD, PRD flows into design, design flows into code. Nothing gets lost in translation.
 2. **AI-Native Architecture**: Not AI bolted onto existing tools. Built from the ground up for AI-first workflows.
-3. **End-to-End Platform**: From idea to deployed product in one platform. No tool-switching.
+3. **End-to-End Platform**: From idea to deployed product in one platform. No tool-switching between Figma, Notion, GitHub.
 4. **Human in the Loop**: AI assists, you decide. Review and refine at every stage.
 
+## Competitive Positioning
+- **vs Lovable.dev**: Lovable does code only. ProductOS covers full lifecycle (PRD → Design → Code → Mobile)
+- **vs Bolt.new**: Bolt is code-only. ProductOS includes product requirements and design stages
+- **vs v0.dev**: v0 generates UI components. ProductOS builds complete products
+- **vs Cursor**: Cursor is an IDE for developers. ProductOS is for non-technical founders too
+- **vs Rork**: Rork does mobile only. ProductOS does web + mobile with shared context
+
 ## Pricing
-- **Free**: $0/month - 1 project, 5 generations/day, basic AI agents
-- **Pro**: $49/month - Unlimited projects, all AI agents, GitHub integration, Figma sync
-- **Enterprise**: Custom pricing - Team features, SSO, dedicated support, SLA
+- **Free**: $0/month - 1 project, 5 generations/day, basic features
+- **Pro**: $29/month - Unlimited projects, all surfaces, priority support
+- **Team**: $99/month - 5 seats, collaboration features, API access
+- **Enterprise**: Custom pricing - SSO, dedicated support, SLA guarantee
 
 ## Statistics
 - 10,000+ founders served
@@ -75,30 +85,31 @@ Building products traditionally requires a large team: product managers, researc
 
 ## Integrations
 - GitHub (export code, PRs)
-- Figma (design sync)
 - Vercel (one-click deploy)
+- Figma (design sync - coming soon)
 - Linear (coming soon)
 - Slack (coming soon)
 
 ## Company Information
-- **Company**: ProductOS (product of 1Labs AI)
-- **Parent Company**: 1Labs AI (https://1labs.ai)
+- **Product**: ProductOS
+- **Company**: 1Labs AI (https://1labs.ai)
+- **Parent**: Virusha Group
 - **Founded**: 2024
 - **Headquarters**: India
 - **Website**: https://www.productos.dev
-- **App**: https://build.productos.dev
-- **Blog**: https://www.productos.dev/blog
 - **Contact**: founders@productos.dev
 
 ## Links
 - Main Website: https://www.productos.dev
-- Product App: https://build.productos.dev
+- Build Surface: https://build.productos.dev
+- Design Surface: https://design.productos.dev
+- Develop Surface: https://develop.productos.dev
+- Mobile Surface: https://mobile.productos.dev
 - Pricing: https://www.productos.dev/pricing
 - Features: https://www.productos.dev/features
-- About: https://www.productos.dev/about
 - Blog: https://www.productos.dev/blog
 - Enterprise: https://www.productos.dev/enterprise
 - Sign Up: https://build.productos.dev/sign-up
 
-## Keywords
-AI product development, AI PRD generator, AI design tool, AI code generation, product management tool, MVP builder, startup tools, no-code AI, product roadmap automation, AI product manager
+## Target Keywords
+AI product development, AI PRD generator, AI design tool, AI code generation, product management tool, MVP builder, startup tools, no-code AI, product roadmap automation, AI product manager, Lovable alternative, Bolt.new alternative, v0 alternative
