@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Pitch Deck Viewers
+model PitchDeckViewer {
+  id        String   @id @default(cuid())
+  
+  // Required fields
+  name      String
+  email     String   @unique
+  
+  // Optional fields
+  phone     String?
+  company   String?
+  linkedin  String?
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  sessions  PitchDeckSession[]
+  
+  @@index([email])
+  @@index([createdAt])
+}
+
+// Each viewing session
+model PitchDeckSession {
+  id        String   @id @default(cuid())
+  viewerId  String
+  viewer    PitchDeckViewer @relation(fields: [viewerId], references: [id], onDelete: Cascade)
+  
+  // Session metadata
+  userAgent String?
+  ipAddress String?
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  
+  // Relations
+  slideViews PitchDeckSlideView[]
+  
+  @@index([viewerId])
+  @@index([startedAt])
+}
+
+// Individual slide views within a session
+model PitchDeckSlideView {
+  id          String   @id @default(cuid())
+  sessionId   String
+  session     PitchDeckSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  slideIndex  Int      // 0-9 for 10 slides
+  slideName   String   // "cover", "problem", etc.
+  
+  // Time tracking
+  viewedAt    DateTime @default(now())
+  timeSpentMs Int      @default(0) // milliseconds spent on slide
+  
+  @@index([sessionId])
+  @@index([slideIndex])
+}
