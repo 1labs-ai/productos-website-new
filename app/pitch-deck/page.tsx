@@ -890,8 +890,8 @@ export default function PitchDeckPage() {
         </button>
       </div>
 
-      {/* Slide indicators */}
-      <div className="flex items-center justify-center gap-2 py-4 border-t border-border/50 print:hidden">
+      {/* Slide indicators - auto-hide with arrows */}
+      <div className={`flex items-center justify-center gap-2 py-4 border-t border-border/50 print:hidden transition-opacity duration-300 ${showArrows ? "opacity-100" : "opacity-0"}`}>
         {slides.map((slide, index) => (
           <button
             key={slide.id}
