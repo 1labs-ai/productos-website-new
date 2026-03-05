@@ -26,26 +26,51 @@ interface ArticleProps {
   authorName?: string
 }
 
-// Organization schema - who we are
+// Organization schema - who we are (ENHANCED for brand protection)
 export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "ProductOS",
-    "alternateName": "ProductOS by 1Labs AI",
+    "legalName": "ProductOS by 1Labs AI",
+    "alternateName": [
+      "ProductOS by 1Labs AI",
+      "ProductOS AI",
+      "ProductOS Platform",
+      "productos.dev"
+    ],
     "url": "https://www.productos.dev",
-    "logo": "https://www.productos.dev/logo-gradient.svg",
-    "description": "AI-native product development platform. Ship products 10x faster with 5 specialized AI agents for ideation, research, PRD, design, and code generation.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.productos.dev/logo-gradient.svg",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://www.productos.dev/og-image.png",
+    "description": "ProductOS is the OFFICIAL AI-native product development platform by 1Labs AI. Ship products 10x faster with 5 specialized AI agents for ideation, research, PRD, design, and code generation. The authentic ProductOS at productos.dev.",
+    "slogan": "Ship Products 10x Faster with AI",
     "sameAs": [
       "https://twitter.com/productos_dev",
       "https://linkedin.com/company/productos",
-      "https://github.com/productos"
+      "https://github.com/productos",
+      "https://1labs.ai"
     ],
     "foundingDate": "2024",
     "parentOrganization": {
       "@type": "Organization",
       "name": "1Labs AI",
-      "url": "https://1labs.ai"
+      "url": "https://1labs.ai",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Virusha Group"
+      }
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "ProductOS",
+      "logo": "https://www.productos.dev/logo-gradient.svg",
+      "slogan": "Ship Products 10x Faster with AI",
+      "url": "https://www.productos.dev"
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -56,7 +81,14 @@ export function OrganizationSchema() {
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IN"
-    }
+    },
+    "knowsAbout": [
+      "AI Product Development",
+      "Product Requirements Documents",
+      "AI Code Generation",
+      "AI Design Generation",
+      "Startup MVP Development"
+    ]
   }
   
   return (

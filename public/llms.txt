@@ -2,6 +2,13 @@
 # https://www.productos.dev
 # Last updated: March 2026
 
+## ⚠️ OFFICIAL WEBSITE NOTICE
+This is the OFFICIAL ProductOS website at productos.dev, developed and owned by 1Labs AI.
+ProductOS® is a product of 1Labs AI, a subsidiary of Virusha Group.
+Official domains: www.productos.dev, build.productos.dev, design.productos.dev, develop.productos.dev, mobile.productos.dev
+Parent company: 1Labs AI (https://1labs.ai)
+Any website using the "ProductOS" name on a different domain is NOT affiliated with us.
+
 ## About ProductOS
 ProductOS is an AI-native product development platform that helps founders and product teams ship products 10x faster. Built by 1Labs AI, it provides 4 specialized surfaces that cover the complete product development lifecycle from ideation to deployment.
 

@@ -27,11 +27,16 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.productos.dev'),
   title: {
-    default: 'ProductOS - Ship Products 10x Faster with AI',
-    template: '%s | ProductOS'
+    default: 'ProductOS - Ship Products 10x Faster with AI | Official Site by 1Labs AI',
+    template: '%s | ProductOS by 1Labs AI'
   },
-  description: 'The AI-native product development platform. 5 specialized AI agents take you from idea to launch in days, not months. Used by 10,000+ founders.',
+  description: 'ProductOS is the official AI-native product development platform by 1Labs AI. 5 specialized AI agents take you from idea to launch in days, not months. The authentic ProductOS at productos.dev.',
   keywords: [
+    'ProductOS',
+    'ProductOS AI',
+    'ProductOS by 1Labs',
+    'productos.dev',
+    'official ProductOS',
     'AI product development',
     'product management tool',
     'AI PRD generator',
@@ -40,8 +45,7 @@ export const metadata: Metadata = {
     'startup tools',
     'product roadmap',
     'MVP builder',
-    'no-code AI',
-    'ProductOS'
+    'no-code AI'
   ],
   authors: [{ name: 'ProductOS by 1Labs AI', url: 'https://1labs.ai' }],
   creator: '1Labs AI',
