@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { PitchDeckContent } from "./pitch-deck-content";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,12 +20,27 @@ function Logo({ className = "size-12" }: { className?: string }) {
 
 type AuthStep = "email" | "otp" | "denied";
 
-export default function PitchDeckPage() {
+// Loading fallback
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <Logo className="size-16 animate-pulse" />
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+// Main page content that uses searchParams
+function PitchDeckPageContent() {
+  const searchParams = useSearchParams();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [viewerName, setViewerName] = useState("");
+  const [accessTokenName, setAccessTokenName] = useState<string | null>(null);
   
   // Auth flow state
   const [authStep, setAuthStep] = useState<AuthStep>("email");
@@ -34,10 +50,26 @@ export default function PitchDeckPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Check if user already has a session
+  // Check for access token or existing session
   useEffect(() => {
-    const checkSession = async () => {
+    const checkAuth = async () => {
       try {
+        // First, check for access token in URL
+        const accessToken = searchParams.get("access");
+        if (accessToken) {
+          const tokenRes = await fetch(`/api/pitch-deck/access?token=${encodeURIComponent(accessToken)}`);
+          const tokenData = await tokenRes.json();
+          
+          if (tokenData.valid) {
+            setIsAuthenticated(true);
+            setAccessTokenName(tokenData.name);
+            setIsLoading(false);
+            return;
+          }
+          // If token is invalid, fall through to normal auth flow
+        }
+        
+        // Check for existing session
         const res = await fetch("/api/pitch-deck/session");
         const data = await res.json();
         if (data.authenticated) {
@@ -45,13 +77,13 @@ export default function PitchDeckPage() {
           setViewerName(data.viewer.name);
         }
       } catch (error) {
-        console.error("Session check failed:", error);
+        console.error("Auth check failed:", error);
       } finally {
         setIsLoading(false);
       }
     };
-    checkSession();
-  }, []);
+    checkAuth();
+  }, [searchParams]);
 
   // Handle email submission
   const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -403,5 +435,14 @@ export default function PitchDeckPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+// Wrap with Suspense for useSearchParams
+export default function PitchDeckPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <PitchDeckPageContent />
+    </Suspense>
   );
 }

@@ -96,3 +96,20 @@ model PitchDeckSlideView {
   @@index([sessionId])
   @@index([slideIndex])
 }
+
+// Access tokens for direct pitch deck access (e.g., investor applications)
+model PitchDeckAccessToken {
+  id          String    @id @default(cuid())
+  token       String    @unique  // e.g., "500global", "ycombinator"
+  name        String             // e.g., "500 Global Application"
+  description String?            // Optional notes
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?          // Optional expiry
+  
+  // Analytics
+  viewCount   Int       @default(0)
+  lastUsedAt  DateTime?
+  
+  @@index([token])
+}

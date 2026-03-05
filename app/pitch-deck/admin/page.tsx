@@ -18,6 +18,12 @@ import {
   CheckCircle2,
   XCircle,
   Shield,
+  Key,
+  Copy,
+  Check,
+  Link2,
+  ToggleLeft,
+  ToggleRight,
 } from "lucide-react";
 
 interface SlideAnalytics {
@@ -50,6 +56,18 @@ interface AllowedViewer {
   totalSessions: number;
   totalTimeMs: number;
   lastSession: string | null;
+}
+
+interface AccessToken {
+  id: string;
+  token: string;
+  name: string;
+  description: string | null;
+  isActive: boolean;
+  createdAt: string;
+  expiresAt: string | null;
+  viewCount: number;
+  lastUsedAt: string | null;
 }
 
 interface AdminData {
@@ -105,7 +123,14 @@ export default function PitchDeckAdminPage() {
   const [addError, setAddError] = useState("");
   
   // Tab state
-  const [activeTab, setActiveTab] = useState<"analytics" | "allowlist">("analytics");
+  const [activeTab, setActiveTab] = useState<"analytics" | "allowlist" | "tokens">("analytics");
+  
+  // Access tokens state
+  const [accessTokens, setAccessTokens] = useState<AccessToken[]>([]);
+  const [newToken, setNewToken] = useState({ token: "", name: "", description: "", expiresAt: "" });
+  const [isAddingToken, setIsAddingToken] = useState(false);
+  const [tokenError, setTokenError] = useState("");
+  const [copiedTokenId, setCopiedTokenId] = useState<string | null>(null);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -119,12 +144,27 @@ export default function PitchDeckAdminPage() {
       setData(adminData);
       setIsAuthenticated(true);
       
-      // Also fetch allowed viewers
+      // Also fetch allowed viewers and access tokens
       await fetchAllowedViewers();
+      await fetchAccessTokens();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load data");
     } finally {
       setIsLoading(false);
+    }
+  };
+  
+  const fetchAccessTokens = async () => {
+    try {
+      const res = await fetch("/api/pitch-deck/admin/tokens", {
+        headers: { "x-admin-password": password },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAccessTokens(data.tokens);
+      }
+    } catch (err) {
+      console.error("Failed to fetch access tokens:", err);
     }
   };
   
@@ -194,6 +234,98 @@ export default function PitchDeckAdminPage() {
       console.error("Failed to delete viewer:", err);
     }
   };
+  
+  // Generate a random token slug
+  const generateTokenSlug = () => {
+    const adjectives = ["blue", "red", "green", "swift", "bright", "cool"];
+    const nouns = ["falcon", "tiger", "eagle", "shark", "wolf", "hawk"];
+    const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const noun = nouns[Math.floor(Math.random() * nouns.length)];
+    const num = Math.floor(Math.random() * 100);
+    return `${adj}-${noun}-${num}`;
+  };
+  
+  const handleAddToken = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAddingToken(true);
+    setTokenError("");
+    
+    const tokenSlug = newToken.token || generateTokenSlug();
+    
+    try {
+      const res = await fetch("/api/pitch-deck/admin/tokens", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": password,
+        },
+        body: JSON.stringify({
+          token: tokenSlug,
+          name: newToken.name,
+          description: newToken.description || null,
+          expiresAt: newToken.expiresAt || null,
+        }),
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to create token");
+      }
+      
+      await fetchAccessTokens();
+      setNewToken({ token: "", name: "", description: "", expiresAt: "" });
+    } catch (err) {
+      setTokenError(err instanceof Error ? err.message : "Failed to create token");
+    } finally {
+      setIsAddingToken(false);
+    }
+  };
+  
+  const handleToggleToken = async (id: string, currentActive: boolean) => {
+    try {
+      const res = await fetch(`/api/pitch-deck/admin/tokens/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": password,
+        },
+        body: JSON.stringify({ isActive: !currentActive }),
+      });
+      
+      if (res.ok) {
+        setAccessTokens(prev => prev.map(t => 
+          t.id === id ? { ...t, isActive: !currentActive } : t
+        ));
+      }
+    } catch (err) {
+      console.error("Failed to toggle token:", err);
+    }
+  };
+  
+  const handleDeleteToken = async (id: string) => {
+    if (!confirm("Delete this access token? This cannot be undone.")) return;
+    
+    try {
+      const res = await fetch(`/api/pitch-deck/admin/tokens/${id}`, {
+        method: "DELETE",
+        headers: { "x-admin-password": password },
+      });
+      
+      if (res.ok) {
+        setAccessTokens(prev => prev.filter(t => t.id !== id));
+      }
+    } catch (err) {
+      console.error("Failed to delete token:", err);
+    }
+  };
+  
+  const copyTokenUrl = async (token: string, id: string) => {
+    const url = `${window.location.origin}/pitch-deck?access=${token}`;
+    await navigator.clipboard.writeText(url);
+    setCopiedTokenId(id);
+    setTimeout(() => setCopiedTokenId(null), 2000);
+  };
 
   if (!isAuthenticated) {
     return (
@@ -259,6 +391,17 @@ export default function PitchDeckAdminPage() {
           >
             <Users className="size-4 inline-block mr-2" />
             Allowed Viewers ({allowedViewers.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("tokens")}
+            className={`px-4 py-2 font-medium text-sm transition-colors border-b-2 -mb-px ${
+              activeTab === "tokens"
+                ? "border-primary text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Key className="size-4 inline-block mr-2" />
+            Access Tokens ({accessTokens.length})
           </button>
         </div>
 
@@ -549,6 +692,186 @@ export default function PitchDeckAdminPage() {
               </div>
             </div>
           </>
+        )}
+
+        {/* Access Tokens Tab */}
+        {activeTab === "tokens" && (
+          <div className="space-y-6">
+            {/* Create Token Form */}
+            <div className="p-6 rounded-xl bg-card border border-border">
+              <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                <Key className="size-5" />
+                Create Access Token
+              </h2>
+              <form onSubmit={handleAddToken} className="space-y-4">
+                <div className="flex flex-wrap gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Token slug (e.g., 500global) - leave empty to auto-generate"
+                    value={newToken.token}
+                    onChange={(e) => setNewToken(prev => ({ ...prev, token: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }))}
+                    className="flex-1 min-w-[200px]"
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Name (e.g., 500 Global Application) *"
+                    value={newToken.name}
+                    onChange={(e) => setNewToken(prev => ({ ...prev, name: e.target.value }))}
+                    required
+                    className="flex-1 min-w-[200px]"
+                  />
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Description (optional)"
+                    value={newToken.description}
+                    onChange={(e) => setNewToken(prev => ({ ...prev, description: e.target.value }))}
+                    className="flex-1 min-w-[200px]"
+                  />
+                  <Input
+                    type="date"
+                    placeholder="Expiry date (optional)"
+                    value={newToken.expiresAt}
+                    onChange={(e) => setNewToken(prev => ({ ...prev, expiresAt: e.target.value }))}
+                    className="w-[180px]"
+                  />
+                  <Button type="submit" disabled={isAddingToken}>
+                    {isAddingToken ? "Creating..." : "Create Token"}
+                  </Button>
+                </div>
+              </form>
+              {tokenError && <p className="text-sm text-red-500 mt-2">{tokenError}</p>}
+            </div>
+            
+            {/* Tokens Table */}
+            <div className="rounded-xl bg-card border border-border overflow-hidden">
+              <div className="p-4 border-b border-border bg-muted/30">
+                <h2 className="text-lg font-semibold">Access Tokens</h2>
+                <p className="text-sm text-muted-foreground">
+                  {accessTokens.filter(t => t.isActive).length} active / {accessTokens.length} total
+                </p>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/20">
+                      <th className="text-left p-3 font-medium text-sm">Token</th>
+                      <th className="text-left p-3 font-medium text-sm">Name</th>
+                      <th className="text-left p-3 font-medium text-sm">Views</th>
+                      <th className="text-left p-3 font-medium text-sm">Last Used</th>
+                      <th className="text-left p-3 font-medium text-sm">Expires</th>
+                      <th className="text-left p-3 font-medium text-sm">Status</th>
+                      <th className="text-left p-3 font-medium text-sm">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {accessTokens.map((token) => {
+                      const isExpired = token.expiresAt && new Date(token.expiresAt) < new Date();
+                      return (
+                        <tr key={token.id} className="hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <code className="text-sm bg-muted px-2 py-1 rounded">{token.token}</code>
+                          </td>
+                          <td className="p-3">
+                            <div className="font-medium">{token.name}</div>
+                            {token.description && (
+                              <div className="text-xs text-muted-foreground">{token.description}</div>
+                            )}
+                          </td>
+                          <td className="p-3">
+                            <span className="font-medium">{token.viewCount}</span>
+                          </td>
+                          <td className="p-3 text-sm text-muted-foreground">
+                            {token.lastUsedAt ? formatDate(token.lastUsedAt) : "Never"}
+                          </td>
+                          <td className="p-3 text-sm text-muted-foreground">
+                            {token.expiresAt ? (
+                              <span className={isExpired ? "text-red-500" : ""}>
+                                {new Date(token.expiresAt).toLocaleDateString()}
+                                {isExpired && " (expired)"}
+                              </span>
+                            ) : (
+                              "Never"
+                            )}
+                          </td>
+                          <td className="p-3">
+                            <button
+                              onClick={() => handleToggleToken(token.id, token.isActive)}
+                              className={`inline-flex items-center gap-1 text-sm ${
+                                token.isActive && !isExpired
+                                  ? "text-green-500"
+                                  : "text-muted-foreground"
+                              }`}
+                            >
+                              {token.isActive && !isExpired ? (
+                                <>
+                                  <ToggleRight className="size-5" />
+                                  Active
+                                </>
+                              ) : (
+                                <>
+                                  <ToggleLeft className="size-5" />
+                                  Inactive
+                                </>
+                              )}
+                            </button>
+                          </td>
+                          <td className="p-3">
+                            <div className="flex items-center gap-1">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => copyTokenUrl(token.token, token.id)}
+                                className="text-muted-foreground hover:text-foreground"
+                                title="Copy link"
+                              >
+                                {copiedTokenId === token.id ? (
+                                  <Check className="size-4 text-green-500" />
+                                ) : (
+                                  <Copy className="size-4" />
+                                )}
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleDeleteToken(token.id)}
+                                className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
+                                title="Delete"
+                              >
+                                <Trash2 className="size-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {accessTokens.length === 0 && (
+                      <tr>
+                        <td colSpan={7} className="p-8 text-center text-muted-foreground">
+                          No access tokens yet. Create one above to share direct links.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            {/* Usage Info */}
+            <div className="p-4 rounded-xl bg-muted/30 border border-border">
+              <h3 className="font-medium mb-2 flex items-center gap-2">
+                <Link2 className="size-4" />
+                How to use access tokens
+              </h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Share direct links to bypass email verification. Perfect for investor applications.
+              </p>
+              <div className="text-sm font-mono bg-background p-2 rounded border border-border">
+                https://www.productos.dev/pitch-deck?access=<span className="text-primary">your-token</span>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
