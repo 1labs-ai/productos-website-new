@@ -90,16 +90,8 @@ function CoverSlide() {
       <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl">
         From idea to deployed product in days, not months.
       </p>
-      <div className="flex items-center gap-2 text-sm text-muted-foreground/60">
-        <span>Built by</span>
-        <a
-          href="https://1labs.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground/80 hover:text-foreground transition-colors"
-        >
-          1Labs AI
-        </a>
+      <div className="text-sm text-muted-foreground/60">
+        www.productos.dev
       </div>
     </div>
   );
@@ -591,9 +583,12 @@ function TeamSlide() {
           {/* CEO Card */}
           <div className="p-6 rounded-xl bg-card border border-border/50">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500/20 to-purple-500/20 border border-border/50 flex items-center justify-center">
-                <span className="text-xl font-bold text-foreground">HP</span>
-              </div>
+              <img 
+                src="/team/heemang.jpg" 
+                alt="Heemang Parmar"
+                className="w-16 h-16 rounded-full object-cover border-2 border-border/50"
+                onError={(e) => { e.currentTarget.src = '/placeholder-user.jpg' }}
+              />
               <div>
                 <div className="text-lg font-bold text-foreground">Heemang Parmar</div>
                 <div className="text-sm text-muted-foreground">Co-Founder & CEO</div>
@@ -614,9 +609,12 @@ function TeamSlide() {
           {/* CTO Card */}
           <div className="p-6 rounded-xl bg-card border border-border/50">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500/20 to-green-500/20 border border-border/50 flex items-center justify-center">
-                <span className="text-xl font-bold text-foreground">SS</span>
-              </div>
+              <img 
+                src="/team/shreyash.jpg" 
+                alt="Shreyash Singh"
+                className="w-16 h-16 rounded-full object-cover border-2 border-border/50"
+                onError={(e) => { e.currentTarget.src = '/placeholder-user.jpg' }}
+              />
               <div>
                 <div className="text-lg font-bold text-foreground">Shreyash Singh</div>
                 <div className="text-sm text-muted-foreground">Co-Founder & CTO</div>
@@ -638,13 +636,6 @@ function TeamSlide() {
         <div className="mt-6 p-4 rounded-lg bg-muted/30 border border-border/50 max-w-4xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
             <span className="text-foreground font-medium">Proven together:</span> Built Delve AI (AlphaSense competitor) for a $20M ARR healthcare client in 5 months — just the two of us.
-          </p>
-        </div>
-
-        {/* Company */}
-        <div className="mt-6 text-center">
-          <p className="text-muted-foreground">
-            <span className="text-foreground font-medium">1Labs AI</span> — Part of Virusha Group • AI-first product studio • ProductOS is the flagship product
           </p>
         </div>
       </div>
