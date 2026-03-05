@@ -795,7 +795,7 @@ export default function PitchDeckPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className={`bg-background flex flex-col ${isFullscreen ? "fixed inset-0 z-[100]" : "min-h-screen"}`}>
       {/* Header - Hidden in presenter mode */}
       {!isFullscreen && (
         <header className="flex items-center justify-between px-6 py-4 border-b border-border/50 print:hidden">
