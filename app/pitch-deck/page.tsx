@@ -79,7 +79,7 @@ function Logo({ className = "size-12" }: { className?: string }) {
 // Slide Components
 function CoverSlide() {
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center px-8">
+    <div className="flex flex-col items-center justify-center h-full text-center px-20">
       <Logo className="size-24 mb-8" />
       <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground mb-4">
         ProductOS
@@ -122,7 +122,7 @@ function ProblemSlide() {
   ];
 
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20">
           <Target className="size-5 text-red-400" />
@@ -156,7 +156,7 @@ function ProblemSlide() {
 
 function SolutionSlide() {
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
           <Rocket className="size-5 text-green-400" />
@@ -256,7 +256,7 @@ function ProductSlide() {
   };
 
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
           <Layers className="size-5 text-purple-400" />
@@ -294,7 +294,7 @@ function ProductSlide() {
 
 function MarketSlide() {
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
           <TrendingUp className="size-5 text-blue-400" />
@@ -371,7 +371,7 @@ function BusinessModelSlide() {
   ];
 
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
           <DollarSign className="size-5 text-amber-400" />
@@ -437,7 +437,7 @@ function TractionSlide() {
   ];
 
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
           <Trophy className="size-5 text-green-400" />
@@ -496,7 +496,7 @@ function CompetitionSlide() {
   ];
 
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
           <Swords className="size-5 text-orange-400" />
@@ -570,7 +570,7 @@ function CompetitionSlide() {
 
 function TeamSlide() {
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
           <Users className="size-5 text-purple-400" />
@@ -643,7 +643,7 @@ function TeamSlide() {
 
 function AskSlide() {
   return (
-    <div className="flex flex-col h-full px-8 py-12">
+    <div className="flex flex-col h-full px-20 py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
           <Rocket className="size-5 text-amber-400" />
