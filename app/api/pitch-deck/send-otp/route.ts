@@ -57,8 +57,9 @@ export async function POST(request: NextRequest) {
     })
 
     // Send OTP email via Resend
+    // Note: Using mail.1labs.ai until mail.productos.dev is verified in Resend
     const { error: emailError } = await resend.emails.send({
-      from: 'ProductOS <contact@mail.productos.dev>',
+      from: 'ProductOS <pitch@mail.1labs.ai>',
       to: normalizedEmail,
       subject: 'Your ProductOS Pitch Deck Access Code',
       html: `
