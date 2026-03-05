@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -731,18 +731,34 @@ function SlideContent({ type }: { type: string }) {
 export default function PitchDeckPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showArrows, setShowArrows] = useState(true);
+  const arrowTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Reset arrow visibility timer
+  const resetArrowTimer = useCallback(() => {
+    setShowArrows(true);
+    if (arrowTimeoutRef.current) {
+      clearTimeout(arrowTimeoutRef.current);
+    }
+    arrowTimeoutRef.current = setTimeout(() => {
+      setShowArrows(false);
+    }, 2000);
+  }, []);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => Math.min(prev + 1, slides.length - 1));
-  }, []);
+    resetArrowTimer();
+  }, [resetArrowTimer]);
 
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => Math.max(prev - 1, 0));
-  }, []);
+    resetArrowTimer();
+  }, [resetArrowTimer]);
 
   const goToSlide = useCallback((index: number) => {
     setCurrentSlide(index);
-  }, []);
+    resetArrowTimer();
+  }, [resetArrowTimer]);
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
@@ -752,7 +768,8 @@ export default function PitchDeckPage() {
       document.exitFullscreen();
       setIsFullscreen(false);
     }
-  }, []);
+    resetArrowTimer();
+  }, [resetArrowTimer]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -782,6 +799,24 @@ export default function PitchDeckPage() {
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
+
+  // Auto-hide arrows after 2 seconds, show on mouse move
+  useEffect(() => {
+    const handleMouseMove = () => {
+      resetArrowTimer();
+    };
+    
+    // Start the initial timer
+    resetArrowTimer();
+    
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (arrowTimeoutRef.current) {
+        clearTimeout(arrowTimeoutRef.current);
+      }
+    };
+  }, [resetArrowTimer]);
 
   return (
     <div className={`bg-background flex flex-col ${isFullscreen ? "fixed inset-0 z-[100]" : "min-h-screen"}`}>
@@ -838,18 +873,18 @@ export default function PitchDeckPage() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation arrows */}
+        {/* Navigation arrows - auto-hide after 2s */}
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-muted/50 border border-border/50 hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all print:hidden"
+          className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-muted/50 border border-border/50 hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 print:hidden ${showArrows ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         >
           <ChevronLeft className="size-6" />
         </button>
         <button
           onClick={nextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-muted/50 border border-border/50 hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all print:hidden"
+          className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-muted/50 border border-border/50 hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 print:hidden ${showArrows ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         >
           <ChevronRight className="size-6" />
         </button>
