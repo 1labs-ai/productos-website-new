@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { cookies } from 'next/headers'
 
 // Simple admin password protection
-const ADMIN_PASSWORD = process.env.PITCH_DECK_ADMIN_PASSWORD || 'ProductOS2026!'
+const ADMIN_PASSWORD = process.env.PITCH_DECK_ADMIN_PASSWORD || 'productos2026admin'
 
 export async function GET(request: NextRequest) {
   try {
