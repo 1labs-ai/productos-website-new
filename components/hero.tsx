@@ -177,11 +177,11 @@ export function Hero() {
                 </div>
               </div>
               
-              {/* Video/GIF Container */}
-              <div className="relative aspect-[16/9] bg-black">
+              {/* Video Container */}
+              <div className="relative bg-black rounded-b-2xl overflow-hidden">
                 {/* Loading skeleton - shown until video loads */}
                 {!videoLoaded && !videoError && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black">
+                  <div className="aspect-[16/9] flex items-center justify-center bg-black">
                     <div className="flex flex-col items-center gap-3">
                       <div className="w-10 h-10 border-2 border-zinc-700 border-t-zinc-400 rounded-full animate-spin" />
                       <span className="text-sm text-zinc-500">Loading video...</span>
@@ -189,11 +189,12 @@ export function Hero() {
                   </div>
                 )}
                 
-                {/* Video for desktop (hidden on error) */}
+                {/* Video for desktop */}
                 {!videoError && (
                   <video
                     ref={videoRef}
-                    className={`w-full h-full object-contain hidden md:block bg-black ${!videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                    className={`w-full hidden md:block ${!videoLoaded ? 'hidden' : ''}`}
+                    style={{ maxHeight: '70vh' }}
                     muted
                     loop
                     playsInline
@@ -208,7 +209,7 @@ export function Hero() {
                 
                 {/* Mobile video */}
                 <video
-                  className={`w-full h-full object-contain md:hidden bg-black ${videoError ? 'hidden' : ''}`}
+                  className={`w-full md:hidden ${videoError ? 'hidden' : ''}`}
                   muted
                   loop
                   playsInline
@@ -224,12 +225,9 @@ export function Hero() {
                   <img
                     src="/product/dashboard.webp"
                     alt="ProductOS demo - 5-stage AI product development workflow"
-                    className="w-full h-full object-cover"
+                    className="w-full aspect-[16/9] object-cover"
                   />
                 )}
-                
-                {/* Bottom fade effect - positioned above video controls */}
-                <div className="absolute bottom-10 left-0 right-0 h-16 bg-gradient-to-t from-background/50 to-transparent pointer-events-none" />
               </div>
             </div>
             
