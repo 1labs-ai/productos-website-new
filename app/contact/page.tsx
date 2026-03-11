@@ -34,7 +34,7 @@ const contactOptions = [
     title: "Support",
     description: "Get help with technical issues",
     action: "Contact support",
-    href: "mailto:founders@productos.dev",
+    href: "mailto:support@productos.dev",
     external: false,
   },
   {
@@ -42,7 +42,7 @@ const contactOptions = [
     title: "Partnerships",
     description: "Explore partnership opportunities",
     action: "Partner with us",
-    href: "mailto:founders@productos.dev",
+    href: "mailto:partnerships@productos.dev",
     external: false,
   },
 ]
