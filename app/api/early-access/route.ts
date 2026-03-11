@@ -43,7 +43,60 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    // Send notification email
+    // Send confirmation email to applicant (from Heemang)
+    try {
+      const firstName = name.split(' ')[0]
+      const confirmationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Heemang from ProductOS <heemang@mail.1labs.ai>',
+          to: [email],
+          reply_to: 'heemang@productos.dev',
+          subject: `Your ProductOS Application is In Review`,
+          html: `
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+              <p style="font-size: 16px; color: #333; line-height: 1.6;">Hey ${firstName},</p>
+              
+              <p style="font-size: 16px; color: #333; line-height: 1.6;">
+                Thanks for applying to ProductOS! I just received your application and wanted to personally let you know it's now in review.
+              </p>
+              
+              <p style="font-size: 16px; color: #333; line-height: 1.6;">
+                We're being selective with our beta — we want to work closely with folks who are actively building products. I'll review your application myself and get back to you within the next few days.
+              </p>
+              
+              <p style="font-size: 16px; color: #333; line-height: 1.6;">
+                In the meantime, if you have any questions, just reply to this email. I read every response.
+              </p>
+              
+              <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 32px;">
+                Talk soon,<br/>
+                <strong>Heemang Parmar</strong><br/>
+                <span style="color: #666;">Founder, ProductOS</span>
+              </p>
+              
+              <hr style="border: none; border-top: 1px solid #eee; margin: 32px 0;" />
+              
+              <p style="font-size: 13px; color: #999;">
+                Follow our journey: <a href="https://twitter.com/productos_dev" style="color: #666;">@productos_dev</a> · <a href="https://productos.dev" style="color: #666;">productos.dev</a>
+              </p>
+            </div>
+          `,
+        }),
+      })
+
+      if (!confirmationResponse.ok) {
+        console.error('Failed to send confirmation email to applicant')
+      }
+    } catch (emailError) {
+      console.error('Confirmation email error:', emailError)
+    }
+
+    // Send notification email to Heemang
     try {
       const notificationResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -73,7 +126,29 @@ export async function POST(request: NextRequest) {
       }
     } catch (emailError) {
       console.error('Email notification error:', emailError)
-      // Don't fail the request if email fails
+    }
+
+    // Send data to n8n webhook
+    try {
+      await fetch('https://n8n.virusha.tech/webhook/e8cb6953-4299-4d9d-90d3-322394736b08', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          linkedin,
+          company: company || null,
+          role: role || null,
+          useCase: useCase || null,
+          source: 'productos.dev/early-access',
+          submittedAt: new Date().toISOString(),
+        }),
+      })
+    } catch (webhookError) {
+      console.error('n8n webhook error:', webhookError)
+      // Don't fail the request if webhook fails
     }
 
     return NextResponse.json({ success: true })
