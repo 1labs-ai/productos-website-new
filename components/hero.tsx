@@ -188,6 +188,7 @@ export function Hero() {
                     muted
                     loop
                     playsInline
+                    controls
                     preload="metadata"
                     onLoadedData={() => setVideoLoaded(true)}
                     onError={() => setVideoError(true)}
@@ -203,6 +204,7 @@ export function Hero() {
                   muted
                   loop
                   playsInline
+                  controls
                   autoPlay
                 >
                   <source src={demoVideoMobileSrc} type="video/mp4" />
@@ -215,26 +217,6 @@ export function Hero() {
                     alt="ProductOS demo - 5-stage AI product development workflow"
                     className="w-full h-full object-cover"
                   />
-                )}
-                
-                {/* Play/Pause overlay for desktop */}
-                {!videoError && videoLoaded && (
-                  <button
-                    onClick={handlePlayClick}
-                    className="hidden md:flex absolute inset-0 items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
-                    aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
-                  >
-                    <div className="w-16 h-16 rounded-full bg-background/90 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                      {isPlaying ? (
-                        <div className="flex gap-1">
-                          <div className="w-1.5 h-6 bg-foreground rounded-full" />
-                          <div className="w-1.5 h-6 bg-foreground rounded-full" />
-                        </div>
-                      ) : (
-                        <Play className="size-6 text-foreground ml-1" fill="currentColor" />
-                      )}
-                    </div>
-                  </button>
                 )}
                 
                 {/* Loading state */}
