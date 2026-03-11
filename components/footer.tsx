@@ -123,7 +123,6 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             Built with <span className="text-red-500">❤️</span> for PMs and Founders
           </p>
-          <ThemeToggle />
         </div>
       </div>
     </footer>
