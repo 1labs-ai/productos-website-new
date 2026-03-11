@@ -178,18 +178,27 @@ export function Hero() {
               </div>
               
               {/* Video/GIF Container */}
-              <div className="relative aspect-[1360/656] bg-[#fafafa]">
+              <div className="relative aspect-[16/9] bg-black">
+                {/* Loading skeleton - shown until video loads */}
+                {!videoLoaded && !videoError && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-10 h-10 border-2 border-zinc-700 border-t-zinc-400 rounded-full animate-spin" />
+                      <span className="text-sm text-zinc-500">Loading video...</span>
+                    </div>
+                  </div>
+                )}
+                
                 {/* Video for desktop (hidden on error) */}
                 {!videoError && (
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-contain hidden md:block bg-black"
-                    poster={demoPosterSrc}
+                    className={`w-full h-full object-contain hidden md:block bg-black ${!videoLoaded ? 'opacity-0' : 'opacity-100'}`}
                     muted
                     loop
                     playsInline
                     controls
-                    preload="metadata"
+                    preload="auto"
                     onLoadedData={() => setVideoLoaded(true)}
                     onError={() => setVideoError(true)}
                   >
@@ -200,12 +209,12 @@ export function Hero() {
                 {/* Mobile video */}
                 <video
                   className={`w-full h-full object-contain md:hidden bg-black ${videoError ? 'hidden' : ''}`}
-                  poster={demoPosterSrc}
                   muted
                   loop
                   playsInline
                   controls
                   autoPlay
+                  preload="auto"
                 >
                   <source src={demoVideoMobileSrc} type="video/mp4" />
                 </video>
@@ -217,13 +226,6 @@ export function Hero() {
                     alt="ProductOS demo - 5-stage AI product development workflow"
                     className="w-full h-full object-cover"
                   />
-                )}
-                
-                {/* Loading state */}
-                {!videoLoaded && !videoError && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/50 md:flex hidden">
-                    <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-                  </div>
                 )}
                 
                 {/* Bottom fade effect - positioned above video controls */}
