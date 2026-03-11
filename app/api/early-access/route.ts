@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       data: {
         name,
         email: email.toLowerCase(),
+        linkedin: linkedin || null,
         company: company || null,
         role: role || null,
         useCase: useCase || null,

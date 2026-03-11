@@ -121,6 +121,7 @@ model EarlyAccessRequest {
   // Required fields
   name        String
   email       String    @unique
+  linkedin    String?   // LinkedIn profile URL
   
   // Optional fields
   company     String?
