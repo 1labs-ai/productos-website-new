@@ -685,7 +685,7 @@ function AskSlide() {
             founders@productos.dev
           </a>
           <a
-            href="https://calendly.com/heemang-1labs/30min"
+            href="https://cal.com/productos/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border bg-card hover:bg-muted/50 transition-colors"

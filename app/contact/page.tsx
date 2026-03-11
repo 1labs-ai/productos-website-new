@@ -26,7 +26,7 @@ const contactOptions = [
     title: "Sales",
     description: "Talk to our sales team about Enterprise plans",
     action: "Schedule a call",
-    href: "https://calendly.com/heemang-1labs/30min",
+    href: "https://cal.com/productos/30min",
     external: true,
   },
   {
@@ -242,7 +242,7 @@ export default function ContactPage() {
               <h3 className="text-xl font-semibold mb-2 text-foreground">Schedule a Call</h3>
               <p className="text-muted-foreground mb-2">Book a 30-minute demo:</p>
               <a 
-                href="https://calendly.com/heemang-1labs/30min" 
+                href="https://cal.com/productos/30min" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
