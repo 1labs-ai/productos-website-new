@@ -126,7 +126,7 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
       ].map((item, index) => (
         <div key={item.label} className="flex flex-col items-center">
           <div className="relative">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-primary/20 to-emerald-500/20 border border-primary/30 flex items-center justify-center">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center">
               <span className="text-xl sm:text-2xl font-bold text-foreground font-mono">
                 {String(item.value).padStart(2, '0')}
               </span>
@@ -153,7 +153,7 @@ function SeatProgress({ claimedSeats, remainingSeats }: { claimedSeats: number; 
       </div>
       <div className="h-3 bg-muted/50 rounded-full overflow-hidden border border-border/50">
         <motion.div 
-          className="h-full bg-gradient-to-r from-emerald-500 to-primary rounded-full relative"
+          className="h-full bg-gradient-to-r from-zinc-400 to-zinc-300 rounded-full relative"
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 1.5, ease: "easeOut" }}
@@ -184,16 +184,16 @@ function RecentActivity() {
 
   return (
     <motion.div 
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-800/50 border border-zinc-700/50"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.5 }}
     >
       <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-400"></span>
       </span>
-      <span className="text-sm text-emerald-400">{activityCount} people applied this week</span>
+      <span className="text-sm text-zinc-400">{activityCount} people applied this week</span>
     </motion.div>
   )
 }
@@ -264,7 +264,7 @@ export default function EarlyAccessPage() {
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               <span className="text-foreground">Request Early </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Access</span>
+              <span className="text-foreground">Access</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               We're onboarding {TOTAL_SEATS} design partners to shape the future of AI-native product development. Spots are filling fast.
@@ -323,7 +323,7 @@ export default function EarlyAccessPage() {
             {benefits.map((benefit, index) => (
               <AnimatedSection key={benefit.title} delay={index * 0.1}>
                 <Card className="p-6 bg-card/50 border-border hover:border-primary/30 transition-all h-full">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center text-zinc-400 mb-4">
                     <benefit.icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-semibold mb-2 text-foreground">{benefit.title}</h3>
@@ -349,7 +349,7 @@ export default function EarlyAccessPage() {
 
               {submitted ? (
                 <div className="text-center py-8">
-                  <CheckCircle className="w-16 h-16 mx-auto mb-6 text-emerald-400" />
+                  <CheckCircle className="w-16 h-16 mx-auto mb-6 text-zinc-400" />
                   <h2 className="text-2xl font-bold mb-4 text-foreground">You're on the list!</h2>
                   <p className="text-muted-foreground mb-2">
                     Thanks for your interest in ProductOS. We'll review your application and reach out soon.
