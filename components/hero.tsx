@@ -183,7 +183,7 @@ export function Hero() {
                 {!videoError && (
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-cover hidden md:block"
+                    className="w-full h-full object-contain hidden md:block bg-black"
                     poster={demoPosterSrc}
                     muted
                     loop
@@ -199,7 +199,7 @@ export function Hero() {
                 
                 {/* Mobile video */}
                 <video
-                  className={`w-full h-full object-cover md:hidden ${videoError ? 'hidden' : ''}`}
+                  className={`w-full h-full object-contain md:hidden bg-black ${videoError ? 'hidden' : ''}`}
                   poster={demoPosterSrc}
                   muted
                   loop
@@ -226,8 +226,8 @@ export function Hero() {
                   </div>
                 )}
                 
-                {/* Bottom fade effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                {/* Bottom fade effect - positioned above video controls */}
+                <div className="absolute bottom-10 left-0 right-0 h-16 bg-gradient-to-t from-background/50 to-transparent pointer-events-none" />
               </div>
             </div>
             
