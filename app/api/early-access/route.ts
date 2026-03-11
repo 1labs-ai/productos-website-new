@@ -4,11 +4,11 @@ import { prisma } from '@/lib/prisma'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, company, role, useCase } = body
+    const { name, email, linkedin, company, role, useCase } = body
 
-    if (!name || !email) {
+    if (!name || !email || !linkedin) {
       return NextResponse.json(
-        { error: 'Name and email are required' },
+        { error: 'Name, email, and LinkedIn profile are required' },
         { status: 400 }
       )
     }
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    // Send notification email to founders
+    // Send notification email
     try {
       const notificationResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -53,12 +53,13 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           from: 'ProductOS <contact@mail.1labs.ai>',
-          to: ['founders@productos.dev'],
+          to: ['heemang@productos.build'],
           subject: `[Early Access] New Request from ${name}`,
           html: `
             <h2>New Early Access Request</h2>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
+            <p><strong>LinkedIn:</strong> <a href="${linkedin}">${linkedin}</a></p>
             <p><strong>Company:</strong> ${company || 'Not provided'}</p>
             <p><strong>Role:</strong> ${role || 'Not provided'}</p>
             <p><strong>Use Case:</strong></p>
