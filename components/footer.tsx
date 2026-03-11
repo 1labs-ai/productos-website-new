@@ -118,7 +118,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} ProductOS, a product of One Infinity Labs, Inc. All rights reserved.
+            © {new Date().getFullYear()} One Infinity Labs, Inc. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Built with <span className="text-red-500">❤️</span> for PMs and Founders
