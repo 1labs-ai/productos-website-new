@@ -25,8 +25,8 @@ const TOTAL_SEATS = 100
 const CLAIMED_SEATS = 87 // Update this as seats fill
 const REMAINING_SEATS = TOTAL_SEATS - CLAIMED_SEATS
 
-// Countdown target (set to a date in the future)
-const COUNTDOWN_TARGET = new Date('2026-03-31T23:59:59')
+// Countdown target - Batch 1 closes March 15
+const COUNTDOWN_TARGET = new Date('2026-03-15T23:59:59')
 
 const benefits = [
   {
@@ -232,7 +232,7 @@ export default function EarlyAccessPage() {
             <div className="mb-8">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Clock className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Applications close in</span>
+                <span className="text-sm text-muted-foreground">Batch 1 closes in</span>
               </div>
               <CountdownTimer targetDate={COUNTDOWN_TARGET} />
             </div>
@@ -417,7 +417,7 @@ export default function EarlyAccessPage() {
                 },
                 {
                   q: "What happens after the 100 seats fill up?",
-                  a: "Once all founding member slots are taken, we'll start a waitlist for the next cohort. Founding members get lifetime benefits including locked-in pricing.",
+                  a: "We run two batches per month, each with 100 beta seats. If Batch 1 fills up, you'll be prioritized for Batch 2. Founding members get lifetime benefits including locked-in pricing.",
                 },
                 {
                   q: "Is the beta free?",
