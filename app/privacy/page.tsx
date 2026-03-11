@@ -62,7 +62,7 @@ const rights = [
 ]
 
 export default function PrivacyPage() {
-  const lastUpdated = "February 25, 2025"
+  const lastUpdated = "March 11, 2026"
 
   return (
     <>
@@ -271,7 +271,7 @@ export default function PrivacyPage() {
                   <section id="international" className="mb-12 scroll-mt-24">
                     <h2 className="text-2xl font-bold mb-4 text-foreground">7. International Transfers</h2>
                     <p className="text-muted-foreground">
-                      ProductOS is based in the United States. If you access our Services from outside the US, your data 
+                      ProductOS is a product of One Infinity Labs, Inc., based in the United States. If you access our Services from outside the US, your data 
                       may be transferred to and processed in the US. We implement appropriate safeguards for international 
                       transfers, including Standard Contractual Clauses approved by the European Commission.
                     </p>
