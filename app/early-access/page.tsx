@@ -84,7 +84,7 @@ const benefits = [
   },
   {
     icon: Shield,
-    title: "Founder Pricing",
+    title: "Partner Pricing",
     description: "Lock in special early adopter pricing when we launch",
   },
 ]
@@ -267,7 +267,7 @@ export default function EarlyAccessPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Access</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              We're onboarding {TOTAL_SEATS} founding members to shape the future of AI-native product development. Spots are filling fast.
+              We're onboarding {TOTAL_SEATS} design partners to shape the future of AI-native product development. Spots are filling fast.
             </p>
           </AnimatedSection>
 
@@ -317,7 +317,7 @@ export default function EarlyAccessPage() {
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
           <AnimatedSection>
-            <h2 className="text-xl font-semibold text-center mb-8 text-foreground">What you get as a founding member</h2>
+            <h2 className="text-xl font-semibold text-center mb-8 text-foreground">What you get as a design partner</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
@@ -464,11 +464,11 @@ export default function EarlyAccessPage() {
               {[
                 {
                   q: "How long until I get access?",
-                  a: "We're onboarding beta users in batches. Most applicants hear back within 1-2 weeks. Founders and product teams building actively get priority.",
+                  a: "We're onboarding beta users in batches. Most applicants hear back within 1-2 weeks. Product managers and teams building actively get priority.",
                 },
                 {
                   q: "What happens after the 100 seats fill up?",
-                  a: "We run two batches per month, each with 100 beta seats. If Batch 1 fills up, you'll be prioritized for Batch 2. Founding members get lifetime benefits including locked-in pricing.",
+                  a: "We run two batches per month, each with 100 beta seats. If Batch 1 fills up, you'll be prioritized for Batch 2. Design partners get lifetime benefits including locked-in pricing.",
                 },
                 {
                   q: "Is the beta free?",
