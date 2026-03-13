@@ -654,6 +654,78 @@ export function InteractiveDashboard() {
                           <span>2027 (projected)</span>
                         </div>
                       </motion.div>
+                      
+                      {/* Target Audience */}
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ delay: 0.8 }}
+                        className="p-3 rounded-lg border border-border/50 dark:border-white/[0.06] bg-muted/10 dark:bg-white/[0.01]"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-foreground dark:text-white">Target Audience</span>
+                          <span className="text-[10px] text-sky-400">3 segments</span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          {[
+                            { name: "Content Creators", size: "50M+", icon: Video, growth: "+32%" },
+                            { name: "Agencies", size: "2.4M", icon: Users, growth: "+18%" },
+                            { name: "Educators", size: "8.7M", icon: FileText, growth: "+24%" },
+                          ].map((segment, i) => (
+                            <motion.div
+                              key={segment.name}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.9 + i * 0.1 }}
+                              className="p-2 rounded-md bg-muted/30 dark:bg-white/[0.02] text-center"
+                            >
+                              <segment.icon className="w-4 h-4 text-sky-400 mx-auto mb-1" />
+                              <div className="text-[9px] font-medium text-foreground dark:text-white">{segment.name}</div>
+                              <div className="text-[10px] text-sky-400 font-semibold">{segment.size}</div>
+                              <div className="text-[8px] text-emerald-400">{segment.growth}</div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                      
+                      {/* Entry Strategy */}
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ delay: 1.0 }}
+                        className="p-3 rounded-lg border border-border/50 dark:border-white/[0.06] bg-muted/10 dark:bg-white/[0.01]"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-foreground dark:text-white">Entry Strategy</span>
+                          <span className="text-[10px] text-amber-400">Recommended</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {[
+                            { step: "1", action: "Launch freemium model", timeline: "Month 1", status: "start" },
+                            { step: "2", action: "Creator partnerships", timeline: "Month 2-3", status: "next" },
+                            { step: "3", action: "API & enterprise", timeline: "Month 4+", status: "future" },
+                          ].map((item, i) => (
+                            <motion.div
+                              key={item.step}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 1.1 + i * 0.1 }}
+                              className="flex items-center gap-2 p-1.5 rounded-md bg-muted/30 dark:bg-white/[0.02]"
+                            >
+                              <div className={cn(
+                                "w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-bold",
+                                item.status === "start" ? "bg-emerald-500/20 text-emerald-400" :
+                                item.status === "next" ? "bg-amber-500/20 text-amber-400" :
+                                "bg-white/10 text-white/40"
+                              )}>
+                                {item.step}
+                              </div>
+                              <span className="flex-1 text-[10px] text-foreground dark:text-white/80">{item.action}</span>
+                              <span className="text-[9px] text-muted-foreground">{item.timeline}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
                     </div>
                     <div className="space-y-3">
                       <div className="text-xs font-medium text-muted-foreground dark:text-white/40 uppercase tracking-wider">Key Insights</div>
