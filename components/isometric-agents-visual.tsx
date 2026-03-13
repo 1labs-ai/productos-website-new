@@ -1,438 +1,139 @@
 "use client"
 
-import { motion } from "framer-motion"
-
-// Isometric Agents Collaboration Visual - Matching reference design exactly
-// Layout: Brain → Flowchart → Code (center, large) → Search → Rocket
+// Isometric Agents Collaboration Visual - Based on Gemini reference
+// Animated flow path with isometric cubes
 export function IsometricAgentsVisual({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
+    <div className={`relative w-full flex items-center justify-center ${className}`}>
       <svg 
-        className="w-full h-56 max-w-[500px]" 
-        viewBox="0 0 500 220" 
+        viewBox="0 0 400 300" 
         fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg" 
+        className="w-full h-full max-h-40"
       >
+        {/* Background connection paths */}
+        <path 
+          d="M60 180 L140 140 L240 180 L320 140" 
+          stroke="rgba(255,255,255,0.1)" 
+          strokeWidth="2" 
+        />
+        <path 
+          d="M140 140 L200 100 L280 140" 
+          stroke="rgba(255,255,255,0.1)" 
+          strokeWidth="2" 
+        />
+
+        {/* Animated flowing path */}
+        <path 
+          d="M60 180 L140 140 L200 100 L280 140 L320 140"
+          stroke="url(#gradient-flow)" 
+          strokeWidth="2" 
+          strokeDasharray="10 150"
+          className="animate-flow"
+        />
+
+        {/* Cube 1 - Left (small) */}
+        <g transform="translate(40, 160)">
+          <path d="M0 10 L20 0 L40 10 L20 20 Z" fill="#121212" stroke="rgba(255,255,255,0.3)" />
+          <path d="M0 10 L0 25 L20 35 L20 20 Z" fill="#0F0F0F" stroke="rgba(255,255,255,0.3)" />
+          <path d="M20 20 L20 35 L40 25 L40 10 Z" fill="#0A0A0A" stroke="rgba(255,255,255,0.3)" />
+        </g>
+
+        {/* Cube 2 - Center Top (larger) */}
+        <g transform="translate(125, 115)">
+          <path d="M0 12 L25 0 L50 12 L25 24 Z" fill="#121212" stroke="rgba(255,255,255,0.5)" />
+          <path d="M0 12 L0 32 L25 44 L25 24 Z" fill="#0F0F0F" stroke="rgba(255,255,255,0.5)" />
+          <path d="M25 24 L25 44 L50 32 L50 12 Z" fill="#0A0A0A" stroke="rgba(255,255,255,0.5)" />
+        </g>
+
+        {/* Cube 3 - Center (main, largest) */}
+        <g transform="translate(175, 75)">
+          <path d="M0 15 L30 0 L60 15 L30 30 Z" fill="#121212" stroke="rgba(255,255,255,0.6)" />
+          <path d="M0 15 L0 40 L30 55 L30 30 Z" fill="#0F0F0F" stroke="rgba(255,255,255,0.6)" />
+          <path d="M30 30 L30 55 L60 40 L60 15 Z" fill="#0A0A0A" stroke="rgba(255,255,255,0.6)" />
+        </g>
+
+        {/* Cube 4 - Right Top */}
+        <g transform="translate(255, 115)">
+          <path d="M0 12 L25 0 L50 12 L25 24 Z" fill="#121212" stroke="rgba(255,255,255,0.5)" />
+          <path d="M0 12 L0 32 L25 44 L25 24 Z" fill="#0F0F0F" stroke="rgba(255,255,255,0.5)" />
+          <path d="M25 24 L25 44 L50 32 L50 12 Z" fill="#0A0A0A" stroke="rgba(255,255,255,0.5)" />
+        </g>
+
+        {/* Cube 5 - Right (small) */}
+        <g transform="translate(300, 160)">
+          <path d="M0 10 L20 0 L40 10 L20 20 Z" fill="#121212" stroke="rgba(255,255,255,0.3)" />
+          <path d="M0 10 L0 25 L20 35 L20 20 Z" fill="#0F0F0F" stroke="rgba(255,255,255,0.3)" />
+          <path d="M20 20 L20 35 L40 25 L40 10 Z" fill="#0A0A0A" stroke="rgba(255,255,255,0.3)" />
+        </g>
+
+        {/* Icons above cubes */}
+        
+        {/* Brain icon - above cube 1 */}
+        <g transform="translate(45, 125)" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none">
+          <path d="M15 5 C10 5 7 9 7 13 C7 15 8 17 8 17 C6 18 5 20 5 22 C5 25 7 27 10 27 L20 27 C23 27 25 25 25 22 C25 20 24 18 22 17 C22 17 23 15 23 13 C23 9 20 5 15 5" />
+          <path d="M10 12 Q15 10 20 12 M10 18 Q15 16 20 18" strokeWidth="0.75" />
+        </g>
+
+        {/* Flowchart icon - above cube 2 */}
+        <g transform="translate(140, 75)" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none">
+          <rect x="5" y="2" width="12" height="7" rx="1" />
+          <line x1="11" y1="9" x2="11" y2="14" />
+          <line x1="11" y1="14" x2="5" y2="20" />
+          <line x1="11" y1="14" x2="17" y2="20" />
+          <rect x="0" y="20" width="10" height="6" rx="1" />
+          <rect x="12" y="20" width="10" height="6" rx="1" />
+        </g>
+
+        {/* Code icon - above center cube */}
+        <g transform="translate(190, 35)" stroke="rgba(255,255,255,0.6)" strokeWidth="1" fill="none">
+          <rect x="0" y="0" width="35" height="28" rx="2" />
+          <line x1="0" y1="8" x2="35" y2="8" strokeOpacity="0.4" />
+          <circle cx="5" cy="4" r="1.5" fill="rgba(255,255,255,0.4)" stroke="none" />
+          <circle cx="10" cy="4" r="1.5" fill="rgba(255,255,255,0.4)" stroke="none" />
+          <circle cx="15" cy="4" r="1.5" fill="rgba(255,255,255,0.4)" stroke="none" />
+          <text x="9" y="21" fontSize="10" fill="rgba(255,255,255,0.6)" fontFamily="monospace">&lt;/&gt;</text>
+        </g>
+
+        {/* Database + Search icon - above cube 4 */}
+        <g transform="translate(260, 75)" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none">
+          <ellipse cx="10" cy="6" rx="8" ry="3" />
+          <path d="M2 6 L2 18 C2 20 5 22 10 22 C15 22 18 20 18 18 L18 6" />
+          <ellipse cx="10" cy="12" rx="8" ry="2" strokeOpacity="0.4" />
+          <circle cx="25" cy="12" r="5" />
+          <line x1="29" y1="16" x2="34" y2="21" strokeWidth="1.5" strokeLinecap="round" />
+        </g>
+
+        {/* Rocket icon - above cube 5 */}
+        <g transform="translate(308, 120)" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none">
+          <path d="M12 2 L12 25 L8 30 L16 30 L12 25" />
+          <path d="M6 25 L12 2 L18 25" />
+          <path d="M6 25 L2 30 L6 28" />
+          <path d="M18 25 L22 30 L18 28" />
+          <circle cx="12" cy="14" r="2.5" />
+        </g>
+
         <defs>
-          {/* Glow filter for paths */}
-          <filter id="pathGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          <linearGradient id="gradient-flow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="50%" stopColor="white" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
         </defs>
-        
-        {/* ===== CONNECTING PATHS (Road-style with parallel lines) ===== */}
-        
-        {/* Path 1: Brain block to Flowchart block */}
-        <g className="text-foreground/25 group-hover:text-foreground/40 transition-colors duration-500" filter="url(#pathGlow)">
-          <path 
-            d="M95 145 L110 138 L145 138 L160 130"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path 
-            d="M95 149 L110 142 L145 142 L160 134"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.4"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </g>
-        
-        {/* Path 2: Flowchart block down to Code block */}
-        <g className="text-foreground/25 group-hover:text-foreground/40 transition-colors duration-500" filter="url(#pathGlow)">
-          <path 
-            d="M195 135 L210 142 L210 155 L250 175"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path 
-            d="M195 139 L210 146 L210 159 L250 179"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.4"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </g>
-        
-        {/* Path 3: Code block up to Search block */}
-        <g className="text-foreground/25 group-hover:text-foreground/40 transition-colors duration-500" filter="url(#pathGlow)">
-          <path 
-            d="M295 160 L330 142 L345 142 L360 135"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path 
-            d="M295 164 L330 146 L345 146 L360 139"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.4"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </g>
-        
-        {/* Path 4: Search block to Rocket block */}
-        <g className="text-foreground/25 group-hover:text-foreground/40 transition-colors duration-500" filter="url(#pathGlow)">
-          <path 
-            d="M400 135 L420 145 L435 155"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path 
-            d="M400 139 L420 149 L435 159"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.4"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </g>
-        
-        {/* ===== BLOCK 1 - Brain/Ideation (leftmost, small) ===== */}
-        <g className="text-foreground">
-          {/* Cube - Top face */}
-          <path 
-            d="M55 135 L75 123 L95 135 L75 147 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.35"
-            className="group-hover:stroke-opacity-55 transition-all duration-500"
-          />
-          {/* Cube - Right face */}
-          <path 
-            d="M95 135 L95 160 L75 172 L75 147 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.25"
-            className="group-hover:stroke-opacity-45 transition-all duration-500"
-          />
-          {/* Cube - Left face */}
-          <path 
-            d="M55 135 L55 160 L75 172 L75 147 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.15"
-            className="group-hover:stroke-opacity-35 transition-all duration-500"
-          />
-          
-          {/* Brain Icon with signal waves */}
-          <g transform="translate(50, 85)">
-            {/* Left signal wave */}
-            <motion.path
-              d="M5 20 Q0 15 5 10"
-              stroke="currentColor"
-              strokeWidth="1"
-              fill="none"
-              strokeOpacity="0.3"
-              animate={{ opacity: [0.2, 0.5, 0.2] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <motion.path
-              d="M10 23 Q3 15 10 7"
-              stroke="currentColor"
-              strokeWidth="1"
-              fill="none"
-              strokeOpacity="0.25"
-              animate={{ opacity: [0.15, 0.4, 0.15] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-            />
-            
-            {/* Brain shape */}
-            <path
-              d="M25 8 C20 8 17 12 17 16 C17 18 18 20 18 20 C16 21 15 23 15 25 C15 28 17 30 20 30 L30 30 C33 30 35 28 35 25 C35 23 34 21 32 20 C32 20 33 18 33 16 C33 12 30 8 25 8"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              fill="none"
-              strokeOpacity="0.5"
-              className="group-hover:stroke-opacity-75 transition-all duration-500"
-            />
-            {/* Brain folds */}
-            <path
-              d="M20 15 Q25 13 30 15 M20 22 Q25 20 30 22"
-              stroke="currentColor"
-              strokeWidth="0.8"
-              fill="none"
-              strokeOpacity="0.35"
-            />
-          </g>
-        </g>
-        
-        {/* ===== BLOCK 2 - Flowchart/Planning (upper middle-left) ===== */}
-        <g className="text-foreground">
-          {/* Cube - Top face */}
-          <path 
-            d="M160 115 L180 103 L200 115 L180 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.35"
-            className="group-hover:stroke-opacity-55 transition-all duration-500"
-          />
-          {/* Cube - Right face */}
-          <path 
-            d="M200 115 L200 145 L180 157 L180 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.25"
-            className="group-hover:stroke-opacity-45 transition-all duration-500"
-          />
-          {/* Cube - Left face */}
-          <path 
-            d="M160 115 L160 145 L180 157 L180 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.15"
-            className="group-hover:stroke-opacity-35 transition-all duration-500"
-          />
-          
-          {/* Flowchart Icon */}
-          <g transform="translate(162, 60)">
-            {/* Top rectangle */}
-            <rect x="12" y="5" width="14" height="8" rx="1.5" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.5" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-            {/* Vertical line down */}
-            <line x1="19" y1="13" x2="19" y2="20" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
-            {/* Branch lines */}
-            <line x1="19" y1="20" x2="10" y2="28" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="19" y1="20" x2="28" y2="28" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
-            {/* Bottom left rectangle */}
-            <rect x="4" y="28" width="12" height="7" rx="1" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.5" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-            {/* Bottom right rectangle */}
-            <rect x="22" y="28" width="12" height="7" rx="1" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.5" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-          </g>
-        </g>
-        
-        {/* ===== BLOCK 3 - Code Window (center, LARGEST) ===== */}
-        <g className="text-foreground">
-          {/* Cube - Top face (larger) */}
-          <path 
-            d="M225 155 L270 128 L315 155 L270 182 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeOpacity="0.4"
-            className="group-hover:stroke-opacity-6 transition-all duration-500"
-          />
-          {/* Cube - Right face (taller) */}
-          <path 
-            d="M315 155 L315 200 L270 227 L270 182 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeOpacity="0.3"
-            className="group-hover:stroke-opacity-5 transition-all duration-500"
-          />
-          {/* Cube - Left face (taller) */}
-          <path 
-            d="M225 155 L225 200 L270 227 L270 182 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeOpacity="0.2"
-            className="group-hover:stroke-opacity-4 transition-all duration-500"
-          />
-          
-          {/* Code Window Icon */}
-          <g transform="translate(240, 70)">
-            {/* Window frame */}
-            <rect x="5" y="5" width="50" height="35" rx="3" stroke="currentColor" strokeWidth="1.2" fill="none" strokeOpacity="0.5" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-            {/* Title bar */}
-            <line x1="5" y1="14" x2="55" y2="14" stroke="currentColor" strokeWidth="1" strokeOpacity="0.3" />
-            {/* Window dots */}
-            <circle cx="11" cy="9.5" r="1.5" fill="currentColor" fillOpacity="0.4" />
-            <circle cx="17" cy="9.5" r="1.5" fill="currentColor" fillOpacity="0.4" />
-            <circle cx="23" cy="9.5" r="1.5" fill="currentColor" fillOpacity="0.4" />
-            {/* Code brackets </> */}
-            <text x="17" y="30" fontSize="14" fill="currentColor" fillOpacity="0.6" fontFamily="monospace" fontWeight="500" className="group-hover:fill-opacity-85 transition-all duration-500">&lt;/&gt;</text>
-          </g>
-        </g>
-        
-        {/* ===== BLOCK 4 - Search/Database (lower right of center) ===== */}
-        <g className="text-foreground">
-          {/* Cube - Top face */}
-          <path 
-            d="M360 115 L380 103 L400 115 L380 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.35"
-            className="group-hover:stroke-opacity-55 transition-all duration-500"
-          />
-          {/* Cube - Right face */}
-          <path 
-            d="M400 115 L400 145 L380 157 L380 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.25"
-            className="group-hover:stroke-opacity-45 transition-all duration-500"
-          />
-          {/* Cube - Left face */}
-          <path 
-            d="M360 115 L360 145 L380 157 L380 127 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.15"
-            className="group-hover:stroke-opacity-35 transition-all duration-500"
-          />
-          
-          {/* Database + Magnifying glass Icon */}
-          <g transform="translate(345, 55)">
-            {/* Database cylinders */}
-            <ellipse cx="18" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.4" />
-            <path d="M8 12 L8 25 C8 27 12 30 18 30 C24 30 28 27 28 25 L28 12" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.4" />
-            <ellipse cx="18" cy="19" rx="10" ry="3" stroke="currentColor" strokeWidth="0.6" fill="none" strokeOpacity="0.25" />
-            
-            {/* Magnifying glass */}
-            <circle cx="38" cy="18" r="7" stroke="currentColor" strokeWidth="1.2" fill="none" strokeOpacity="0.5" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-            <line x1="43" y1="23" x2="50" y2="30" stroke="currentColor" strokeWidth="2" strokeOpacity="0.5" strokeLinecap="round" className="group-hover:stroke-opacity-75 transition-all duration-500" />
-          </g>
-        </g>
-        
-        {/* ===== BLOCK 5 - Rocket/Deploy (rightmost) ===== */}
-        <g className="text-foreground">
-          {/* Cube - Top face */}
-          <path 
-            d="M420 145 L440 133 L460 145 L440 157 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.35"
-            className="group-hover:stroke-opacity-55 transition-all duration-500"
-          />
-          {/* Cube - Right face */}
-          <path 
-            d="M460 145 L460 175 L440 187 L440 157 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.25"
-            className="group-hover:stroke-opacity-45 transition-all duration-500"
-          />
-          {/* Cube - Left face */}
-          <path 
-            d="M420 145 L420 175 L440 187 L440 157 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeOpacity="0.15"
-            className="group-hover:stroke-opacity-35 transition-all duration-500"
-          />
-          
-          {/* Rocket Icon */}
-          <g transform="translate(420, 75)">
-            {/* Rocket body */}
-            <path
-              d="M20 5 L20 35 L15 42 L25 42 L20 35"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              fill="none"
-              strokeOpacity="0.5"
-              className="group-hover:stroke-opacity-75 transition-all duration-500"
-            />
-            {/* Rocket nose cone */}
-            <path
-              d="M13 35 L20 5 L27 35"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              fill="none"
-              strokeOpacity="0.5"
-              className="group-hover:stroke-opacity-75 transition-all duration-500"
-            />
-            {/* Left fin */}
-            <path
-              d="M13 35 L7 42 L13 40"
-              stroke="currentColor"
-              strokeWidth="1"
-              fill="none"
-              strokeOpacity="0.4"
-            />
-            {/* Right fin */}
-            <path
-              d="M27 35 L33 42 L27 40"
-              stroke="currentColor"
-              strokeWidth="1"
-              fill="none"
-              strokeOpacity="0.4"
-            />
-            {/* Rocket window */}
-            <circle cx="20" cy="20" r="3" stroke="currentColor" strokeWidth="1" fill="none" strokeOpacity="0.4" />
-            
-            {/* Exhaust smoke/flames */}
-            <motion.g
-              animate={{ opacity: [0.15, 0.4, 0.15], y: [0, 4, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-            >
-              <ellipse cx="20" cy="48" rx="6" ry="2.5" stroke="currentColor" strokeWidth="0.6" fill="none" strokeOpacity="0.25" />
-              <ellipse cx="20" cy="52" rx="10" ry="3.5" stroke="currentColor" strokeWidth="0.5" fill="none" strokeOpacity="0.15" />
-            </motion.g>
-          </g>
-        </g>
-        
-        {/* ===== ANIMATED FLOW DOTS ===== */}
-        <motion.circle 
-          r="2.5"
-          fill="currentColor"
-          className="text-foreground/50"
-          animate={{ 
-            cx: [95, 160],
-            cy: [140, 125],
-            opacity: [0, 0.7, 0]
-          }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.circle 
-          r="2.5"
-          fill="currentColor"
-          className="text-foreground/50"
-          animate={{ 
-            cx: [200, 250],
-            cy: [140, 175],
-            opacity: [0, 0.7, 0]
-          }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        />
-        <motion.circle 
-          r="2.5"
-          fill="currentColor"
-          className="text-foreground/50"
-          animate={{ 
-            cx: [295, 360],
-            cy: [160, 130],
-            opacity: [0, 0.7, 0]
-          }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-        />
-        <motion.circle 
-          r="2.5"
-          fill="currentColor"
-          className="text-foreground/50"
-          animate={{ 
-            cx: [400, 440],
-            cy: [135, 155],
-            opacity: [0, 0.7, 0]
-          }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-        />
+
+        <style>{`
+          .animate-flow {
+            animation: flowAnimation 3s linear infinite;
+          }
+          @keyframes flowAnimation {
+            from {
+              stroke-dashoffset: 160;
+            }
+            to {
+              stroke-dashoffset: 0;
+            }
+          }
+        `}</style>
       </svg>
     </div>
   )
