@@ -82,11 +82,11 @@ export function Footer() {
   return (
     <footer className={cn(
       "border-t border-border py-12",
-      isHomepage ? "px-6 sm:px-20 lg:px-32" : "px-4"
+      isHomepage ? "px-8 lg:px-[77px]" : "px-4"
     )}>
       <div className={cn(
         "mx-auto",
-        isHomepage ? "max-w-[1400px]" : "max-w-6xl"
+        isHomepage ? "max-w-[1436px]" : "max-w-6xl"
       )}>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
