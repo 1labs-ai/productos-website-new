@@ -191,68 +191,251 @@ export default function LinearInspiredHomepage() {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Built for AI workflows",
-                description: "Designed for humans and agents to work together. Context flows seamlessly between stages.",
-                illustration: (
-                  <svg className="w-full h-32 mb-6" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="40" r="16" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <circle cx="100" cy="40" r="16" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <circle cx="160" cy="40" r="16" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <path d="M56 40h28M116 40h28" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-foreground/30"/>
-                    <circle cx="40" cy="40" r="6" fill="currentColor" className="text-foreground/40"/>
-                    <circle cx="100" cy="40" r="6" fill="currentColor" className="text-foreground/40"/>
-                    <circle cx="160" cy="40" r="6" fill="currentColor" className="text-foreground/40"/>
-                  </svg>
-                )
-              },
-              {
-                title: "10x faster shipping",
-                description: "What used to take months now takes days. Ship production-ready products in 3-12 days.",
-                illustration: (
-                  <svg className="w-full h-32 mb-6" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 60L60 30L100 45L140 20L180 35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-foreground/30"/>
-                    <circle cx="60" cy="30" r="4" fill="currentColor" className="text-foreground/40"/>
-                    <circle cx="100" cy="45" r="4" fill="currentColor" className="text-foreground/40"/>
-                    <circle cx="140" cy="20" r="4" fill="currentColor" className="text-foreground/40"/>
-                    <circle cx="180" cy="35" r="4" fill="currentColor" className="text-foreground/40"/>
-                    <path d="M170 25l10 10l-10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-foreground/50"/>
-                  </svg>
-                )
-              },
-              {
-                title: "Made for founders",
-                description: "No dev team required. Solo founders and small teams can build like a full product org.",
-                illustration: (
-                  <svg className="w-full h-32 mb-6" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="100" cy="35" r="14" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <circle cx="60" cy="55" r="10" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <circle cx="140" cy="55" r="10" stroke="currentColor" strokeWidth="1.5" className="text-foreground/20"/>
-                    <path d="M100 49v6M75 55h-5M125 55h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-foreground/30"/>
-                    <circle cx="100" cy="35" r="5" fill="currentColor" className="text-foreground/40"/>
-                  </svg>
-                )
-              }
-            ].map((prop, i) => (
-              <AnimatedSection key={prop.title} delay={i * 0.1}>
-                <motion.div 
-                  className="group p-8 rounded-2xl bg-card/30 border border-border/20 cursor-pointer"
-                  whileHover={{ 
-                    y: -4, 
-                    borderColor: 'rgba(255,255,255,0.15)',
-                    boxShadow: '0 20px 40px -20px rgba(0,0,0,0.3)'
-                  }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  <div className="opacity-60 group-hover:opacity-80 transition-opacity duration-300">
-                    {prop.illustration}
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">{prop.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{prop.description}</p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
+            {/* Card 1: Built for AI workflows */}
+            <AnimatedSection delay={0}>
+              <motion.div 
+                className="group relative p-8 rounded-2xl bg-card/30 border border-border/20 cursor-pointer overflow-hidden"
+                whileHover={{ 
+                  y: -8,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-b from-foreground/[0.03] to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                </div>
+                
+                {/* Animated illustration */}
+                <svg className="w-full h-32 mb-6 relative z-10" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Outer rings - pulse on hover */}
+                  <motion.circle 
+                    cx="40" cy="40" r="16" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    initial={{ scale: 1, opacity: 0.2 }}
+                    whileHover={{ scale: 1.1, opacity: 0.4 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <motion.circle 
+                    cx="100" cy="40" r="16" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    initial={{ scale: 1, opacity: 0.2 }}
+                    whileHover={{ scale: 1.1, opacity: 0.4 }}
+                    transition={{ duration: 0.4, delay: 0.05 }}
+                  />
+                  <motion.circle 
+                    cx="160" cy="40" r="16" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    initial={{ scale: 1, opacity: 0.2 }}
+                    whileHover={{ scale: 1.1, opacity: 0.4 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                  />
+                  {/* Dashed connection lines - animate dash offset */}
+                  <motion.path 
+                    d="M56 40h28M116 40h28" 
+                    stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" 
+                    className="text-foreground/30 group-hover:text-foreground/50 transition-colors duration-300"
+                    initial={{ strokeDashoffset: 0 }}
+                    animate={{ strokeDashoffset: [0, -8] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                  {/* Center dots - scale up on hover */}
+                  <motion.circle 
+                    cx="40" cy="40" r="6" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.3 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  <motion.circle 
+                    cx="100" cy="40" r="6" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.3 }}
+                    transition={{ duration: 0.2, delay: 0.05 }}
+                  />
+                  <motion.circle 
+                    cx="160" cy="40" r="6" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.3 }}
+                    transition={{ duration: 0.2, delay: 0.1 }}
+                  />
+                </svg>
+                
+                <h3 className="text-lg font-semibold text-foreground mb-3 relative z-10 group-hover:text-foreground transition-colors duration-300">Built for AI workflows</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm relative z-10 group-hover:text-muted-foreground/80 transition-colors duration-300">Designed for humans and agents to work together. Context flows seamlessly between stages.</p>
+                
+                {/* Border glow on hover */}
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-foreground/10 transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)]" />
+              </motion.div>
+            </AnimatedSection>
+
+            {/* Card 2: 10x faster shipping */}
+            <AnimatedSection delay={0.1}>
+              <motion.div 
+                className="group relative p-8 rounded-2xl bg-card/30 border border-border/20 cursor-pointer overflow-hidden"
+                whileHover={{ 
+                  y: -8,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-b from-foreground/[0.03] to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                </div>
+                
+                {/* Animated illustration */}
+                <svg className="w-full h-32 mb-6 relative z-10" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Line path - draw animation */}
+                  <motion.path 
+                    d="M20 60L60 30L100 45L140 20L180 35" 
+                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" 
+                    className="text-foreground/30 group-hover:text-foreground/50 transition-colors duration-300"
+                    initial={{ pathLength: 1 }}
+                    whileHover={{ pathLength: [0, 1] }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  />
+                  {/* Data points - pop up on hover */}
+                  <motion.circle 
+                    cx="60" cy="30" r="4" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.5, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  <motion.circle 
+                    cx="100" cy="45" r="4" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.5, y: -2 }}
+                    transition={{ duration: 0.2, delay: 0.05 }}
+                  />
+                  <motion.circle 
+                    cx="140" cy="20" r="4" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.5, y: -2 }}
+                    transition={{ duration: 0.2, delay: 0.1 }}
+                  />
+                  <motion.circle 
+                    cx="180" cy="35" r="4" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.5, y: -2 }}
+                    transition={{ duration: 0.2, delay: 0.15 }}
+                  />
+                  {/* Arrow - translate on hover */}
+                  <motion.path 
+                    d="M170 25l10 10l-10 10" 
+                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" 
+                    className="text-foreground/50 group-hover:text-foreground/80 transition-colors duration-300"
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                </svg>
+                
+                <h3 className="text-lg font-semibold text-foreground mb-3 relative z-10 group-hover:text-foreground transition-colors duration-300">10x faster shipping</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm relative z-10 group-hover:text-muted-foreground/80 transition-colors duration-300">What used to take months now takes days. Ship production-ready products in 3-12 days.</p>
+                
+                {/* Border glow on hover */}
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-foreground/10 transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)]" />
+              </motion.div>
+            </AnimatedSection>
+
+            {/* Card 3: Made for founders */}
+            <AnimatedSection delay={0.2}>
+              <motion.div 
+                className="group relative p-8 rounded-2xl bg-card/30 border border-border/20 cursor-pointer overflow-hidden"
+                whileHover={{ 
+                  y: -8,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-b from-foreground/[0.03] to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                </div>
+                
+                {/* Animated illustration */}
+                <svg className="w-full h-32 mb-6 relative z-10" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Outer rings - pulse animation */}
+                  <motion.circle 
+                    cx="100" cy="35" r="14" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    whileHover={{ scale: 1.15, opacity: 0.5 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <motion.circle 
+                    cx="60" cy="55" r="10" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    whileHover={{ scale: 1.2, opacity: 0.5 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                  />
+                  <motion.circle 
+                    cx="140" cy="55" r="10" 
+                    stroke="currentColor" strokeWidth="1.5" 
+                    className="text-foreground/20"
+                    whileHover={{ scale: 1.2, opacity: 0.5 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                  />
+                  {/* Connection lines - grow on hover */}
+                  <motion.path 
+                    d="M100 49v6M75 55h-5M125 55h5" 
+                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" 
+                    className="text-foreground/30 group-hover:text-foreground/50 transition-colors duration-300"
+                    initial={{ pathLength: 1 }}
+                    whileHover={{ pathLength: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  {/* Center dot - pulse effect */}
+                  <motion.circle 
+                    cx="100" cy="35" r="5" 
+                    fill="currentColor" 
+                    className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-300"
+                    whileHover={{ scale: 1.4 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  {/* Side dots on hover */}
+                  <motion.circle 
+                    cx="60" cy="55" r="3" 
+                    fill="currentColor" 
+                    className="text-foreground/0 group-hover:text-foreground/50"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  />
+                  <motion.circle 
+                    cx="140" cy="55" r="3" 
+                    fill="currentColor" 
+                    className="text-foreground/0 group-hover:text-foreground/50"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  />
+                </svg>
+                
+                <h3 className="text-lg font-semibold text-foreground mb-3 relative z-10 group-hover:text-foreground transition-colors duration-300">Made for founders</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm relative z-10 group-hover:text-muted-foreground/80 transition-colors duration-300">No dev team required. Solo founders and small teams can build like a full product org.</p>
+                
+                {/* Border glow on hover */}
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-foreground/10 transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_30px_-5px_rgba(255,255,255,0.1)]" />
+              </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
