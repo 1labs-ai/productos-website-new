@@ -24,6 +24,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { InteractiveDashboard } from "@/components/homepage/interactive-dashboard"
 import { ProductOSDashboard } from "@/components/homepage/productos-dashboard"
+import { AgentWorkflowDemo } from "@/components/homepage/agent-workflow-demo"
 import { WorkflowNodesIcon, GrowthGraphIcon, NetworkHubIcon } from "@/components/animated-icons"
 import { IsometricAgentsVisual } from "@/components/isometric-agents-visual"
 import { AgentCubesIllustration, SpeedBarsIllustration, LayeredCubeIllustration } from "@/components/linear-illustrations"
@@ -308,8 +309,8 @@ export default function LinearInspiredHomepage() {
             </AnimatedSection>
           </div>
 
-          {/* Interactive ProductOS Dashboard - Exact replica of build.productos.dev */}
-          <ProductOSDashboard />
+          {/* Agent Workflow Demo - Shows agents working after user prompt */}
+          <AgentWorkflowDemo />
         </div>
       </section>
 
