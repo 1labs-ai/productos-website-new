@@ -78,7 +78,7 @@ export default function LinearInspiredHomepage() {
         />
         
         {/* Content container with Linear-style spacing */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           {/* Main Headline - Left Aligned like Linear */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -94,14 +94,14 @@ export default function LinearInspiredHomepage() {
             
             <h1 className="mb-8">
               <span 
-                className="block text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-foreground"
-                style={{ lineHeight: 1.08, letterSpacing: '-0.03em' }}
+                className="block text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-foreground"
+                style={{ lineHeight: 1.1, letterSpacing: '-0.02em' }}
               >
                 The product development
               </span>
               <span 
-                className="block text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-foreground/40"
-                style={{ lineHeight: 1.08, letterSpacing: '-0.03em' }}
+                className="block text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-foreground/40"
+                style={{ lineHeight: 1.1, letterSpacing: '-0.02em' }}
               >
                 system for founders and agents
               </span>
@@ -151,7 +151,7 @@ export default function LinearInspiredHomepage() {
 
       {/* Logo Cloud */}
       <section className="py-16 border-y border-border/30">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <p className="text-center text-sm text-muted-foreground mb-8">
             Trusted by founders and teams from
           </p>
@@ -170,12 +170,12 @@ export default function LinearInspiredHomepage() {
 
       {/* Value Props - Linear style */}
       <section className="py-24">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <AnimatedSection>
             <p className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">
               A new way to build products
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold max-w-4xl mb-16" style={{ letterSpacing: '-0.02em' }}>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold max-w-4xl mb-16" style={{ letterSpacing: '-0.02em' }}>
               <span className="text-foreground">Purpose-built for the AI era.</span>{" "}
               <span className="text-muted-foreground">
                 Five specialized agents work together to take you from idea to production.
@@ -217,13 +217,13 @@ export default function LinearInspiredHomepage() {
 
       {/* Feature Section 1 - Self-driving operations */}
       <section id="features" className="py-24 bg-card/30">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
               <p className="text-sm font-medium text-amber-500 mb-4 uppercase tracking-wider">
                 AI-Powered Workflow
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
                 Make product development<br />
                 <span className="text-muted-foreground">self-driving</span>
               </h2>
@@ -288,7 +288,7 @@ export default function LinearInspiredHomepage() {
 
       {/* Feature Section 2 - Define product direction */}
       <section className="py-24">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection delay={0.2} className="order-2 lg:order-1">
               {/* Timeline/Roadmap mockup */}
@@ -333,7 +333,7 @@ export default function LinearInspiredHomepage() {
               <p className="text-sm font-medium text-purple-400 mb-4 uppercase tracking-wider">
                 End-to-end Visibility
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
                 Define the<br />
                 <span className="text-muted-foreground">product direction</span>
               </h2>
@@ -351,13 +351,13 @@ export default function LinearInspiredHomepage() {
 
       {/* Feature Section 3 - Deploy anywhere */}
       <section className="py-24 bg-card/30">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
               <p className="text-sm font-medium text-emerald-400 mb-4 uppercase tracking-wider">
                 Production Ready
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
                 Ship production code,<br />
                 <span className="text-muted-foreground">not prototypes</span>
               </h2>
@@ -414,9 +414,9 @@ export async function Dashboard() {
 
       {/* Stats Section */}
       <section className="py-24">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ letterSpacing: '-0.02em' }}>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4" style={{ letterSpacing: '-0.02em' }}>
               Built for speed.<br />
               <span className="text-muted-foreground">Measured in days, not months.</span>
             </h2>
@@ -444,7 +444,7 @@ export async function Dashboard() {
 
       {/* Testimonials */}
       <section className="py-24 bg-card/30">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ letterSpacing: '-0.02em' }}>
               What founders are saying
@@ -489,10 +489,10 @@ export async function Dashboard() {
 
       {/* Final CTA */}
       <section className="py-32">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-20 lg:px-32">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style={{ letterSpacing: '-0.02em' }}>
               <span className="text-foreground">Built for the future.</span><br />
               <span className="text-muted-foreground">Available today.</span>
             </h2>

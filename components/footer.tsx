@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { Sun, Moon, Monitor } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -75,10 +76,18 @@ function ThemeToggle() {
 
 export function Footer() {
   const logoRef = useRef<AnimatedLogoRef>(null)
+  const pathname = usePathname()
+  const isHomepage = pathname === "/" || pathname === "/homepage"
   
   return (
-    <footer className="border-t border-border py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+    <footer className={cn(
+      "border-t border-border py-12",
+      isHomepage ? "px-6 sm:px-20 lg:px-32" : "px-4"
+    )}>
+      <div className={cn(
+        "mx-auto",
+        isHomepage ? "max-w-[1400px]" : "max-w-6xl"
+      )}>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">

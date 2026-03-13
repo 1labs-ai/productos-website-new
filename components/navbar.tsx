@@ -68,7 +68,7 @@ function ThemeToggle() {
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const isHomepage = pathname === "/"
+  const isHomepage = pathname === "/" || pathname === "/homepage"
   const logoRef = useRef<AnimatedLogoRef>(null)
 
   return (
@@ -78,7 +78,12 @@ export function Navbar() {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50"
     >
-      <nav className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <nav className={cn(
+        "mx-auto w-full",
+        isHomepage 
+          ? "max-w-[1400px] px-6 sm:px-20 lg:px-32" 
+          : "max-w-6xl px-4 sm:px-6 lg:px-8"
+      )}>
         <div className="flex items-center justify-between h-16">
           {/* Logo - animates on hover of entire logo area */}
           <a 
