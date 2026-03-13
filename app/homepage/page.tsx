@@ -51,7 +51,7 @@ const companies = [
   { name: "OpenAI", logo: "/logos/openai.svg" },
   { name: "Stripe", logo: "/logos/stripe.svg" },
   { name: "Coinbase", logo: "/logos/coinbase.svg" },
-  { name: "Booking", logo: "/logos/booking.svg" },
+  { name: "Airbnb", logo: "/logos/airbnb.svg" },
 ]
 
 export default function LinearInspiredHomepage() {
@@ -154,11 +154,11 @@ export default function LinearInspiredHomepage() {
       {/* Logo Cloud */}
       <section className="py-12 border-y border-border/30">
         <div className="max-w-[1436px] mx-auto px-6 lg:px-[50px]">
-          <div className="flex items-center justify-between w-full max-w-5xl mx-auto">
+          <div className="flex items-center justify-center gap-10 md:gap-14 lg:gap-16">
             {companies.map((company) => (
               <div 
                 key={company.name} 
-                className="flex items-center justify-center"
+                className="flex items-center justify-center h-6"
                 title={company.name}
               >
                 <Image
@@ -166,7 +166,8 @@ export default function LinearInspiredHomepage() {
                   alt={`${company.name} logo`}
                   width={100}
                   height={24}
-                  className="h-5 w-auto max-w-[100px] object-contain brightness-0 invert opacity-60"
+                  className="h-6 w-auto object-contain brightness-0 invert opacity-50"
+                  style={{ maxWidth: '100px' }}
                 />
               </div>
             ))}
