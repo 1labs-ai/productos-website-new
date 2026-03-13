@@ -151,96 +151,102 @@ export function WorkflowNodesIcon({ className = "" }: { className?: string }) {
   )
 }
 
-// Speed/Progress Icon - Clean arc with progress indicator
+// Speed/Progress Icon - Arc with milestone dots and flag
 export function GrowthGraphIcon({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative flex items-center justify-center ${className}`}>
       <svg 
-        className="w-full h-32" 
-        viewBox="0 0 200 80" 
+        className="w-full h-40" 
+        viewBox="0 0 280 120" 
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Progress arc background */}
+        {/* Main curved arc path */}
         <path 
-          d="M30 60 Q100 10 170 60"
+          d="M40 85 Q80 80 110 55 Q140 30 170 25 Q200 22 230 45"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           fill="none"
-          className="text-foreground/15"
+          className="text-foreground/30 group-hover:text-foreground/50 transition-colors duration-500"
         />
         
-        {/* Progress arc animated fill */}
-        <motion.path 
-          d="M30 60 Q100 10 170 60"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          fill="none"
+        {/* Milestone dot 1 - start */}
+        <motion.circle 
+          cx="55" cy="82" r="4"
+          fill="currentColor"
           className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-500"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: [0, 0.85, 0.85] }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1, ease: "easeOut" }}
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Progress dots along the path */}
+        {/* Milestone dot 2 */}
         <motion.circle 
-          cx="50" cy="48" r="3"
+          cx="110" cy="52" r="5"
           fill="currentColor"
-          className="text-foreground/30 group-hover:text-foreground/60 transition-colors duration-500"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3 }}
+          className="text-foreground/45 group-hover:text-foreground/75 transition-colors duration-500"
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
         />
+        
+        {/* Milestone dot 3 */}
         <motion.circle 
-          cx="85" cy="28" r="3"
+          cx="155" cy="28" r="5"
           fill="currentColor"
-          className="text-foreground/35 group-hover:text-foreground/65 transition-colors duration-500"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5 }}
+          className="text-foreground/45 group-hover:text-foreground/75 transition-colors duration-500"
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
         />
+        
+        {/* Milestone dot 4 - near flag */}
         <motion.circle 
-          cx="120" cy="22" r="3.5"
-          fill="currentColor"
-          className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-500"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.7 }}
-        />
-        <motion.circle 
-          cx="155" cy="35" r="4"
+          cx="200" cy="26" r="4"
           fill="currentColor"
           className="text-foreground/50 group-hover:text-foreground/80 transition-colors duration-500"
-          initial={{ scale: 0 }}
-          animate={{ scale: [0, 1, 1.2, 1] }}
-          transition={{ delay: 0.9, duration: 0.5 }}
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         />
         
-        {/* Pulse ring at end point */}
+        {/* Flag icon at destination */}
+        <g className="text-foreground/50 group-hover:text-foreground/80 transition-colors duration-500">
+          {/* Flag pole */}
+          <line 
+            x1="235" y1="25" x2="235" y2="65" 
+            stroke="currentColor" 
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          {/* Flag shape - pointed pennant */}
+          <motion.path 
+            d="M235 25 L260 35 L235 45 Z"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinejoin="round"
+            animate={{ x: [0, 2, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Small dot on flag */}
+          <motion.circle 
+            cx="245" cy="35" r="3"
+            fill="currentColor"
+            className="text-foreground/40"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </g>
+        
+        {/* Animated particle traveling along path */}
         <motion.circle 
-          cx="155" cy="35" r="8"
-          stroke="currentColor"
-          strokeWidth="1"
-          fill="none"
-          className="text-foreground/30"
-          initial={{ scale: 1, opacity: 0.4 }}
-          animate={{ scale: [1, 1.8], opacity: [0.4, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 1 }}
-        />
-        
-        {/* Arrow indicator */}
-        <motion.path 
-          d="M160 30 L172 38 L160 46"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          className="text-foreground/40 group-hover:text-foreground/70 transition-colors duration-500"
-          animate={{ x: [0, 3, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          r="3"
+          fill="currentColor"
+          className="text-foreground/60"
+          animate={{ 
+            cx: [40, 110, 170, 230],
+            cy: [85, 52, 25, 45],
+            opacity: [0, 1, 1, 0]
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
       </svg>
     </div>
