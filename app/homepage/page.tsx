@@ -62,71 +62,65 @@ export default function LinearInspiredHomepage() {
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Hero Section - Linear Style: Headline + Screenshot */}
-      <section ref={heroRef} className="relative pt-32 pb-8 px-4 overflow-hidden">
-        {/* Subtle gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/50 pointer-events-none" />
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-40"
-          style={{
-            background: "radial-gradient(ellipse 80% 50% at 50% -10%, hsl(240 10% 20% / 0.5) 0%, transparent 50%)"
-          }}
-        />
+      {/* Hero Section - Linear Style: Left-aligned Headline + Screenshot with Glow */}
+      <section ref={heroRef} className="relative pt-28 sm:pt-32 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
         
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Main Headline - Linear Style */}
+        <div className="relative z-10 max-w-[1400px] mx-auto">
+          {/* Main Headline - Left Aligned like Linear */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-8"
+            className="mb-10"
           >
-            <h1 className="mb-6">
+            <h1 className="mb-8">
               <span 
-                className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground"
-                style={{ lineHeight: 1.1, letterSpacing: '-0.03em' }}
+                className="block text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-bold text-foreground"
+                style={{ lineHeight: 1.05, letterSpacing: '-0.035em' }}
               >
                 The product development
               </span>
               <span 
-                className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground/50"
-                style={{ lineHeight: 1.1, letterSpacing: '-0.03em' }}
+                className="block text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-bold text-foreground/40"
+                style={{ lineHeight: 1.05, letterSpacing: '-0.035em' }}
               >
                 system for founders and agents
               </span>
             </h1>
+
+            {/* CTAs - Left aligned */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="flex flex-col sm:flex-row items-start gap-3"
+            >
+              <Button
+                size="lg"
+                className="bg-foreground text-background hover:bg-foreground/90 rounded-md px-6 h-11 text-sm font-medium"
+                asChild
+              >
+                <Link href="/early-access">
+                  Request Early Access
+                  <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-md px-6 h-11 text-sm font-medium border-border/60 hover:bg-card"
+                asChild
+              >
+                <Link href="#features">
+                  See How It Works
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
 
-          {/* CTAs - Compact, below headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
-          >
-            <Button
-              size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-md px-6 h-11 text-sm font-medium"
-              asChild
-            >
-              <Link href="/early-access">
-                Request Early Access
-                <ArrowRight className="ml-2 size-4" />
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-md px-6 h-11 text-sm font-medium border-border/60 hover:bg-card"
-              asChild
-            >
-              <Link href="#features">
-                See How It Works
-              </Link>
-            </Button>
-          </motion.div>
-
-          {/* Product Screenshot - Full Width, Linear Style */}
+          {/* Product Screenshot with Gradient Glow - Linear Style */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,32 +128,48 @@ export default function LinearInspiredHomepage() {
             style={{ y: heroY }}
             className="relative"
           >
-            {/* Glow effect behind screenshot */}
+            {/* Multi-layer gradient glow behind screenshot */}
             <div 
-              className="absolute -inset-4 blur-3xl opacity-30 pointer-events-none"
+              className="absolute -inset-x-20 -inset-y-10 pointer-events-none"
               style={{
-                background: "radial-gradient(ellipse 50% 30% at 50% 50%, hsl(240 20% 30% / 0.4) 0%, transparent 70%)"
+                background: `
+                  radial-gradient(ellipse 40% 30% at 50% 40%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse 60% 40% at 30% 60%, rgba(78, 81, 102, 0.1) 0%, transparent 50%),
+                  radial-gradient(ellipse 50% 35% at 70% 50%, rgba(88, 91, 112, 0.1) 0%, transparent 50%)
+                `
               }}
             />
             
-            {/* Screenshot container */}
+            {/* Softer edge glow */}
             <div 
-              className="relative rounded-xl overflow-hidden border border-white/[0.08]"
+              className="absolute -inset-1 rounded-xl opacity-50 pointer-events-none"
+              style={{
+                background: "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 40%)",
+              }}
+            />
+            
+            {/* Screenshot container - crisp rendering */}
+            <div 
+              className="relative rounded-xl overflow-hidden border border-white/[0.06]"
               style={{
                 boxShadow: `
-                  0 0 0 1px rgba(255, 255, 255, 0.03),
-                  0 20px 40px -10px rgba(0, 0, 0, 0.5),
-                  0 40px 80px -20px rgba(0, 0, 0, 0.4)
+                  0 0 0 1px rgba(255, 255, 255, 0.02),
+                  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                  0 50px 100px -24px rgba(0, 0, 0, 0.3)
                 `
               }}
             >
               <Image
                 src="/product/dashboard-dark.png"
                 alt="ProductOS Dashboard - AI-native product development from idea to launch"
-                width={1920}
-                height={1080}
+                width={1366}
+                height={768}
                 className="w-full h-auto"
+                style={{ imageRendering: 'crisp-edges' }}
+                quality={100}
                 priority
+                unoptimized
               />
             </div>
           </motion.div>
