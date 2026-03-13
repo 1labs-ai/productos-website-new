@@ -50,8 +50,8 @@ const companies = [
   { name: "Vercel", logo: "/logos/vercel.svg" },
   { name: "OpenAI", logo: "/logos/openai.svg" },
   { name: "Stripe", logo: "/logos/stripe.svg" },
-  { name: "Notion", logo: "/logos/notion.svg" },
   { name: "Coinbase", logo: "/logos/coinbase.svg" },
+  { name: "Booking", logo: "/logos/booking.svg" },
 ]
 
 export default function LinearInspiredHomepage() {
@@ -154,18 +154,19 @@ export default function LinearInspiredHomepage() {
       {/* Logo Cloud */}
       <section className="py-12 border-y border-border/30">
         <div className="max-w-[1436px] mx-auto px-6 lg:px-[50px]">
-          <div className="flex items-center justify-center gap-12 md:gap-16 lg:gap-20 flex-wrap">
+          <div className="flex items-center justify-between w-full max-w-5xl mx-auto">
             {companies.map((company) => (
               <div 
                 key={company.name} 
+                className="flex items-center justify-center"
                 title={company.name}
               >
                 <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  width={120}
-                  height={32}
-                  className="h-5 md:h-6 w-auto object-contain brightness-0 invert opacity-70"
+                  width={100}
+                  height={24}
+                  className="h-5 w-auto max-w-[100px] object-contain brightness-0 invert opacity-60"
                 />
               </div>
             ))}
