@@ -47,7 +47,6 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 
 type Stage = "home" | "ideate" | "discover" | "define" | "design" | "develop"
 
@@ -189,15 +188,90 @@ function StartingScreen({ onStartProject }: { onStartProject: (idea: string) => 
   )
 }
 
-// Screenshot paths for app screens
-const appScreenshots = {
-  dashboard: "/screenshots/app/dashboard.png",
-  voiceLibrary: "/screenshots/app/voice-library.png",
-  studio: "/screenshots/app/studio.png",
-  projects: "/screenshots/app/projects.png",
-  analytics: "/screenshots/app/analytics.png",
-  settings: "/screenshots/app/settings.png",
-  livePreview: "/screenshots/app/live-preview.png",
+// Rich Product Preview Component (for Develop stage) - Immediately visible
+function ProductPreview() {
+  return (
+    <div className="h-full flex flex-col bg-[#0c0c0d] rounded-lg overflow-hidden border border-white/[0.08]">
+      {/* App header */}
+      <div className="flex items-center justify-between px-3 py-2 border-b border-white/[0.06] bg-white/[0.02]">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+            <Bot className="w-3.5 h-3.5 text-white" />
+          </div>
+          <span className="text-xs font-semibold text-white">VoiceAI Studio</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500" />
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 p-3 flex flex-col gap-2 overflow-hidden">
+        {/* Voice cards */}
+        <div className="grid grid-cols-3 gap-1.5">
+          {[
+            { name: "Emma", accent: "US English", color: "from-pink-500 to-rose-500", selected: true },
+            { name: "James", accent: "British", color: "from-blue-500 to-indigo-500", selected: false },
+            { name: "Aria", accent: "Australian", color: "from-violet-500 to-purple-500", selected: false },
+          ].map((voice) => (
+            <div
+              key={voice.name}
+              className={cn(
+                "p-2 rounded-lg border transition-all",
+                voice.selected 
+                  ? "bg-violet-500/10 border-violet-500/30" 
+                  : "bg-white/[0.02] border-white/[0.06] hover:border-white/[0.12]"
+              )}
+            >
+              <div className={cn("w-6 h-6 rounded-full bg-gradient-to-br mb-1.5", voice.color)} />
+              <div className="text-[10px] font-medium text-white">{voice.name}</div>
+              <div className="text-[8px] text-white/40">{voice.accent}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Waveform */}
+        <div className="flex-1 rounded-lg bg-white/[0.02] border border-white/[0.06] p-3 flex items-center justify-center">
+          <div className="flex items-center gap-0.5 h-10">
+            {[...Array(32)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{ 
+                  height: [4, Math.random() * 28 + 8, 4],
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: Infinity,
+                  delay: i * 0.04,
+                }}
+                className="w-1 bg-gradient-to-t from-violet-500 to-purple-400 rounded-full"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-3">
+          <button className="w-8 h-8 rounded-full bg-white/[0.04] flex items-center justify-center hover:bg-white/[0.08] transition-colors">
+            <Download className="w-3.5 h-3.5 text-white/60" />
+          </button>
+          <button className="w-10 h-10 rounded-full bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center">
+            <Play className="w-4 h-4 text-white ml-0.5" />
+          </button>
+          <button className="w-8 h-8 rounded-full bg-white/[0.04] flex items-center justify-center hover:bg-white/[0.08] transition-colors">
+            <Share2 className="w-3.5 h-3.5 text-white/60" />
+          </button>
+        </div>
+
+        {/* Input */}
+        <div className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+          <Mic className="w-4 h-4 text-violet-400" />
+          <span className="flex-1 text-[10px] text-white/40">Type or speak your text...</span>
+          <Send className="w-4 h-4 text-violet-400" />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export function InteractiveDashboard() {
@@ -559,12 +633,12 @@ export function InteractiveDashboard() {
                   </div>
                 )}
 
-                {/* ===== DESIGN STAGE - SCREENSHOT GRID ===== */}
+                {/* ===== DESIGN STAGE - RICH UI GRID ===== */}
                 {activeStage === "design" && (
                   <div className="h-full flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground">Generated UI for</span>
+                        <span className="text-xs text-muted-foreground">Generating UI for</span>
                         <span className="text-sm font-medium text-purple-400">{projectName}</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs">
@@ -573,15 +647,165 @@ export function InteractiveDashboard() {
                       </div>
                     </div>
 
-                    {/* Screenshot Grid */}
+                    {/* Rich Grid of screen designs */}
                     <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-2.5 overflow-hidden">
                       {[
-                        { name: "Dashboard", image: "/screenshots/app/dashboard.png" },
-                        { name: "Voice Library", image: "/screenshots/app/voice-library.png" },
-                        { name: "Studio", image: "/screenshots/app/studio.png" },
-                        { name: "Projects", image: "/screenshots/app/projects.png" },
-                        { name: "Analytics", image: "/screenshots/app/analytics.png" },
-                        { name: "Settings", image: "/screenshots/app/settings.png" },
+                        { 
+                          name: "Dashboard", 
+                          icon: Home,
+                          content: (
+                            <div className="space-y-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="flex items-center gap-1">
+                                  <div className="w-3 h-3 rounded bg-gradient-to-br from-violet-500 to-purple-600" />
+                                  <div className="w-8 h-1.5 rounded bg-white/20" />
+                                </div>
+                                <div className="w-4 h-4 rounded-full bg-emerald-500/30" />
+                              </div>
+                              <div className="grid grid-cols-3 gap-1">
+                                {[
+                                  { value: "$12.4k", label: "Revenue", color: "emerald" },
+                                  { value: "2,847", label: "Users", color: "sky" },
+                                  { value: "94%", label: "Happy", color: "violet" },
+                                ].map((stat) => (
+                                  <div key={stat.label} className="p-1 rounded bg-white/[0.04]">
+                                    <div className={cn("text-[8px] font-bold", `text-${stat.color}-400`)}>{stat.value}</div>
+                                    <div className="text-[6px] text-white/30">{stat.label}</div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="h-8 rounded bg-gradient-to-r from-violet-500/20 to-purple-500/10 flex items-end p-1 gap-0.5">
+                                {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85].map((h, i) => (
+                                  <div key={i} className="flex-1 bg-violet-400/60 rounded-t" style={{ height: `${h}%` }} />
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        },
+                        { 
+                          name: "Voice Library", 
+                          icon: Mic,
+                          content: (
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1 mb-1">
+                                <Search className="w-2.5 h-2.5 text-white/30" />
+                                <div className="flex-1 h-3 rounded bg-white/[0.04]" />
+                              </div>
+                              <div className="grid grid-cols-3 gap-1">
+                                {[
+                                  { color: "from-pink-500 to-rose-500", name: "Emma" },
+                                  { color: "from-blue-500 to-indigo-500", name: "James" },
+                                  { color: "from-violet-500 to-purple-500", name: "Aria" },
+                                  { color: "from-amber-500 to-orange-500", name: "Max" },
+                                  { color: "from-emerald-500 to-teal-500", name: "Sophie" },
+                                  { color: "from-cyan-500 to-blue-500", name: "Oliver" },
+                                ].map((voice) => (
+                                  <div key={voice.name} className="p-1 rounded bg-white/[0.03] flex flex-col items-center">
+                                    <div className={cn("w-4 h-4 rounded-full bg-gradient-to-br mb-0.5", voice.color)} />
+                                    <div className="text-[6px] text-white/60">{voice.name}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        },
+                        { 
+                          name: "Studio", 
+                          icon: Video,
+                          content: (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center gap-1">
+                                {["Emma", "US"].map((tag) => (
+                                  <span key={tag} className="px-1 py-0.5 rounded text-[6px] bg-violet-500/20 text-violet-300">{tag}</span>
+                                ))}
+                              </div>
+                              <div className="h-8 rounded bg-white/[0.03] flex items-center justify-center px-1">
+                                <div className="flex items-center gap-0.5 w-full">
+                                  {[...Array(20)].map((_, i) => (
+                                    <div key={i} className="flex-1 bg-gradient-to-t from-violet-500 to-purple-400 rounded-full" style={{ height: `${Math.random() * 16 + 4}px` }} />
+                                  ))}
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-center gap-2">
+                                <div className="w-4 h-4 rounded-full bg-white/[0.06]" />
+                                <div className="w-5 h-5 rounded-full bg-violet-500 flex items-center justify-center">
+                                  <Play className="w-2 h-2 text-white" />
+                                </div>
+                                <div className="w-4 h-4 rounded-full bg-white/[0.06]" />
+                              </div>
+                            </div>
+                          )
+                        },
+                        { 
+                          name: "Projects", 
+                          icon: Layers,
+                          content: (
+                            <div className="space-y-1">
+                              {[
+                                { name: "Podcast Intro", time: "2m ago", color: "violet" },
+                                { name: "YouTube Script", time: "1h ago", color: "blue" },
+                                { name: "Ad Voiceover", time: "3h ago", color: "amber" },
+                                { name: "Audiobook Ch1", time: "1d ago", color: "emerald" },
+                              ].map((project) => (
+                                <div key={project.name} className="flex items-center gap-1.5 p-1 rounded bg-white/[0.02]">
+                                  <div className={cn("w-1.5 h-1.5 rounded-full", `bg-${project.color}-400`)} />
+                                  <div className="flex-1">
+                                    <div className="text-[7px] text-white/80">{project.name}</div>
+                                  </div>
+                                  <div className="text-[6px] text-white/30">{project.time}</div>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        },
+                        { 
+                          name: "Analytics", 
+                          icon: BarChart3,
+                          content: (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center justify-between">
+                                <span className="text-[7px] text-white/50">Usage</span>
+                                <span className="text-[7px] text-emerald-400">+24%</span>
+                              </div>
+                              <div className="h-10 flex items-end gap-0.5">
+                                {[30, 50, 35, 70, 45, 80, 60, 90, 55, 75, 85, 95].map((h, i) => (
+                                  <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-emerald-500/40 to-emerald-400/20" style={{ height: `${h}%` }} />
+                                ))}
+                              </div>
+                              <div className="grid grid-cols-2 gap-1">
+                                <div className="p-1 rounded bg-white/[0.03] text-center">
+                                  <div className="text-[8px] font-bold text-sky-400">847</div>
+                                  <div className="text-[5px] text-white/30">Generations</div>
+                                </div>
+                                <div className="p-1 rounded bg-white/[0.03] text-center">
+                                  <div className="text-[8px] font-bold text-violet-400">12.4h</div>
+                                  <div className="text-[5px] text-white/30">Audio</div>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        },
+                        { 
+                          name: "Settings", 
+                          icon: Settings,
+                          content: (
+                            <div className="space-y-1.5">
+                              {[
+                                { label: "HD Quality", enabled: true },
+                                { label: "Auto-save", enabled: true },
+                                { label: "Notifications", enabled: false },
+                                { label: "API Access", enabled: true },
+                              ].map((setting) => (
+                                <div key={setting.label} className="flex items-center justify-between p-1 rounded bg-white/[0.02]">
+                                  <span className="text-[7px] text-white/60">{setting.label}</span>
+                                  <div className={cn("w-5 h-2.5 rounded-full flex items-center px-0.5", setting.enabled ? "bg-violet-500" : "bg-white/10")}>
+                                    <div className={cn("w-1.5 h-1.5 rounded-full bg-white transition-transform", setting.enabled ? "translate-x-2" : "")} />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        },
                       ].map((screen, i) => (
                         <motion.div
                           key={screen.name}
@@ -590,27 +814,21 @@ export function InteractiveDashboard() {
                           transition={{ delay: i * 0.08 }}
                           className="rounded-lg border border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent overflow-hidden group hover:border-purple-500/40 transition-colors cursor-pointer"
                         >
-                          <div className="relative aspect-[4/3] bg-[#0c0c0d] overflow-hidden">
-                            {/* Window chrome */}
-                            <div className="absolute top-0 left-0 right-0 z-10 flex items-center gap-1.5 px-2 py-1.5 bg-[#0c0c0d]/90 border-b border-white/[0.06]">
-                              <div className="flex gap-1">
-                                <div className="w-2 h-2 rounded-full bg-red-500/60" />
-                                <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-                                <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                          <div className="p-2 bg-[#0c0c0d] h-full flex flex-col">
+                            <div className="flex items-center gap-1.5 mb-1.5 pb-1.5 border-b border-white/[0.06]">
+                              <div className="flex gap-0.5">
+                                <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
                               </div>
+                              <div className="flex-1" />
+                              <screen.icon className="w-2.5 h-2.5 text-purple-400" />
                             </div>
-                            {/* Screenshot image */}
-                            <Image
-                              src={screen.image}
-                              alt={screen.name}
-                              fill
-                              className="object-cover object-top pt-6"
-                              sizes="(max-width: 768px) 50vw, 33vw"
-                            />
+                            <div className="flex-1">{screen.content}</div>
                           </div>
-                          <div className="px-2 py-1.5 bg-white/[0.02] border-t border-white/[0.06] flex items-center justify-between">
-                            <span className="text-xs font-medium text-white/80">{screen.name}</span>
-                            <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <div className="px-2 py-1 bg-white/[0.02] border-t border-white/[0.06] flex items-center justify-between">
+                            <span className="text-[9px] font-medium text-white/80">{screen.name}</span>
+                            <Check className="w-3 h-3 text-emerald-400" />
                           </div>
                         </motion.div>
                       ))}
@@ -667,33 +885,8 @@ export function InteractiveDashboard() {
                         </div>
                         <span className="text-xs text-muted-foreground">localhost:3000</span>
                       </div>
-                      <div className="flex-1 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent overflow-hidden">
-                        {/* App screenshot preview */}
-                        <div className="relative h-full min-h-[200px] bg-[#0c0c0d]">
-                          {/* Window chrome */}
-                          <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.06] bg-white/[0.02]">
-                            <div className="flex items-center gap-1.5">
-                              <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                            </div>
-                            <div className="flex-1 flex items-center justify-center">
-                              <div className="px-3 py-1 rounded-md bg-white/[0.04] text-[10px] text-white/40">
-                                localhost:3000
-                              </div>
-                            </div>
-                          </div>
-                          {/* Screenshot */}
-                          <div className="relative aspect-[16/10]">
-                            <Image
-                              src="/screenshots/app/live-preview.png"
-                              alt="Live Preview"
-                              fill
-                              className="object-cover object-top"
-                              sizes="(max-width: 1024px) 100vw, 50vw"
-                            />
-                          </div>
-                        </div>
+                      <div className="flex-1 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent p-1">
+                        <ProductPreview />
                       </div>
                     </div>
                   </div>
