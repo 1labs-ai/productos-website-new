@@ -1024,7 +1024,7 @@ export function InteractiveDashboard() {
                     </div>
 
                     <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} onClick={() => setActiveStage("develop")} className="w-full p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium flex items-center justify-center gap-2 hover:bg-purple-500/20 transition-colors">
-                      Generate Code <Code className="w-4 h-4" />
+                      Continue to Develop <ChevronRight className="w-4 h-4" />
                     </motion.button>
                   </div>
                 )}
