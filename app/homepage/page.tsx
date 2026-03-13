@@ -24,6 +24,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { InteractiveDashboard } from "@/components/homepage/interactive-dashboard"
 import { WorkflowNodesIcon, GrowthGraphIcon, NetworkHubIcon } from "@/components/animated-icons"
+import { IsometricAgentsVisual } from "@/components/isometric-agents-visual"
 
 // Section animation wrapper
 function AnimatedSection({ children, className, delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) {
@@ -208,8 +209,8 @@ export default function LinearInspiredHomepage() {
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
                 </div>
                 
-                {/* Animated illustration */}
-                <WorkflowNodesIcon className="mb-6 relative z-10" />
+                {/* Isometric agents visual - matching reference design */}
+                <IsometricAgentsVisual className="mb-4 relative z-10" />
                 
                 <h3 className="text-lg font-semibold text-foreground mb-3 relative z-10 group-hover:text-foreground transition-colors duration-300">Agents that collaborate</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm relative z-10 group-hover:text-muted-foreground/80 transition-colors duration-300">Each agent specializes in one stage. Context flows automatically from ideation to production code.</p>
