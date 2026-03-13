@@ -42,7 +42,7 @@ function AnimatedSection({ children, className, delay = 0 }: { children: React.R
   )
 }
 
-// Company logos for social proof - Using actual downloaded SVG files
+// Company logos for social proof - 8 logos, all white, Linear-style
 const companies = [
   { name: "Google", logo: "/logos/google.svg" },
   { name: "Microsoft", logo: "/logos/microsoft.svg" },
@@ -51,6 +51,7 @@ const companies = [
   { name: "OpenAI", logo: "/logos/openai.svg" },
   { name: "Stripe", logo: "/logos/stripe.svg" },
   { name: "Notion", logo: "/logos/notion.svg" },
+  { name: "Coinbase", logo: "/logos/coinbase.svg" },
 ]
 
 export default function LinearInspiredHomepage() {
@@ -153,19 +154,18 @@ export default function LinearInspiredHomepage() {
       {/* Logo Cloud */}
       <section className="py-12 border-y border-border/30">
         <div className="max-w-[1436px] mx-auto px-6 lg:px-[50px]">
-          <div className="flex items-center justify-center gap-8 sm:gap-10 lg:gap-14 flex-wrap">
+          <div className="flex items-center justify-center gap-12 md:gap-16 lg:gap-20 flex-wrap">
             {companies.map((company) => (
               <div 
                 key={company.name} 
-                className="opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                 title={company.name}
               >
                 <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
                   width={120}
-                  height={40}
-                  className="h-6 sm:h-7 w-auto object-contain dark:invert"
+                  height={32}
+                  className="h-5 md:h-6 w-auto object-contain brightness-0 invert opacity-70"
                 />
               </div>
             ))}
