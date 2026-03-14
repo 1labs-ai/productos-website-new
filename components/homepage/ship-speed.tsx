@@ -132,25 +132,6 @@ export const ShipSpeed = ({ className }: ShipSpeedProps) => {
         })}
       </div>
 
-      {/* Footer: Progress Bars */}
-      <div className="mt-6 w-full pt-4 border-t border-foreground/5 dark:border-white/5 flex justify-between items-center">
-        <div className="flex gap-0.5 items-center">
-          {[...Array(12)].map((_, i) => (
-            <div 
-              key={i} 
-              className={cn(
-                "w-0.5 rounded-full transition-all duration-1000",
-                i < (activeStep + 1) * 3 
-                  ? 'bg-foreground/40 dark:bg-white/40 h-4' 
-                  : 'bg-foreground/5 dark:bg-white/5 h-2.5'
-              )} 
-            />
-          ))}
-        </div>
-        <div className="text-[7px] font-mono text-foreground/20 dark:text-white/20 uppercase tracking-[0.3em]">
-          Time 1:2.5
-        </div>
-      </div>
     </div>
   )
 }
