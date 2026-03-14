@@ -30,8 +30,8 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
 
   return (
     <div className={cn("relative w-full", className)}>
-      {/* Square Container */}
-      <div className="relative aspect-square w-full rounded-3xl overflow-hidden flex items-center justify-center p-6 bg-[#0a0a0b] dark:bg-[#0a0a0b] border border-white/[0.05]">
+      {/* Square Container - transparent, no border */}
+      <div className="relative aspect-square w-full rounded-3xl overflow-hidden flex items-center justify-center p-6">
         
         {/* Figure Label */}
         <div className="absolute top-4 left-4 text-[8px] font-mono uppercase tracking-[0.15em] text-white/20">
