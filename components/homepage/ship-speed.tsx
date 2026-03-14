@@ -27,7 +27,7 @@ export const ShipSpeed = ({ className }: ShipSpeedProps) => {
   }, [])
 
   return (
-    <div className={cn("relative w-full flex flex-col items-center", className)}>
+    <div className={cn("relative w-full min-h-[320px] flex flex-col items-center", className)}>
       
       {/* Header: Time Compression Metric */}
       <div className="w-full flex justify-between items-end mb-6 px-1">
