@@ -277,7 +277,7 @@ export default function LinearInspiredHomepage() {
                 </div>
                 
                 {/* Linear-style layered cube illustration */}
-                <LayeredCubeIllustration className="mb-4 relative z-10 h-48" />
+                <LayeredCubeIllustration className="mb-4 relative z-10 h-64" />
                 
                 <h3 className="text-lg font-semibold text-foreground mb-3 relative z-10 group-hover:text-foreground transition-colors duration-300">Built for founders</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm relative z-10 group-hover:text-muted-foreground/80 transition-colors duration-300">No dev team needed. Build like you have a full product org — PM, researcher, designer, and engineers.</p>

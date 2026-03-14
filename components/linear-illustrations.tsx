@@ -177,10 +177,6 @@ export function SpeedBarsIllustration({ className = "" }: { className?: string }
 export function LayeredCubeIllustration({ className = "" }: { className?: string }) {
   return (
     <div className={`relative w-full flex items-center justify-center ${className}`}>
-      <span className="absolute top-0 left-0 text-[10px] font-mono text-foreground/30 tracking-widest">
-        FIG 0.3
-      </span>
-      
       <svg 
         viewBox="0 0 320 200" 
         fill="none" 
