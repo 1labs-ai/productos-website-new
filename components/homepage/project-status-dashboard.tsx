@@ -116,13 +116,13 @@ export function ProjectStatusDashboard() {
           {/* Top edge highlight */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10" />
           
-          {/* Subtle ambient glow with warm tint */}
+          {/* Subtle ambient glow - matching first dashboard */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
               background: `
                 radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse 40% 25% at 50% 0%, rgba(245, 158, 11, 0.03) 0%, transparent 40%)
+                radial-gradient(ellipse 50% 30% at 80% 10%, rgba(255, 255, 255, 0.025) 0%, transparent 40%)
               `
             }}
           />
