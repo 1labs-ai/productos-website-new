@@ -177,7 +177,7 @@ export default function LinearInspiredHomepage() {
                   alt={`${company.name} logo`}
                   width={100}
                   height={20}
-                  className="h-5 w-auto object-contain brightness-0 invert opacity-80"
+                  className="h-5 w-auto object-contain opacity-60 dark:brightness-0 dark:invert dark:opacity-80"
                   style={{ maxWidth: '90px' }}
                 />
               </div>

@@ -85,9 +85,9 @@ function TypingText({ text }: { text: string }) {
   }, [text])
   
   return (
-    <span>
+    <span className="text-foreground/80 dark:text-white/80">
       {displayedText}
-      {!isComplete && <span className="inline-block w-0.5 h-4 bg-foreground/60 ml-0.5 animate-pulse align-middle" />}
+      {!isComplete && <span className="inline-block w-0.5 h-4 bg-foreground/60 dark:bg-white/60 ml-0.5 animate-pulse align-middle" />}
     </span>
   )
 }
@@ -180,20 +180,20 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
       {/* FIXED HEIGHT CONTAINER */}
       <div className="flex flex-col lg:flex-row h-[520px]">
         {/* Left: Chat Input Panel */}
-        <div className="lg:w-[460px] border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col">
+        <div className="lg:w-[460px] border-b lg:border-b-0 lg:border-r border-border/30 dark:border-white/[0.06] flex flex-col">
           {/* Chat Area */}
           <div className="flex-1 p-6 flex flex-col">
             {/* User Avatar & Label */}
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
-                <span className="text-xs font-bold text-amber-400/80">H</span>
+                <span className="text-xs font-bold text-amber-600 dark:text-amber-400/80">H</span>
               </div>
               <div>
-                <div className="text-sm font-medium text-white">You</div>
-                <div className="text-xs text-white/40">Founder</div>
+                <div className="text-sm font-medium text-foreground dark:text-white">You</div>
+                <div className="text-xs text-muted-foreground dark:text-white/40">Founder</div>
               </div>
               {phase !== "typing" && (
-                <div className="ml-auto flex items-center gap-1.5 text-xs text-emerald-400/80">
+                <div className="ml-auto flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400/80">
                   <Check className="size-3" />
                   Sent
                 </div>
@@ -202,8 +202,8 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
             
             {/* Message Content - Fixed height */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] min-h-[100px]">
-                <p className="text-white/80 text-sm leading-relaxed">
+              <div className="p-4 rounded-xl bg-muted/50 dark:bg-white/[0.02] border border-border/50 dark:border-white/[0.06] min-h-[100px]">
+                <p className="text-foreground/80 dark:text-white/80 text-sm leading-relaxed">
                   {phase === "typing" ? (
                     <TypingText text="Build me an analytics dashboard for tracking user engagement metrics with real-time charts and exportable reports." />
                   ) : (
@@ -215,32 +215,32 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
           </div>
           
           {/* Chat Input */}
-          <div className="p-4 border-t border-white/[0.06]">
-            <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
+          <div className="p-4 border-t border-border/30 dark:border-white/[0.06]">
+            <div className="rounded-xl border border-border/50 dark:border-white/[0.08] bg-muted/30 dark:bg-white/[0.02] overflow-hidden">
               {/* Text Area */}
               <div className="p-4 min-h-[60px]">
-                <span className="text-white/30 text-sm">Describe your product idea...</span>
+                <span className="text-muted-foreground dark:text-white/30 text-sm">Describe your product idea...</span>
               </div>
               
               {/* Bottom Controls */}
-              <div className="px-4 py-3 flex items-center justify-between border-t border-white/[0.04]">
+              <div className="px-4 py-3 flex items-center justify-between border-t border-border/30 dark:border-white/[0.04]">
                 <div className="flex items-center gap-3">
                   {/* Plus Button */}
-                  <button className="w-7 h-7 rounded-md border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white/60 hover:bg-white/[0.04] transition-colors">
+                  <button className="w-7 h-7 rounded-md border border-border/50 dark:border-white/[0.08] flex items-center justify-center text-muted-foreground dark:text-white/40 hover:text-foreground dark:hover:text-white/60 hover:bg-muted/50 dark:hover:bg-white/[0.04] transition-colors">
                     <Plus className="size-4" />
                   </button>
                   
                   {/* Model Selector - Linear-style */}
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.06] cursor-pointer transition-colors shrink-0">
-                    <Sparkles className="size-3.5 text-white/40 shrink-0" />
-                    <span className="text-sm text-white/50 whitespace-nowrap">Claude Sonnet 4.6</span>
-                    <ChevronDown className="size-3 text-white/30 shrink-0" />
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-muted/50 dark:bg-white/[0.04] hover:bg-muted dark:hover:bg-white/[0.06] cursor-pointer transition-colors shrink-0">
+                    <Sparkles className="size-3.5 text-muted-foreground dark:text-white/40 shrink-0" />
+                    <span className="text-sm text-muted-foreground dark:text-white/50 whitespace-nowrap">Claude Sonnet 4.6</span>
+                    <ChevronDown className="size-3 text-muted-foreground/60 dark:text-white/30 shrink-0" />
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-2">
                   {/* Send Button */}
-                  <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black text-sm font-medium">
+                  <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-foreground dark:bg-white text-background dark:text-black text-sm font-medium">
                     Send
                     <ArrowUp className="size-3.5" />
                   </button>
@@ -251,15 +251,15 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
         </div>
         
         {/* Right: Agent Workflow */}
-        <div className="flex-1 flex flex-col bg-white/[0.01] overflow-hidden">
+        <div className="flex-1 flex flex-col bg-muted/20 dark:bg-white/[0.01] overflow-hidden">
           {/* Header - Linear-style */}
-          <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between flex-shrink-0">
+          <div className="px-6 py-4 border-b border-border/30 dark:border-white/[0.04] flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-4 text-white/50" />
-              <span className="text-sm font-medium text-white">ProductOS Agents</span>
+              <Sparkles className="size-4 text-muted-foreground dark:text-white/50" />
+              <span className="text-sm font-medium text-foreground dark:text-white">ProductOS Agents</span>
             </div>
             {phase === "complete" && (
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium">
                 Complete
               </span>
             )}
@@ -277,24 +277,24 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                     key={agent.id}
                     className={cn(
                       "p-2.5 rounded-xl border transition-all duration-300 h-[64px] flex items-center",
-                      state === "complete" && "bg-white/[0.02] border-emerald-500/20",
-                      state === "active" && "bg-white/[0.03] border-white/[0.08]",
-                      state === "pending" && "bg-white/[0.01] border-white/[0.04] opacity-40"
+                      state === "complete" && "bg-emerald-500/5 dark:bg-white/[0.02] border-emerald-500/20",
+                      state === "active" && "bg-muted/50 dark:bg-white/[0.03] border-border/50 dark:border-white/[0.08]",
+                      state === "pending" && "bg-muted/20 dark:bg-white/[0.01] border-border/30 dark:border-white/[0.04] opacity-40"
                     )}
                   >
                     {/* Agent Icon - monochrome with status colors */}
                     <div className={cn(
                       "w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 mr-3",
                       state === "complete" && "bg-emerald-500/10",
-                      state === "active" && "bg-white/[0.06]",
-                      state === "pending" && "bg-white/[0.03]"
+                      state === "active" && "bg-muted dark:bg-white/[0.06]",
+                      state === "pending" && "bg-muted/50 dark:bg-white/[0.03]"
                     )}>
                       {state === "active" ? (
-                        <Loader2 className="size-4 animate-spin text-white/70" />
+                        <Loader2 className="size-4 animate-spin text-foreground/70 dark:text-white/70" />
                       ) : state === "complete" ? (
-                        <Check className="size-4 text-emerald-400" />
+                        <Check className="size-4 text-emerald-500 dark:text-emerald-400" />
                       ) : (
-                        <Icon className="size-4 text-white/30" />
+                        <Icon className="size-4 text-muted-foreground/50 dark:text-white/30" />
                       )}
                     </div>
                     
@@ -303,14 +303,14 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                       <div className="flex items-center gap-2">
                         <span className={cn(
                           "text-sm font-medium",
-                          state === "active" && "text-white",
-                          state === "complete" && "text-white/90",
-                          state === "pending" && "text-white/40"
+                          state === "active" && "text-foreground dark:text-white",
+                          state === "complete" && "text-foreground/90 dark:text-white/90",
+                          state === "pending" && "text-muted-foreground dark:text-white/40"
                         )}>
                           {agent.name}
                         </span>
                         {state === "active" && (
-                          <span className="text-xs text-white/50">
+                          <span className="text-xs text-muted-foreground dark:text-white/50">
                             {agent.status}
                           </span>
                         )}
@@ -318,8 +318,8 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                       
                       {state === "complete" && (
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-xs text-white/50">{agent.result}</span>
-                          <span className="text-xs text-emerald-400/80 font-medium">{agent.metric}</span>
+                          <span className="text-xs text-muted-foreground dark:text-white/50">{agent.result}</span>
+                          <span className="text-xs text-emerald-600 dark:text-emerald-400/80 font-medium">{agent.metric}</span>
                         </div>
                       )}
                       
@@ -330,14 +330,14 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                               key={i}
                               animate={{ opacity: [0.3, 1, 0.3] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15 }}
-                              className="w-1.5 h-1.5 rounded-full bg-white/50"
+                              className="w-1.5 h-1.5 rounded-full bg-foreground/50 dark:bg-white/50"
                             />
                           ))}
                         </div>
                       )}
                       
                       {state === "pending" && (
-                        <span className="text-xs text-white/20">Waiting...</span>
+                        <span className="text-xs text-muted-foreground/50 dark:text-white/20">Waiting...</span>
                       )}
                     </div>
                   </div>
@@ -356,11 +356,11 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
             )}>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                  <Check className="size-4 text-emerald-400" />
+                  <Check className="size-4 text-emerald-500 dark:text-emerald-400" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-medium text-white">Ready to deploy!</div>
-                  <div className="text-xs text-white/40">Complete in 5 days</div>
+                  <div className="text-sm font-medium text-foreground dark:text-white">Ready to deploy!</div>
+                  <div className="text-xs text-muted-foreground dark:text-white/40">Complete in 5 days</div>
                 </div>
                 <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 text-white text-xs font-medium hover:bg-emerald-600 transition-colors">
                   Deploy <ArrowRight className="size-3" />

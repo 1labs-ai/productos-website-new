@@ -136,10 +136,10 @@ function StartingScreen({ onStartProject }: { onStartProject: (idea: string) => 
 
   return (
     <div className="h-full flex flex-col items-center justify-center px-4 sm:px-8">
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground dark:text-white text-center mb-2">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground text-center mb-2">
         What would you like to build?
       </h1>
-      <p className="text-sm sm:text-base text-muted-foreground dark:text-white/50 text-center mb-6">
+      <p className="text-sm sm:text-base text-muted-foreground text-center mb-6">
         AI-native product development from idea to launch
       </p>
 
@@ -152,21 +152,21 @@ function StartingScreen({ onStartProject }: { onStartProject: (idea: string) => 
               setIsTyping(false)
               setTypingComplete(true)
             }}
-            className="flex items-center gap-2 px-3 py-2 rounded-full border border-border dark:border-white/[0.08] bg-muted/30 dark:bg-white/[0.02] hover:bg-muted/50 dark:hover:bg-white/[0.05] transition-colors text-sm text-muted-foreground dark:text-white/70"
+            className="flex items-center gap-2 px-3 py-2 rounded-full border border-border bg-muted/30 hover:bg-muted/50 transition-colors text-sm text-foreground/70"
           >
-            <action.icon className="w-4 h-4 text-muted-foreground/60 dark:text-white/40" />
+            <action.icon className="w-4 h-4 text-muted-foreground" />
             <span>{action.label}</span>
           </button>
         ))}
       </div>
 
       <div className="w-full max-w-2xl">
-        <div className="rounded-xl border border-border dark:border-white/[0.08] bg-muted/30 dark:bg-white/[0.02] p-3">
+        <div className="rounded-xl border border-border bg-card p-3">
           <div className="relative">
-            <div className="w-full h-16 text-sm text-foreground dark:text-white">
+            <div className="w-full h-16 text-sm text-foreground">
               {idea}
               {(isTyping || typingComplete) && (
-                <span className="animate-blink text-foreground dark:text-white font-normal">|</span>
+                <span className="animate-blink text-foreground font-normal">|</span>
               )}
             </div>
             <textarea
@@ -177,26 +177,26 @@ function StartingScreen({ onStartProject }: { onStartProject: (idea: string) => 
               style={{ caretColor: 'transparent' }}
             />
           </div>
-          <div className="flex items-center justify-between pt-2 border-t border-border/50 dark:border-white/[0.04]">
+          <div className="flex items-center justify-between pt-2 border-t border-border/50">
             <div className="flex items-center gap-2">
-              <Plus className="w-4 h-4 text-muted-foreground/50 dark:text-white/30" />
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-muted/50 dark:hover:bg-white/[0.03] cursor-pointer transition-colors">
-                <Sparkles className="w-4 h-4 text-muted-foreground/60 dark:text-white/40" />
-                <span className="text-sm text-muted-foreground dark:text-white/70">Claude Sonnet 4.6</span>
-                <ChevronDown className="w-3 h-3 text-muted-foreground/50 dark:text-white/30" />
+              <Plus className="w-4 h-4 text-muted-foreground" />
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-muted/50 cursor-pointer transition-colors">
+                <Sparkles className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">Claude Sonnet 4.6</span>
+                <ChevronDown className="w-3 h-3 text-muted-foreground" />
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-md hover:bg-muted/50 dark:hover:bg-white/[0.03] transition-colors">
-                <Settings className="w-4 h-4 text-muted-foreground/50 dark:text-white/30" />
+              <button className="p-2 rounded-md hover:bg-muted/50 transition-colors">
+                <Settings className="w-4 h-4 text-muted-foreground" />
               </button>
               <button 
                 onClick={() => idea.trim() && onStartProject(idea)}
                 className={cn(
                   "flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-sm font-medium",
                   typingComplete 
-                    ? "bg-foreground dark:bg-white text-background dark:text-black hover:opacity-90" 
-                    : "bg-muted dark:bg-white/[0.06] text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-white/[0.08]"
+                    ? "bg-foreground text-background hover:opacity-90" 
+                    : "bg-muted text-foreground hover:bg-muted/80"
                 )}
               >
                 Send <ArrowRight className="w-3.5 h-3.5" />
@@ -388,14 +388,14 @@ export function InteractiveDashboard() {
                     className={cn(
                       "flex items-center gap-2 sm:gap-3 px-3 sm:px-2 py-2 rounded-md text-sm transition-all duration-200 cursor-pointer whitespace-nowrap",
                       isActive 
-                        ? "bg-accent dark:bg-white/[0.06] text-foreground dark:text-white font-medium" 
-                        : "text-muted-foreground dark:text-white/50 hover:bg-muted/50 dark:hover:bg-white/[0.03] hover:text-foreground dark:hover:text-white/70"
+                        ? "bg-accent text-foreground font-medium" 
+                        : "text-foreground/70 hover:bg-muted/50 hover:text-foreground"
                     )}
                   >
-                    <stage.icon className={cn("w-4 h-4", isActive ? "text-foreground/70 dark:text-white/70" : "text-muted-foreground dark:text-white/40")} />
+                    <stage.icon className={cn("w-4 h-4", isActive ? "text-foreground/70" : "text-muted-foreground")} />
                     <span>{stage.name}</span>
                     {isActive && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/50 dark:bg-white/50 hidden sm:block" />
+                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/50 hidden sm:block" />
                     )}
                   </button>
                 )

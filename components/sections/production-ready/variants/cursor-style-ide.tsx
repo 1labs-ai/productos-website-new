@@ -55,20 +55,20 @@ const files = [
   { name: "area-chart.tsx", active: false },
 ]
 
-// Token colors - using consistent warm palette
+// Token colors - theme-aware syntax highlighting
 const tokenColors: Record<string, string> = {
-  keyword: "text-teal-400",
-  string: "text-emerald-400",
-  comment: "text-white/30",
-  function: "text-sky-400",
-  type: "text-amber-400",
-  component: "text-orange-400",
-  tag: "text-sky-400",
-  attr: "text-teal-400",
-  punctuation: "text-white/50",
-  operator: "text-orange-400",
-  expression: "text-amber-300",
-  plain: "text-white/70",
+  keyword: "text-teal-600 dark:text-teal-400",
+  string: "text-emerald-600 dark:text-emerald-400",
+  comment: "text-muted-foreground/50 dark:text-white/30",
+  function: "text-sky-600 dark:text-sky-400",
+  type: "text-amber-600 dark:text-amber-400",
+  component: "text-orange-600 dark:text-orange-400",
+  tag: "text-sky-600 dark:text-sky-400",
+  attr: "text-teal-600 dark:text-teal-400",
+  punctuation: "text-foreground/50 dark:text-white/50",
+  operator: "text-orange-600 dark:text-orange-400",
+  expression: "text-amber-700 dark:text-amber-300",
+  plain: "text-foreground/70 dark:text-white/70",
 }
 
 export function CursorStyleIDE() {
@@ -114,9 +114,9 @@ export function CursorStyleIDE() {
 
   return (
     <div ref={ref} className="relative">
-      {/* Linear-style reflection gradient beneath dashboard */}
+      {/* Linear-style reflection gradient beneath dashboard (dark mode only) */}
       <div 
-        className="absolute inset-x-3 inset-y-0 rounded-2xl pointer-events-none"
+        className="absolute inset-x-3 inset-y-0 rounded-2xl pointer-events-none hidden dark:block"
         style={{
           background: `
             radial-gradient(52% 58% at 50% 100%, rgba(10, 10, 11, 0) 0%, rgba(10, 10, 11, 0.6) 100%),
@@ -125,23 +125,15 @@ export function CursorStyleIDE() {
         }}
       />
       
-      {/* Main dashboard container */}
+      {/* Main dashboard container - theme-aware */}
       <div 
-        className="relative rounded-2xl overflow-hidden bg-[#09090a]"
-        style={{
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: `
-            rgba(0, 0, 0, 0.15) 0px 0px 0px 2px,
-            0 25px 50px -12px rgba(0, 0, 0, 0.5),
-            0 50px 100px -20px rgba(0, 0, 0, 0.4)
-          `
-        }}
+        className="relative rounded-2xl overflow-hidden bg-card dark:bg-[#09090a] border border-border dark:border-white/[0.08] shadow-lg"
       >
         {/* Inner frame */}
-        <div className="relative rounded-xl overflow-hidden bg-[#0a0a0a]">
-          {/* Glossy shine overlay - radial mask like Linear */}
+        <div className="relative rounded-xl overflow-hidden bg-muted/30 dark:bg-[#0a0a0a]">
+          {/* Glossy shine overlay - radial mask like Linear (dark mode only) */}
           <div 
-            className="absolute inset-0 pointer-events-none z-10"
+            className="absolute inset-0 pointer-events-none z-10 hidden dark:block"
             style={{
               background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 20%, transparent 40%)',
               mask: 'radial-gradient(180px 180px at 10% 0%, black 0%, rgba(0,0,0,0.5) 40%, transparent 70%)',
@@ -150,11 +142,11 @@ export function CursorStyleIDE() {
           />
           
           {/* Top edge highlight */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/5 dark:via-white/15 to-transparent pointer-events-none z-10" />
           
-          {/* Subtle ambient glow - matching first dashboard */}
+          {/* Subtle ambient glow - matching first dashboard (dark mode only) */}
           <div 
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none hidden dark:block"
             style={{
               background: `
                 radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
@@ -163,19 +155,19 @@ export function CursorStyleIDE() {
             }}
           />
         {/* Window Chrome - Linear-style minimal */}
-        <div className="flex items-center justify-between px-4 py-3 bg-white/[0.02] border-b border-white/[0.06]">
+        <div className="flex items-center justify-between px-4 py-3 bg-muted/30 dark:bg-white/[0.02] border-b border-border/50 dark:border-white/[0.06]">
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-sm font-medium text-white">ProductOS Code</span>
+            <span className="text-sm font-medium text-foreground dark:text-white">ProductOS Code</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">
-            <FolderOpen className="w-3.5 h-3.5 text-white/50" />
-            <span className="text-xs text-white/60 font-mono">my-saas-app</span>
+          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-muted dark:bg-white/[0.04] border border-border/50 dark:border-white/[0.06]">
+            <FolderOpen className="w-3.5 h-3.5 text-muted-foreground dark:text-white/50" />
+            <span className="text-xs text-muted-foreground dark:text-white/60 font-mono">my-saas-app</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">
-              <GitBranch className="w-3 h-3 text-white/50" />
-              <span className="text-xs text-white/50 font-mono">main</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-muted dark:bg-white/[0.04] border border-border/50 dark:border-white/[0.06]">
+              <GitBranch className="w-3 h-3 text-muted-foreground dark:text-white/50" />
+              <span className="text-xs text-muted-foreground dark:text-white/50 font-mono">main</span>
             </div>
           </div>
         </div>
@@ -183,18 +175,18 @@ export function CursorStyleIDE() {
         {/* Main Content - Split View */}
         <div className="flex min-h-[400px]">
           {/* Left Panel - Agent Planning */}
-          <div className="w-[280px] border-r border-white/[0.06] bg-[#0f0f10] flex flex-col">
+          <div className="w-[280px] border-r border-border/50 dark:border-white/[0.06] bg-muted/50 dark:bg-[#0f0f10] flex flex-col">
             {/* Panel Header - Linear-style */}
-            <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.04]">
-              <div className="p-1 rounded bg-white/[0.06] border border-white/[0.08]">
-                <Sparkles className="w-3.5 h-3.5 text-white/60" />
+            <div className="flex items-center gap-2 px-3 py-2 border-b border-border/30 dark:border-white/[0.04]">
+              <div className="p-1 rounded bg-muted dark:bg-white/[0.06] border border-border/50 dark:border-white/[0.08]">
+                <Sparkles className="w-3.5 h-3.5 text-muted-foreground dark:text-white/60" />
               </div>
-              <span className="text-xs font-medium text-white">ProductOS Agent</span>
+              <span className="text-xs font-medium text-foreground dark:text-white">ProductOS Agent</span>
               {isGenerating && (
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="ml-auto w-1.5 h-1.5 rounded-full bg-white/60"
+                  className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/60 dark:bg-white/60"
                 />
               )}
             </div>
@@ -219,17 +211,17 @@ export function CursorStyleIDE() {
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         className="mt-0.5"
                       >
-                        <Circle className="w-3.5 h-3.5 text-white/50" />
+                        <Circle className="w-3.5 h-3.5 text-muted-foreground dark:text-white/50" />
                       </motion.div>
                     ) : step.type === "success" ? (
-                      <Check className="w-3.5 h-3.5 mt-0.5 text-emerald-500" />
+                      <Check className="w-3.5 h-3.5 mt-0.5 text-emerald-600 dark:text-emerald-500" />
                     ) : (
-                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-white/40" />
+                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-muted-foreground dark:text-white/40" />
                     )}
                     <span className={`text-xs ${
-                      step.type === "thinking" ? "text-white/60" :
-                      step.type === "success" ? "text-emerald-400" :
-                      "text-white/50"
+                      step.type === "thinking" ? "text-muted-foreground dark:text-white/60" :
+                      step.type === "success" ? "text-emerald-600 dark:text-emerald-400" :
+                      "text-muted-foreground dark:text-white/50"
                     }`}>
                       {step.text}
                     </span>
@@ -242,9 +234,9 @@ export function CursorStyleIDE() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 pt-3 border-t border-white/[0.04]"
+                  className="mt-4 pt-3 border-t border-border/30 dark:border-white/[0.04]"
                 >
-                  <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">Generated Files</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 dark:text-white/30 font-medium">Generated Files</span>
                   <div className="mt-2 space-y-1">
                     {files.map((file, index) => (
                       <motion.div
@@ -252,13 +244,13 @@ export function CursorStyleIDE() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: index <= currentPlanStep - 2 ? 1 : 0.3 }}
                         className={`flex items-center gap-2 px-2 py-1.5 rounded text-xs ${
-                          file.active ? "bg-white/[0.04] text-white" : "text-white/50"
+                          file.active ? "bg-muted dark:bg-white/[0.04] text-foreground dark:text-white" : "text-muted-foreground dark:text-white/50"
                         }`}
                       >
                         <FileCode2 className="w-3.5 h-3.5" />
                         <span className="font-mono">{file.name}</span>
                         {index <= currentPlanStep - 2 && (
-                          <Check className="w-3 h-3 ml-auto text-emerald-500" />
+                          <Check className="w-3 h-3 ml-auto text-emerald-600 dark:text-emerald-500" />
                         )}
                       </motion.div>
                     ))}
@@ -269,13 +261,13 @@ export function CursorStyleIDE() {
           </div>
 
           {/* Right Panel - Code Editor */}
-          <div className="flex-1 flex flex-col bg-[#0a0a0a]">
+          <div className="flex-1 flex flex-col bg-background dark:bg-[#0a0a0a]">
             {/* File Tabs - Linear-style */}
-            <div className="flex items-center border-b border-white/[0.04] bg-white/[0.01]">
-              <div className="flex items-center gap-2 px-4 py-2 border-r border-white/[0.04] bg-white/[0.02]">
-                <FileCode2 className="w-3.5 h-3.5 text-white/50" />
-                <span className="text-xs text-white font-mono">dashboard.tsx</span>
-                <X className="w-3 h-3 text-white/30 hover:text-white/60 cursor-pointer" />
+            <div className="flex items-center border-b border-border/30 dark:border-white/[0.04] bg-muted/20 dark:bg-white/[0.01]">
+              <div className="flex items-center gap-2 px-4 py-2 border-r border-border/30 dark:border-white/[0.04] bg-muted/50 dark:bg-white/[0.02]">
+                <FileCode2 className="w-3.5 h-3.5 text-muted-foreground dark:text-white/50" />
+                <span className="text-xs text-foreground dark:text-white font-mono">dashboard.tsx</span>
+                <X className="w-3 h-3 text-muted-foreground hover:text-foreground dark:text-white/30 dark:hover:text-white/60 cursor-pointer" />
               </div>
               <div className="flex-1" />
               {showDeployButton && (
@@ -304,7 +296,7 @@ export function CursorStyleIDE() {
                     className="flex"
                   >
                     {/* Line number */}
-                    <span className="w-8 text-right pr-4 text-white/30 select-none text-xs">
+                    <span className="w-8 text-right pr-4 text-muted-foreground/50 dark:text-white/30 select-none text-xs">
                       {lineIndex + 1}
                     </span>
                     {/* Code with indent */}
@@ -320,7 +312,7 @@ export function CursorStyleIDE() {
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.5, repeat: Infinity }}
-                        className="w-0.5 h-4 ml-0.5 bg-white/70 inline-block"
+                        className="w-0.5 h-4 ml-0.5 bg-foreground/70 dark:bg-white/70 inline-block"
                       />
                     )}
                   </motion.div>
@@ -329,8 +321,8 @@ export function CursorStyleIDE() {
             </div>
 
             {/* Status Bar */}
-            <div className="flex items-center justify-between px-4 py-1.5 border-t border-white/[0.04] bg-white/[0.02] text-[10px]">
-              <div className="flex items-center gap-3 text-white/40">
+            <div className="flex items-center justify-between px-4 py-1.5 border-t border-border/30 dark:border-white/[0.04] bg-muted/30 dark:bg-white/[0.02] text-[10px]">
+              <div className="flex items-center gap-3 text-muted-foreground dark:text-white/40">
                 <span>TypeScript React</span>
                 <span>•</span>
                 <span>UTF-8</span>
@@ -342,7 +334,7 @@ export function CursorStyleIDE() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex items-center gap-1.5 text-emerald-400"
+                    className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400"
                   >
                     <Check className="w-3 h-3" />
                     <span>All checks passed</span>
@@ -354,9 +346,9 @@ export function CursorStyleIDE() {
         </div>
 
         {/* Terminal / Output (collapsed) */}
-        <div className="border-t border-white/[0.04] bg-white/[0.01]">
+        <div className="border-t border-border/30 dark:border-white/[0.04] bg-muted/20 dark:bg-white/[0.01]">
           <div className="flex items-center justify-between px-4 py-2">
-            <div className="flex items-center gap-2 text-white/40">
+            <div className="flex items-center gap-2 text-muted-foreground dark:text-white/40">
               <Terminal className="w-3.5 h-3.5" />
               <span className="text-xs font-medium">Output</span>
             </div>
@@ -370,8 +362,8 @@ export function CursorStyleIDE() {
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                 </div>
-                <span className="text-xs text-white/50">
-                  <span className="text-emerald-400">✓</span> Build successful • Ready to deploy
+                <span className="text-xs text-muted-foreground dark:text-white/50">
+                  <span className="text-emerald-600 dark:text-emerald-400">✓</span> Build successful • Ready to deploy
                 </span>
               </motion.div>
             )}
