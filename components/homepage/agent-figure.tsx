@@ -29,9 +29,9 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
   }, [])
 
   return (
-    <div className={cn("relative w-full h-64", className)}>
-      {/* Container - fixed height, no aspect-square */}
-      <div className="relative w-full h-full rounded-3xl overflow-hidden flex items-center justify-center p-4">
+    <div className={cn("relative w-full", className)}>
+      {/* Container */}
+      <div className="relative w-full aspect-square max-h-[280px] rounded-3xl overflow-hidden flex items-center justify-center p-4">
 
         {/* Connection Lines (SVG) */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
