@@ -114,17 +114,34 @@ export function CursorStyleIDE() {
 
   return (
     <div ref={ref} className="relative">
-      {/* Subtle glow at top - matches other dashboards */}
-      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-30 rounded-2xl"
-        style={{
-          background: 'radial-gradient(ellipse 60% 30% at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)'
-        }}
-      />
-
       {/* IDE Window - consistent with other dashboards */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]">
+      <div 
+        className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0a0a]"
+        style={{
+          boxShadow: `
+            0 0 0 1px rgba(255, 255, 255, 0.03),
+            0 25px 50px -12px rgba(0, 0, 0, 0.4),
+            0 50px 100px -20px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.04)
+          `
+        }}
+      >
+        {/* Glossy top highlight - Linear style */}
+        <div 
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-10"
+        />
+        
+        {/* Subtle ambient glow overlay with warm tint */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 30% at 50% 0%, rgba(245, 158, 11, 0.04) 0%, transparent 40%),
+              radial-gradient(ellipse 60% 40% at 80% 30%, rgba(255, 255, 255, 0.015) 0%, transparent 40%)
+            `
+          }}
+        />
         {/* Window Chrome - simplified, no Mac dots */}
         <div className="flex items-center justify-between px-4 py-3 bg-white/[0.02] border-b border-white/[0.06]">
           <div className="flex items-center gap-3">

@@ -161,11 +161,36 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       className={cn(
-        "relative rounded-2xl border border-white/[0.08] overflow-hidden",
-        "bg-[#0a0a0a] shadow-2xl",
+        "relative rounded-2xl border border-white/[0.06] overflow-hidden",
+        "bg-[#0a0a0a]",
         className
       )}
+      style={{
+        boxShadow: `
+          0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 25px 50px -12px rgba(0, 0, 0, 0.4),
+          0 50px 100px -20px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.04)
+        `
+      }}
     >
+      {/* Glossy top highlight - Linear style */}
+      <div 
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-10"
+      />
+      
+      {/* Subtle ambient glow overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 20% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+            radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255, 255, 255, 0.015) 0%, transparent 40%)
+          `
+        }}
+      />
+      
       {/* FIXED HEIGHT CONTAINER */}
       <div className="flex flex-col lg:flex-row h-[520px]">
         {/* Left: Chat Input Panel */}

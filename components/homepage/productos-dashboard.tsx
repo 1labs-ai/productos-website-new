@@ -90,11 +90,34 @@ export function ProductOSDashboard({ className }: ProductOSDashboardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       className={cn(
-        "relative rounded-2xl border border-border/50 dark:border-white/10 overflow-hidden shadow-2xl",
+        "relative rounded-2xl border border-border/50 dark:border-white/[0.06] overflow-hidden",
         "bg-background dark:bg-[#0a0a0a]",
         className
       )}
+      style={{
+        boxShadow: `
+          0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 25px 50px -12px rgba(0, 0, 0, 0.4),
+          0 50px 100px -20px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.04)
+        `
+      }}
     >
+      {/* Glossy top highlight - Linear style */}
+      <div 
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-10 dark:block hidden"
+      />
+      
+      {/* Subtle ambient glow overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-[1] dark:block hidden"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%)
+          `
+        }}
+      />
       <div className="flex min-h-[520px]">
         {/* Left Sidebar */}
         <div className="w-[240px] border-r border-border/30 dark:border-white/10 bg-card/50 dark:bg-[#111111] flex-shrink-0 hidden lg:flex flex-col">

@@ -76,14 +76,30 @@ export function ProjectStatusDashboard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="relative rounded-2xl border border-white/[0.08] bg-[#0a0a0a] overflow-hidden"
+      className="relative rounded-2xl border border-white/[0.06] bg-[#0a0a0a] overflow-hidden"
+      style={{
+        boxShadow: `
+          0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 25px 50px -12px rgba(0, 0, 0, 0.4),
+          0 50px 100px -20px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.04)
+        `
+      }}
     >
-      {/* Subtle amber glow at top - matches other dashboards */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+      {/* Glossy top highlight - Linear style */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+      />
+      
+      {/* Subtle ambient glow overlay with warm tint */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 60% 30% at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)'
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse 50% 30% at 50% 0%, rgba(245, 158, 11, 0.04) 0%, transparent 40%),
+            radial-gradient(ellipse 60% 40% at 80% 30%, rgba(255, 255, 255, 0.015) 0%, transparent 40%)
+          `
         }}
       />
 

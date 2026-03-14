@@ -321,15 +321,32 @@ export function InteractiveDashboard() {
 
   return (
     <div 
-      className="relative rounded-xl overflow-hidden border border-white/[0.08] bg-[#0a0a0b]"
+      className="relative rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0a0a0b]"
       style={{
         boxShadow: `
-          0 0 0 1px rgba(0, 0, 0, 0.03),
-          0 25px 50px -12px rgba(0, 0, 0, 0.25),
-          0 50px 100px -20px rgba(0, 0, 0, 0.2)
+          0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 25px 50px -12px rgba(0, 0, 0, 0.4),
+          0 50px 100px -20px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.04)
         `
       }}
     >
+      {/* Glossy top highlight - Linear style */}
+      <div 
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+      />
+      
+      {/* Subtle ambient glow overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+            radial-gradient(ellipse 60% 40% at 20% 80%, rgba(255, 255, 255, 0.015) 0%, transparent 40%)
+          `
+        }}
+      />
       <div className="flex h-[520px] sm:h-[580px] lg:h-[620px]">
         {/* Sidebar */}
         <div className="w-56 lg:w-64 border-r border-white/[0.04] bg-[#0f0f10] flex-shrink-0 hidden sm:flex flex-col">
