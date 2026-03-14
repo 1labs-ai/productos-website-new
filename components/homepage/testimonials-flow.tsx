@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Star, Quote } from "lucide-react"
+import { Star } from "lucide-react"
 
 // Testimonial type
 type Testimonial = {
@@ -63,11 +63,6 @@ const testimonials: Testimonial[] = [
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <div className="flex-shrink-0 w-[350px] h-[220px] p-6 rounded-2xl bg-card/60 border border-border/30 flex flex-col">
-      {/* Quote icon */}
-      <div className="absolute top-4 right-4 opacity-5">
-        <Quote className="w-10 h-10 text-foreground" />
-      </div>
-
       {/* Rating */}
       <div className="flex gap-0.5 mb-3">
         {[...Array(testimonial.rating)].map((_, i) => (
@@ -77,7 +72,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
       {/* Quote - fixed height with line clamp */}
       <blockquote className="text-foreground/90 leading-relaxed text-sm flex-1 line-clamp-4">
-        "{testimonial.quote}"
+        {testimonial.quote}
       </blockquote>
 
       {/* Author */}
