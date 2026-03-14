@@ -37,9 +37,9 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
         <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible text-foreground dark:text-white">
           <defs>
             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" className="[stop-color:currentColor]" stopOpacity="0.02" />
-              <stop offset="50%" className="[stop-color:currentColor]" stopOpacity="0.15" />
-              <stop offset="100%" className="[stop-color:currentColor]" stopOpacity="0.02" />
+              <stop offset="0%" className="[stop-color:currentColor]" stopOpacity="0.05" />
+              <stop offset="50%" className="[stop-color:currentColor]" stopOpacity="0.3" />
+              <stop offset="100%" className="[stop-color:currentColor]" stopOpacity="0.05" />
             </linearGradient>
           </defs>
           
@@ -50,7 +50,7 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
             r="35%"
             fill="none"
             stroke="url(#lineGrad)"
-            strokeWidth="1"
+            strokeWidth="1.5"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 2, ease: "easeInOut" }}
@@ -65,8 +65,8 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
               x2={agent.pos.x}
               y2={agent.pos.y}
               stroke="currentColor"
-              strokeWidth="0.5"
-              strokeOpacity="0.15"
+              strokeWidth="1"
+              strokeOpacity="0.25"
               strokeDasharray="2 4"
             />
           ))}
@@ -91,8 +91,8 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
                     "relative z-10 rounded-full flex items-center justify-center transition-all duration-500",
                     isHub ? 'w-14 h-14' : 'w-9 h-9',
                     isActive 
-                      ? 'bg-foreground text-background shadow-[0_0_20px_rgba(0,0,0,0.15)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
-                      : 'bg-foreground/[0.03] text-foreground/40 border border-foreground/10 hover:border-foreground/30 dark:bg-white/[0.03] dark:text-white/40 dark:border-white/10 dark:hover:border-white/30'
+                      ? 'bg-foreground text-background shadow-[0_0_20px_rgba(0,0,0,0.2)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
+                      : 'bg-foreground/5 text-foreground/60 border border-foreground/20 hover:border-foreground/40 dark:bg-white/[0.03] dark:text-white/40 dark:border-white/10 dark:hover:border-white/30'
                   )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -111,14 +111,14 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
 
                   {/* Outer Ring for Hub */}
                   {isHub && (
-                    <div className="absolute inset-[-8px] rounded-full border border-foreground/10 dark:border-white/10" />
+                    <div className="absolute inset-[-8px] rounded-full border border-foreground/20 dark:border-white/10" />
                   )}
                 </motion.button>
 
                 {/* Label - shows when active */}
                 <motion.span 
                   className={cn(
-                    "absolute -bottom-5 text-[7px] font-mono uppercase tracking-[0.15em] text-foreground/60 dark:text-white/60 transition-all duration-500 whitespace-nowrap",
+                    "absolute -bottom-5 text-[7px] font-mono uppercase tracking-[0.15em] text-foreground/70 dark:text-white/60 transition-all duration-500 whitespace-nowrap",
                     isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1'
                   )}
                 >
