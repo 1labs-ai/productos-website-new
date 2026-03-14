@@ -7,7 +7,7 @@ import { useRef, useEffect, useState } from "react"
 const stats = [
   { value: 12, prefix: "3-", label: "Days to ship", suffix: "", isRange: true },
   { value: 80, prefix: "", label: "Cost reduction", suffix: "%", isRange: false },
-  { value: 5, prefix: "", label: "AI agents", suffix: "", isRange: false },
+  { value: 0, prefix: "", label: "Engineers needed", suffix: "", isRange: false },
   { value: 100, prefix: "", label: "Products launched", suffix: "+", isRange: false },
 ]
 
