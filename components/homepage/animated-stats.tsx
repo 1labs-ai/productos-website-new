@@ -5,9 +5,9 @@ import { useRef, useEffect, useState } from "react"
 
 // Stats data
 const stats = [
-  { value: 12, prefix: "3-", label: "Days to ship", suffix: "days", isRange: true },
+  { value: 12, prefix: "3-", label: "From idea to launch", suffix: " days", isRange: true },
   { value: 80, prefix: "", label: "Less development cost", suffix: "%", isRange: false },
-  { value: 5, prefix: "", label: "AI agents working together", suffix: "", isRange: false },
+  { value: 5, prefix: "", label: "Specialized AI agents", suffix: "", isRange: false },
   { value: 100, prefix: "", label: "Products you can launch", suffix: "+", isRange: false },
 ]
 
@@ -79,21 +79,37 @@ function StatCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <motion.div 
-        className="group relative text-center p-8 rounded-2xl bg-card/30 border border-border/20 overflow-hidden cursor-default"
+        className="group relative text-center p-8 rounded-2xl bg-gradient-to-b from-card/50 to-card/20 border border-border/30 overflow-hidden cursor-default"
         whileHover={{ 
           y: -4,
           scale: 1.02,
         }}
         transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        {/* Hover glow overlay */}
+        {/* Subtle base glow - always visible */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 opacity-40"
+            style={{
+              background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 60%)'
+            }}
+          />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+        </div>
+
+        {/* Enhanced hover glow overlay */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/[0.02] to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 60%)'
+            }}
+          />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
         </div>
 
         {/* Subtle inner glow on hover */}
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_30px_rgba(255,255,255,0.02)]" />
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_40px_rgba(255,255,255,0.02)]" />
         
         {/* Number */}
         <div className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-3 transition-transform duration-300 group-hover:scale-105">
