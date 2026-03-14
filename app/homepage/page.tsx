@@ -326,7 +326,7 @@ export default function LinearInspiredHomepage() {
           {/* Top: Heading left, Text + CTA right - Linear style */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-12">
             <AnimatedSection>
-              <p className="text-sm font-medium text-purple-400 mb-4 uppercase tracking-wider">
+              <p className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">
                 Project Intelligence
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-[56px] font-medium" style={{ lineHeight: 1.05, letterSpacing: '-0.022em' }}>
@@ -335,7 +335,7 @@ export default function LinearInspiredHomepage() {
               </h2>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.1}>
+            <AnimatedSection delay={0.1} className="lg:pt-8">
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6">
                 Every deliverable, every insight, every line of code — tracked in real-time. 
                 Know exactly what's ready and when you ship.
@@ -360,7 +360,7 @@ export default function LinearInspiredHomepage() {
           {/* Header - Linear style layout */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-12">
             <AnimatedSection>
-              <p className="text-sm font-medium text-emerald-400 mb-4 uppercase tracking-wider">
+              <p className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">
                 Real code. Real products.
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-[56px] font-medium" style={{ lineHeight: 1.05, letterSpacing: '-0.022em' }}>
@@ -369,7 +369,7 @@ export default function LinearInspiredHomepage() {
               </h2>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.1}>
+            <AnimatedSection delay={0.1} className="lg:pt-8">
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6">
                 No prototypes. No throwaway code. ProductOS generates tested, deployable code 
                 that goes straight to Vercel, Netlify, or your own infrastructure.
