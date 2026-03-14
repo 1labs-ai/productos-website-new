@@ -73,51 +73,93 @@ export function ProjectStatusDashboard() {
       transition={{ duration: 0.6, delay: 0.2 }}
       className="relative"
     >
-      {/* Linear-style reflection gradient beneath dashboard */}
+      {/* Linear-style reflection surface beneath dashboard - creates "floating" effect */}
       <div 
-        className="absolute inset-x-3 inset-y-0 rounded-2xl pointer-events-none"
+        className="absolute -inset-x-4 -bottom-8 top-4 rounded-3xl pointer-events-none"
         style={{
           background: `
-            radial-gradient(52% 58% at 50% 100%, rgba(10, 10, 11, 0) 0%, rgba(10, 10, 11, 0.6) 100%),
-            linear-gradient(to bottom, rgb(10, 10, 11) 10%, rgb(45, 50, 58) 100%)
-          `
+            radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+            linear-gradient(to bottom, transparent 0%, rgba(20, 20, 25, 0.8) 30%, rgb(18, 18, 22) 100%)
+          `,
+          filter: 'blur(1px)'
+        }}
+      />
+      
+      {/* Outer glow ring - adds depth perception */}
+      <div 
+        className="absolute -inset-1 rounded-[20px] pointer-events-none opacity-50"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, transparent 50%)',
         }}
       />
       
       {/* Main dashboard container */}
       <div 
-        className="relative rounded-2xl overflow-hidden bg-[#09090a]"
+        className="relative rounded-2xl overflow-hidden"
         style={{
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'linear-gradient(to bottom, #0d0d0f 0%, #09090a 100%)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
           boxShadow: `
-            rgba(0, 0, 0, 0.15) 0px 0px 0px 2px,
-            0 25px 50px -12px rgba(0, 0, 0, 0.5),
-            0 50px 100px -20px rgba(0, 0, 0, 0.4)
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+            0 0 0 1px rgba(0, 0, 0, 0.3),
+            0 2px 4px rgba(0, 0, 0, 0.2),
+            0 4px 8px rgba(0, 0, 0, 0.2),
+            0 8px 16px rgba(0, 0, 0, 0.2),
+            0 16px 32px rgba(0, 0, 0, 0.15),
+            0 32px 64px rgba(0, 0, 0, 0.1),
+            0 64px 128px rgba(0, 0, 0, 0.05)
           `
         }}
       >
-        {/* Inner frame */}
-        <div className="relative rounded-xl overflow-hidden bg-[#0a0a0a]">
-          {/* Glossy shine overlay - radial mask like Linear */}
+        {/* Inner frame with surface depth */}
+        <div 
+          className="relative rounded-xl overflow-hidden"
+          style={{
+            background: 'linear-gradient(180deg, #0b0b0c 0%, #0a0a0a 100%)',
+          }}
+        >
+          {/* Primary glossy shine - top left light source */}
           <div 
             className="absolute inset-0 pointer-events-none z-10"
             style={{
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 20%, transparent 40%)',
-              mask: 'radial-gradient(180px 180px at 10% 0%, black 0%, rgba(0,0,0,0.5) 40%, transparent 70%)',
-              WebkitMask: 'radial-gradient(180px 180px at 10% 0%, black 0%, rgba(0,0,0,0.5) 40%, transparent 70%)'
+              background: `
+                radial-gradient(ellipse 300px 150px at 15% 0%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 30%, transparent 70%),
+                radial-gradient(ellipse 200px 100px at 85% 5%, rgba(255,255,255,0.04) 0%, transparent 60%)
+              `,
             }}
           />
           
-          {/* Top edge highlight */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10" />
+          {/* Secondary shine - creates dimension */}
+          <div 
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 10%, transparent 25%)',
+            }}
+          />
           
-          {/* Subtle ambient glow - matching first dashboard */}
+          {/* Top edge highlight - sharp reflection line */}
+          <div 
+            className="absolute inset-x-0 top-0 h-px pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.12) 20%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.12) 80%, transparent 95%)'
+            }}
+          />
+          
+          {/* Left edge subtle highlight */}
+          <div 
+            className="absolute inset-y-0 left-0 w-px pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 30%, transparent 60%)'
+            }}
+          />
+          
+          {/* Inner ambient glow - diffuse lighting */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
               background: `
-                radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 30% at 80% 10%, rgba(255, 255, 255, 0.025) 0%, transparent 40%)
+                radial-gradient(ellipse 100% 50% at 50% -20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 40%)
               `
             }}
           />
