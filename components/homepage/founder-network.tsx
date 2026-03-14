@@ -10,10 +10,10 @@ interface FounderNetworkProps {
 
 export const FounderNetwork = ({ className }: FounderNetworkProps) => {
   const roles = [
-    { id: 'pm', icon: ClipboardList, label: 'PM', x: -95, y: -75 },
-    { id: 'research', icon: Search, label: 'Researcher', x: 95, y: -75 },
-    { id: 'design', icon: Palette, label: 'Designer', x: -95, y: 75 },
-    { id: 'eng', icon: Code2, label: 'Engineer', x: 95, y: 75 },
+    { id: 'pm', icon: ClipboardList, label: 'PM', x: -110, y: -85 },
+    { id: 'research', icon: Search, label: 'Researcher', x: 110, y: -85 },
+    { id: 'design', icon: Palette, label: 'Designer', x: -110, y: 85 },
+    { id: 'eng', icon: Code2, label: 'Engineer', x: 110, y: 85 },
   ]
 
   return (
