@@ -350,7 +350,7 @@ export function InteractiveDashboard() {
           {/* Top edge highlight */}
           <div className="absolute inset-x-0 top-0 h-px pointer-events-none z-10 bg-gradient-to-r from-transparent via-black/5 to-transparent dark:via-white/20" />
           
-      <div className="flex flex-col sm:flex-row h-auto sm:h-[520px] lg:h-[620px]">
+      <div className="flex flex-col sm:flex-row min-h-[400px] sm:min-h-[520px] lg:min-h-[620px] sm:h-[520px] lg:h-[620px]">
         {/* Sidebar */}
         <div className="w-full sm:w-56 lg:w-64 flex-shrink-0 flex sm:flex-col relative bg-muted/50 dark:bg-[#0f0f10] border-b sm:border-b-0 sm:border-r border-border/50 dark:border-white/[0.04]">
           <div className="p-4 border-b border-border/50 dark:border-white/[0.04] hidden sm:block">

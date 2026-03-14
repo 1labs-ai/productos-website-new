@@ -177,10 +177,10 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
           {/* Top edge highlight */}
           <div className="absolute inset-x-0 top-0 h-px pointer-events-none z-10 bg-gradient-to-r from-transparent via-black/5 to-transparent dark:via-white/20" />
       
-      {/* FIXED HEIGHT CONTAINER */}
-      <div className="flex flex-col lg:flex-row h-[520px]">
+      {/* RESPONSIVE HEIGHT CONTAINER */}
+      <div className="flex flex-col lg:flex-row min-h-[400px] lg:h-[520px]">
         {/* Left: Chat Input Panel */}
-        <div className="lg:w-[460px] border-b lg:border-b-0 lg:border-r border-border/30 dark:border-white/[0.06] flex flex-col">
+        <div className="lg:w-[460px] border-b lg:border-b-0 lg:border-r border-border/30 dark:border-white/[0.06] flex flex-col flex-shrink-0">
           {/* Chat Area */}
           <div className="flex-1 p-6 flex flex-col">
             {/* User Avatar & Label */}

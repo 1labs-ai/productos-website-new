@@ -165,13 +165,14 @@ export default function LinearInspiredHomepage() {
       </section>
 
       {/* Logo Cloud */}
-      <section className="py-12 border-y border-border/30">
+      <section className="py-12 border-y border-border/30 overflow-hidden">
         <div className="max-w-[1436px] mx-auto px-6 lg:px-[50px]">
-          <div className="flex items-center justify-center gap-12 sm:gap-16 md:gap-20 lg:gap-24">
+          {/* Desktop: centered flex, Mobile: horizontal scroll */}
+          <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16 xl:gap-20">
             {companies.map((company) => (
               <div 
                 key={company.name} 
-                className="flex items-center justify-center"
+                className="flex items-center justify-center flex-shrink-0"
                 title={company.name}
               >
                 <Image
@@ -184,6 +185,27 @@ export default function LinearInspiredHomepage() {
                 />
               </div>
             ))}
+          </div>
+          {/* Mobile: scrolling marquee effect */}
+          <div className="md:hidden relative">
+            <div className="flex items-center gap-8 animate-scroll-logos">
+              {[...companies, ...companies].map((company, i) => (
+                <div 
+                  key={`${company.name}-${i}`} 
+                  className="flex items-center justify-center flex-shrink-0"
+                  title={company.name}
+                >
+                  <Image
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    width={80}
+                    height={16}
+                    className="h-4 w-auto object-contain opacity-60 dark:brightness-0 dark:invert dark:opacity-80"
+                    style={{ maxWidth: '70px' }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

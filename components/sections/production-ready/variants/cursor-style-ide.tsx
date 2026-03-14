@@ -173,9 +173,9 @@ export function CursorStyleIDE() {
         </div>
 
         {/* Main Content - Split View */}
-        <div className="flex min-h-[400px]">
-          {/* Left Panel - Agent Planning */}
-          <div className="w-[280px] border-r border-border/50 dark:border-white/[0.06] bg-muted/50 dark:bg-[#0f0f10] flex flex-col">
+        <div className="flex flex-col md:flex-row min-h-[320px] md:min-h-[400px]">
+          {/* Left Panel - Agent Planning - Hidden on mobile, shown above code on small tablets */}
+          <div className="hidden md:flex w-full md:w-[240px] lg:w-[280px] border-b md:border-b-0 md:border-r border-border/50 dark:border-white/[0.06] bg-muted/50 dark:bg-[#0f0f10] flex-col">
             {/* Panel Header - Linear-style */}
             <div className="flex items-center gap-2 px-3 py-2 border-b border-border/30 dark:border-white/[0.04]">
               <div className="p-1 rounded bg-muted dark:bg-white/[0.06] border border-border/50 dark:border-white/[0.08]">

@@ -609,3 +609,17 @@ html, body {
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+/* Logo scroll animation for mobile */
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-logos {
+  animation: scroll-logos 20s linear infinite;
+}

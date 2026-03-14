@@ -59,10 +59,10 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-// Single testimonial card with fixed height
+// Single testimonial card with fixed height - responsive
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="flex-shrink-0 w-[350px] h-[220px] p-6 rounded-2xl bg-card/60 border border-border/50 flex flex-col">
+    <div className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[350px] h-[200px] sm:h-[210px] md:h-[220px] p-4 sm:p-5 md:p-6 rounded-2xl bg-card/60 border border-border/50 flex flex-col">
       {/* Rating */}
       <div className="flex gap-0.5 mb-3">
         {[...Array(testimonial.rating)].map((_, i) => (
@@ -196,23 +196,63 @@ export function TestimonialsFlow() {
         </motion.div>
       </div>
 
-      {/* CSS for infinite scroll animation */}
+      {/* CSS for infinite scroll animation - responsive */}
       <style jsx global>{`
         @keyframes scroll-left {
           0% {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-350px * 3 - 20px * 3));
+            transform: translateX(calc(-280px * 3 - 20px * 3));
           }
         }
         
         @keyframes scroll-right {
           0% {
-            transform: translateX(calc(-350px * 3 - 20px * 3));
+            transform: translateX(calc(-280px * 3 - 20px * 3));
           }
           100% {
             transform: translateX(0);
+          }
+        }
+        
+        @media (min-width: 640px) {
+          @keyframes scroll-left {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-320px * 3 - 20px * 3));
+            }
+          }
+          
+          @keyframes scroll-right {
+            0% {
+              transform: translateX(calc(-320px * 3 - 20px * 3));
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+        }
+        
+        @media (min-width: 768px) {
+          @keyframes scroll-left {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-350px * 3 - 20px * 3));
+            }
+          }
+          
+          @keyframes scroll-right {
+            0% {
+              transform: translateX(calc(-350px * 3 - 20px * 3));
+            }
+            100% {
+              transform: translateX(0);
+            }
           }
         }
         
