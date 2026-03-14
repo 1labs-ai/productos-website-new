@@ -10,28 +10,31 @@ interface FounderNetworkProps {
 
 export const FounderNetwork = ({ className }: FounderNetworkProps) => {
   const roles = [
-    { id: 'pm', icon: ClipboardList, label: 'PM', x: -90, y: -50 },
-    { id: 'research', icon: Search, label: 'RESEARCHER', x: 90, y: -50 },
-    { id: 'design', icon: Palette, label: 'DESIGNER', x: -90, y: 50 },
-    { id: 'eng', icon: Code2, label: 'ENGINEER', x: 90, y: 50 },
+    { id: 'pm', icon: ClipboardList, label: 'PM', angle: 225 },        // top-left
+    { id: 'research', icon: Search, label: 'RESEARCHER', angle: 315 }, // top-right
+    { id: 'design', icon: Palette, label: 'DESIGNER', angle: 135 },    // bottom-left
+    { id: 'eng', icon: Code2, label: 'ENGINEER', angle: 45 },          // bottom-right
   ]
+
+  const centerX = 200
+  const centerY = 160
+  const nodeRadius = 130 // Distance from center to role nodes
 
   return (
     <div className={cn("relative w-full flex items-center justify-center", className)}>
-      {/* Container */}
-      <div className="relative w-[300px] h-[220px] flex flex-col items-center justify-center">
+      <div className="relative w-[400px] h-[340px] flex flex-col items-center">
         
         {/* Header Label */}
-        <div className="absolute top-0 left-0 right-0 flex justify-center">
-          <span className="text-[8px] font-mono uppercase tracking-[0.2em] text-foreground/30 dark:text-white/30">
+        <div className="mb-6">
+          <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-foreground/40 dark:text-white/40">
             FIG 0.3 / NEURAL FLOW
           </span>
         </div>
         
-        {/* SVG for Connections and Concentric Rings */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 220">
+        {/* Main SVG Canvas */}
+        <svg className="w-[400px] h-[280px]" viewBox="0 0 400 320">
           <defs>
-            <filter id="glow-neural">
+            <filter id="glow-founder">
               <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
@@ -40,143 +43,213 @@ export const FounderNetwork = ({ className }: FounderNetworkProps) => {
             </filter>
           </defs>
           
-          {/* Concentric Rings around center */}
-          {[45, 55, 65].map((r, i) => (
-            <circle
-              key={`ring-${i}`}
-              cx="150"
-              cy="110"
-              r={r}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              className="text-foreground/10 dark:text-white/10"
-              strokeDasharray={i === 2 ? "4 4" : "none"}
-            />
-          ))}
+          {/* Outer tick ring */}
+          <g>
+            {Array.from({ length: 72 }).map((_, i) => {
+              const angle = (i * 5 * Math.PI) / 180
+              const isLong = i % 6 === 0
+              const innerR = isLong ? 68 : 72
+              const outerR = 78
+              const x1 = centerX + Math.cos(angle) * innerR
+              const y1 = centerY + Math.sin(angle) * innerR
+              const x2 = centerX + Math.cos(angle) * outerR
+              const y2 = centerY + Math.sin(angle) * outerR
+              return (
+                <line
+                  key={`tick-${i}`}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="currentColor"
+                  strokeWidth={isLong ? "1" : "0.5"}
+                  className="text-foreground/20 dark:text-white/20"
+                />
+              )
+            })}
+          </g>
           
-          {/* Tick marks on outer ring */}
-          {Array.from({ length: 36 }).map((_, i) => {
-            const angle = (i * 10 * Math.PI) / 180
-            const x1 = 150 + Math.cos(angle) * 62
-            const y1 = 110 + Math.sin(angle) * 62
-            const x2 = 150 + Math.cos(angle) * 68
-            const y2 = 110 + Math.sin(angle) * 68
-            return (
-              <line
-                key={`tick-${i}`}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                strokeWidth="0.5"
-                className="text-foreground/15 dark:text-white/15"
-              />
-            )
-          })}
+          {/* Concentric rings */}
+          <circle cx={centerX} cy={centerY} r="65" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-foreground/15 dark:text-white/15" />
+          <circle cx={centerX} cy={centerY} r="55" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-foreground/10 dark:text-white/10" />
+          <circle cx={centerX} cy={centerY} r="45" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-foreground/10 dark:text-white/10" />
           
-          {/* Connection lines to role nodes */}
+          {/* Center node background */}
+          <circle cx={centerX} cy={centerY} r="38" className="fill-background dark:fill-[#0a0a0a]" />
+          <circle cx={centerX} cy={centerY} r="38" fill="none" stroke="currentColor" strokeWidth="1" className="text-foreground/15 dark:text-white/15" />
+          <circle cx={centerX} cy={centerY} r="28" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-foreground/10 dark:text-white/10" />
+          
+          {/* Center user icon */}
+          <g transform={`translate(${centerX - 14}, ${centerY - 14})`}>
+            <circle cx="14" cy="10" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-foreground/70 dark:text-white/70" />
+            <path d="M4 26c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-foreground/70 dark:text-white/70" />
+          </g>
+          
+          {/* Connection lines and nodes */}
           {roles.map((role, i) => {
-            const x2 = 150 + role.x
-            const y2 = 110 + role.y
+            const angleRad = (role.angle * Math.PI) / 180
+            const nodeX = centerX + Math.cos(angleRad) * nodeRadius
+            const nodeY = centerY + Math.sin(angleRad) * nodeRadius
             
-            // Create a curved path
-            const cx1 = 150 + role.x * 0.5
-            const cy1 = 110
-            const cx2 = 150
-            const cy2 = 110 + role.y * 0.5
+            // Connection line from center edge to node
+            const startX = centerX + Math.cos(angleRad) * 45
+            const startY = centerY + Math.sin(angleRad) * 45
             
-            const path = `M 150 110 C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`
-
+            // Dots along the connection
+            const dot1X = centerX + Math.cos(angleRad) * 65
+            const dot1Y = centerY + Math.sin(angleRad) * 65
+            const dot2X = centerX + Math.cos(angleRad) * 85
+            const dot2Y = centerY + Math.sin(angleRad) * 85
+            
             return (
-              <g key={i}>
-                <motion.path
-                  d={path}
-                  fill="none"
+              <g key={role.id}>
+                {/* Connection line */}
+                <motion.line
+                  x1={startX}
+                  y1={startY}
+                  x2={nodeX}
+                  y2={nodeY}
                   stroke="currentColor"
                   strokeWidth="1"
                   className="text-foreground/20 dark:text-white/20"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, delay: i * 0.3 }}
+                  transition={{ duration: 1.5, delay: i * 0.2 }}
                 />
                 
-                {/* Small dot at connection point on outer ring */}
-                <circle
-                  cx={150 + role.x * 0.45}
-                  cy={110 + role.y * 0.45}
-                  r="2"
-                  className="fill-foreground/30 dark:fill-white/30"
-                />
+                {/* Connection dots */}
+                <circle cx={dot1X} cy={dot1Y} r="2.5" className="fill-foreground/30 dark:fill-white/30" />
+                <circle cx={dot2X} cy={dot2Y} r="2" className="fill-foreground/25 dark:fill-white/25" />
                 
-                {/* Flowing Data Particles */}
+                {/* Animated flowing particle */}
                 <motion.circle
-                  r="1.5"
-                  className="fill-foreground dark:fill-white"
-                  filter="url(#glow-neural)"
-                  initial={{ offsetDistance: "0%", opacity: 0 }}
-                  animate={{ 
-                    offsetDistance: ["0%", "100%"],
+                  r="2"
+                  className="fill-foreground/60 dark:fill-white/60"
+                  filter="url(#glow-founder)"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    cx: [startX, nodeX],
+                    cy: [startY, nodeY],
                     opacity: [0, 0.8, 0]
                   }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
                     ease: "easeInOut",
-                    delay: i * 0.8
-                  }}
-                  style={{
-                    offsetPath: `path('${path}')`,
+                    delay: i * 0.6
                   }}
                 />
               </g>
             )
           })}
-        </svg>
-
-        {/* Nodes Layer */}
-        <div className="relative w-full h-full flex items-center justify-center">
           
-          {/* Center Founder Node */}
-          <div className="relative z-30">
-            <div className="w-16 h-16 rounded-full border border-foreground/15 dark:border-white/15 flex items-center justify-center bg-background dark:bg-[#0A0A0A] shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:shadow-[0_0_30px_rgba(255,255,255,0.03)]">
-              <div className="w-11 h-11 rounded-full border border-foreground/10 dark:border-white/10 flex items-center justify-center text-foreground/70 dark:text-white/70">
-                <User size={22} strokeWidth={1.5} />
-              </div>
-            </div>
-          </div>
-
-          {/* Role Nodes */}
-          {roles.map((role, i) => (
-            <motion.div
-              key={role.id}
-              className="absolute z-20 flex flex-col items-center gap-1.5"
-              style={{ 
-                left: `calc(50% + ${role.x}px)`, 
-                top: `calc(50% + ${role.y}px)`,
-                transform: 'translate(-50%, -50%)'
-              }}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 + i * 0.2, type: "spring", stiffness: 100 }}
-            >
-              <div className="group relative">
-                <div className="w-11 h-11 rounded-xl border border-foreground/20 dark:border-white/20 bg-background dark:bg-[#0A0A0A] flex items-center justify-center text-foreground/60 dark:text-white/60 group-hover:text-foreground dark:group-hover:text-white group-hover:border-foreground/40 dark:group-hover:border-white/40 transition-all duration-500">
-                  <role.icon size={18} strokeWidth={1.5} />
-                </div>
+          {/* Role nodes */}
+          {roles.map((role, i) => {
+            const angleRad = (role.angle * Math.PI) / 180
+            const nodeX = centerX + Math.cos(angleRad) * nodeRadius
+            const nodeY = centerY + Math.sin(angleRad) * nodeRadius
+            const boxSize = 48
+            const halfBox = boxSize / 2
+            
+            return (
+              <motion.g
+                key={`node-${role.id}`}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 100 }}
+              >
+                {/* Node background */}
+                <rect
+                  x={nodeX - halfBox}
+                  y={nodeY - halfBox}
+                  width={boxSize}
+                  height={boxSize}
+                  rx="12"
+                  className="fill-background dark:fill-[#0a0a0a]"
+                />
+                <rect
+                  x={nodeX - halfBox}
+                  y={nodeY - halfBox}
+                  width={boxSize}
+                  height={boxSize}
+                  rx="12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-foreground/20 dark:text-white/20"
+                />
                 
-                {/* Corner Accents */}
-                <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-foreground/30 dark:border-white/30" />
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-foreground/30 dark:border-white/30" />
+                {/* Corner brackets */}
+                {/* Top-left */}
+                <path
+                  d={`M${nodeX - halfBox - 6} ${nodeY - halfBox + 8} L${nodeX - halfBox - 6} ${nodeY - halfBox - 6} L${nodeX - halfBox + 8} ${nodeY - halfBox - 6}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-foreground/30 dark:text-white/30"
+                />
+                {/* Top-right */}
+                <path
+                  d={`M${nodeX + halfBox - 8} ${nodeY - halfBox - 6} L${nodeX + halfBox + 6} ${nodeY - halfBox - 6} L${nodeX + halfBox + 6} ${nodeY - halfBox + 8}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-foreground/30 dark:text-white/30"
+                />
+                {/* Bottom-left */}
+                <path
+                  d={`M${nodeX - halfBox - 6} ${nodeY + halfBox - 8} L${nodeX - halfBox - 6} ${nodeY + halfBox + 6} L${nodeX - halfBox + 8} ${nodeY + halfBox + 6}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-foreground/30 dark:text-white/30"
+                />
+                {/* Bottom-right */}
+                <path
+                  d={`M${nodeX + halfBox - 8} ${nodeY + halfBox + 6} L${nodeX + halfBox + 6} ${nodeY + halfBox + 6} L${nodeX + halfBox + 6} ${nodeY + halfBox - 8}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-foreground/30 dark:text-white/30"
+                />
+                
+                {/* Label below node */}
+                <text
+                  x={nodeX}
+                  y={nodeY + halfBox + 22}
+                  textAnchor="middle"
+                  className="fill-foreground/50 dark:fill-white/50 text-[10px] font-mono uppercase tracking-[0.15em]"
+                >
+                  {role.label}
+                </text>
+              </motion.g>
+            )
+          })}
+        </svg>
+        
+        {/* Icons overlay - positioned absolutely to use Lucide components */}
+        <div className="absolute inset-0 pointer-events-none" style={{ top: '36px' }}>
+          {roles.map((role, i) => {
+            const angleRad = (role.angle * Math.PI) / 180
+            const nodeX = centerX + Math.cos(angleRad) * nodeRadius
+            const nodeY = centerY + Math.sin(angleRad) * nodeRadius
+            
+            return (
+              <div
+                key={`icon-${role.id}`}
+                className="absolute flex items-center justify-center"
+                style={{
+                  left: `${nodeX}px`,
+                  top: `${nodeY}px`,
+                  transform: 'translate(-50%, -50%)',
+                  width: '48px',
+                  height: '48px'
+                }}
+              >
+                <role.icon size={22} strokeWidth={1.5} className="text-foreground/60 dark:text-white/60" />
               </div>
-              
-              <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-foreground/40 dark:text-white/40">
-                {role.label}
-              </span>
-            </motion.div>
-          ))}
-
+            )
+          })}
         </div>
       </div>
     </div>
