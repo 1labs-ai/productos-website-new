@@ -55,20 +55,20 @@ const files = [
   { name: "area-chart.tsx", active: false },
 ]
 
-// Token colors
+// Token colors - using consistent warm palette
 const tokenColors: Record<string, string> = {
-  keyword: "text-purple-400",
+  keyword: "text-teal-400",
   string: "text-emerald-400",
-  comment: "text-zinc-500",
-  function: "text-blue-400",
+  comment: "text-white/30",
+  function: "text-sky-400",
   type: "text-amber-400",
-  component: "text-amber-400",
-  tag: "text-blue-400",
-  attr: "text-sky-400",
-  punctuation: "text-zinc-400",
-  operator: "text-pink-400",
+  component: "text-orange-400",
+  tag: "text-sky-400",
+  attr: "text-teal-400",
+  punctuation: "text-white/50",
+  operator: "text-orange-400",
   expression: "text-amber-300",
-  plain: "text-zinc-300",
+  plain: "text-white/70",
 }
 
 export function CursorStyleIDE() {
@@ -114,25 +114,31 @@ export function CursorStyleIDE() {
 
   return (
     <div ref={ref} className="relative">
-      {/* IDE Window */}
-      <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
-        {/* Window Chrome */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-900/80 border-b border-zinc-800">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
-            </div>
+      {/* Subtle glow at top - matches other dashboards */}
+      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30 rounded-2xl"
+        style={{
+          background: 'radial-gradient(ellipse 60% 30% at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)'
+        }}
+      />
+
+      {/* IDE Window - consistent with other dashboards */}
+      <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]">
+        {/* Window Chrome - simplified, no Mac dots */}
+        <div className="flex items-center justify-between px-4 py-3 bg-white/[0.02] border-b border-white/[0.06]">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+            <span className="text-sm font-medium text-white">ProductOS Code</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-800/50">
-            <FolderOpen className="w-3.5 h-3.5 text-zinc-500" />
-            <span className="text-xs text-zinc-400 font-mono">my-saas-app</span>
+          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">
+            <FolderOpen className="w-3.5 h-3.5 text-white/50" />
+            <span className="text-xs text-white/60 font-mono">my-saas-app</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-zinc-800/50">
-              <GitBranch className="w-3 h-3 text-zinc-500" />
-              <span className="text-xs text-zinc-500 font-mono">main</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">
+              <GitBranch className="w-3 h-3 text-white/50" />
+              <span className="text-xs text-white/50 font-mono">main</span>
             </div>
           </div>
         </div>
@@ -140,18 +146,18 @@ export function CursorStyleIDE() {
         {/* Main Content - Split View */}
         <div className="flex min-h-[400px]">
           {/* Left Panel - Agent Planning */}
-          <div className="w-[280px] border-r border-zinc-800 bg-zinc-900/30 flex flex-col">
+          <div className="w-[280px] border-r border-white/[0.06] bg-[#0f0f10] flex flex-col">
             {/* Panel Header */}
-            <div className="flex items-center gap-2 px-3 py-2 border-b border-zinc-800/50">
-              <div className="p-1 rounded bg-zinc-800/50 border border-zinc-700/50">
-                <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
+            <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.04]">
+              <div className="p-1 rounded bg-amber-500/10 border border-amber-500/20">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               </div>
-              <span className="text-xs font-medium text-zinc-300">ProductOS Agent</span>
+              <span className="text-xs font-medium text-white">ProductOS Agent</span>
               {isGenerating && (
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="ml-auto w-1.5 h-1.5 rounded-full bg-zinc-400"
+                  className="ml-auto w-1.5 h-1.5 rounded-full bg-amber-400"
                 />
               )}
             </div>
@@ -181,12 +187,12 @@ export function CursorStyleIDE() {
                     ) : step.type === "success" ? (
                       <Check className="w-3.5 h-3.5 mt-0.5 text-emerald-500" />
                     ) : (
-                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-zinc-500" />
+                      <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-white/40" />
                     )}
                     <span className={`text-xs ${
                       step.type === "thinking" ? "text-amber-400" :
                       step.type === "success" ? "text-emerald-400" :
-                      "text-zinc-400"
+                      "text-white/50"
                     }`}>
                       {step.text}
                     </span>
@@ -199,9 +205,9 @@ export function CursorStyleIDE() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 pt-3 border-t border-zinc-800/50"
+                  className="mt-4 pt-3 border-t border-white/[0.04]"
                 >
-                  <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-medium">Generated Files</span>
+                  <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">Generated Files</span>
                   <div className="mt-2 space-y-1">
                     {files.map((file, index) => (
                       <motion.div
@@ -209,7 +215,7 @@ export function CursorStyleIDE() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: index <= currentPlanStep - 2 ? 1 : 0.3 }}
                         className={`flex items-center gap-2 px-2 py-1.5 rounded text-xs ${
-                          file.active ? "bg-zinc-800/50 text-zinc-200" : "text-zinc-500"
+                          file.active ? "bg-white/[0.04] text-white" : "text-white/50"
                         }`}
                       >
                         <FileCode2 className="w-3.5 h-3.5" />
@@ -226,20 +232,20 @@ export function CursorStyleIDE() {
           </div>
 
           {/* Right Panel - Code Editor */}
-          <div className="flex-1 flex flex-col bg-zinc-950">
+          <div className="flex-1 flex flex-col bg-[#0a0a0a]">
             {/* File Tabs */}
-            <div className="flex items-center border-b border-zinc-800 bg-zinc-900/30">
-              <div className="flex items-center gap-2 px-4 py-2 border-r border-zinc-800 bg-zinc-950">
-                <FileCode2 className="w-3.5 h-3.5 text-amber-500" />
-                <span className="text-xs text-zinc-300 font-mono">dashboard.tsx</span>
-                <X className="w-3 h-3 text-zinc-600 hover:text-zinc-400 cursor-pointer" />
+            <div className="flex items-center border-b border-white/[0.04] bg-white/[0.01]">
+              <div className="flex items-center gap-2 px-4 py-2 border-r border-white/[0.04] bg-white/[0.02]">
+                <FileCode2 className="w-3.5 h-3.5 text-amber-400" />
+                <span className="text-xs text-white font-mono">dashboard.tsx</span>
+                <X className="w-3 h-3 text-white/30 hover:text-white/60 cursor-pointer" />
               </div>
               <div className="flex-1" />
               {showDeployButton && (
                 <motion.button
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-1.5 mr-3 px-3 py-1 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium transition-colors"
+                  className="flex items-center gap-1.5 mr-3 px-3 py-1 rounded-md bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-medium transition-colors"
                 >
                   <Play className="w-3 h-3" />
                   Deploy
@@ -261,7 +267,7 @@ export function CursorStyleIDE() {
                     className="flex"
                   >
                     {/* Line number */}
-                    <span className="w-8 text-right pr-4 text-zinc-600 select-none text-xs">
+                    <span className="w-8 text-right pr-4 text-white/30 select-none text-xs">
                       {lineIndex + 1}
                     </span>
                     {/* Code with indent */}
@@ -277,7 +283,7 @@ export function CursorStyleIDE() {
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.5, repeat: Infinity }}
-                        className="w-0.5 h-4 ml-0.5 bg-zinc-400 inline-block"
+                        className="w-0.5 h-4 ml-0.5 bg-amber-400 inline-block"
                       />
                     )}
                   </motion.div>
@@ -286,8 +292,8 @@ export function CursorStyleIDE() {
             </div>
 
             {/* Status Bar */}
-            <div className="flex items-center justify-between px-4 py-1.5 border-t border-zinc-800 bg-zinc-900/30 text-[10px]">
-              <div className="flex items-center gap-3 text-zinc-500">
+            <div className="flex items-center justify-between px-4 py-1.5 border-t border-white/[0.04] bg-white/[0.02] text-[10px]">
+              <div className="flex items-center gap-3 text-white/40">
                 <span>TypeScript React</span>
                 <span>•</span>
                 <span>UTF-8</span>
@@ -299,7 +305,7 @@ export function CursorStyleIDE() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex items-center gap-1.5 text-emerald-500"
+                    className="flex items-center gap-1.5 text-emerald-400"
                   >
                     <Check className="w-3 h-3" />
                     <span>All checks passed</span>
@@ -311,9 +317,9 @@ export function CursorStyleIDE() {
         </div>
 
         {/* Terminal / Output (collapsed) */}
-        <div className="border-t border-zinc-800 bg-zinc-900/50">
+        <div className="border-t border-white/[0.04] bg-white/[0.01]">
           <div className="flex items-center justify-between px-4 py-2">
-            <div className="flex items-center gap-2 text-zinc-500">
+            <div className="flex items-center gap-2 text-white/40">
               <Terminal className="w-3.5 h-3.5" />
               <span className="text-xs font-medium">Output</span>
             </div>
@@ -327,7 +333,7 @@ export function CursorStyleIDE() {
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                 </div>
-                <span className="text-xs text-zinc-400">
+                <span className="text-xs text-white/50">
                   <span className="text-emerald-400">✓</span> Build successful • Ready to deploy
                 </span>
               </motion.div>
