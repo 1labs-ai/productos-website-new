@@ -351,9 +351,9 @@ export function InteractiveDashboard() {
           <div className="absolute inset-x-0 top-0 h-px pointer-events-none z-10 bg-gradient-to-r from-transparent via-black/5 to-transparent dark:via-white/20" />
           
       <div className="flex flex-col sm:flex-row min-h-[400px] sm:min-h-[520px] lg:min-h-[620px] sm:h-[520px] lg:h-[620px]">
-        {/* Sidebar */}
+        {/* Sidebar - Icons only on mobile */}
         <div className="w-full sm:w-56 lg:w-64 flex-shrink-0 flex sm:flex-col relative bg-muted/50 dark:bg-[#0f0f10] border-b sm:border-b-0 sm:border-r border-border/50 dark:border-white/[0.04]">
-          <div className="p-4 border-b border-border/50 dark:border-white/[0.04] hidden sm:block">
+          <div className="p-3 sm:p-4 border-b border-border/50 dark:border-white/[0.04] hidden sm:block">
             <div className="flex items-center gap-2.5">
               <AnimatedLogo size={28} className="text-foreground dark:text-white" />
               <div>
@@ -377,7 +377,7 @@ export function InteractiveDashboard() {
             </div>
           </div>
           
-          <div className="px-3 py-2 flex sm:block overflow-x-auto sm:overflow-visible">
+          <div className="px-2 sm:px-3 py-2 flex sm:block overflow-x-auto sm:overflow-visible scrollbar-hide">
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium mb-2 px-2 hidden sm:block">Stages</div>
             <nav className="flex sm:flex-col gap-1 sm:space-y-0.5">
               {stages.map((stage) => {
@@ -387,14 +387,14 @@ export function InteractiveDashboard() {
                     key={stage.id}
                     onClick={() => setActiveStage(stage.id)}
                     className={cn(
-                      "flex items-center gap-2 sm:gap-3 px-3 sm:px-2 py-2 rounded-md text-sm transition-all duration-200 cursor-pointer whitespace-nowrap",
+                      "flex items-center gap-1.5 sm:gap-3 px-2 sm:px-2 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0",
                       isActive 
                         ? "bg-accent text-foreground font-medium" 
                         : "text-foreground/70 hover:bg-muted/50 hover:text-foreground"
                     )}
                   >
-                    <stage.icon className={cn("w-4 h-4", isActive ? "text-foreground/70" : "text-muted-foreground")} />
-                    <span>{stage.name}</span>
+                    <stage.icon className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4", isActive ? "text-foreground/70" : "text-muted-foreground")} />
+                    <span className="hidden sm:inline">{stage.name}</span>
                     {isActive && (
                       <div className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/50 hidden sm:block" />
                     )}
