@@ -38,13 +38,13 @@ import { AnimatedLogo } from "@/components/animated-logo"
 
 type Stage = "home" | "ideate" | "discover" | "define" | "design" | "develop"
 
-// Stages with subtle brand colors
+// Stages - Linear-style monochrome, active state uses subtle highlight
 const stages = [
-  { id: "ideate" as Stage, name: "Ideate", icon: Lightbulb, accent: "sky", accentClass: "text-sky-400", bgClass: "bg-sky-500/10", borderClass: "border-sky-500/20" },
-  { id: "discover" as Stage, name: "Discover", icon: Search, accent: "violet", accentClass: "text-violet-400", bgClass: "bg-violet-500/10", borderClass: "border-violet-500/20" },
-  { id: "define" as Stage, name: "Define", icon: FileText, accent: "teal", accentClass: "text-teal-400", bgClass: "bg-teal-500/10", borderClass: "border-teal-500/20" },
-  { id: "design" as Stage, name: "Design", icon: Palette, accent: "purple", accentClass: "text-purple-400", bgClass: "bg-purple-500/10", borderClass: "border-purple-500/20" },
-  { id: "develop" as Stage, name: "Develop", icon: Code, accent: "amber", accentClass: "text-amber-400", bgClass: "bg-amber-500/10", borderClass: "border-amber-500/20" },
+  { id: "ideate" as Stage, name: "Ideate", icon: Lightbulb },
+  { id: "discover" as Stage, name: "Discover", icon: Search },
+  { id: "define" as Stage, name: "Define", icon: FileText },
+  { id: "design" as Stage, name: "Design", icon: Palette },
+  { id: "develop" as Stage, name: "Develop", icon: Code },
 ]
 
 // Typing animation component
@@ -181,7 +181,7 @@ function StartingScreen({ onStartProject }: { onStartProject: (idea: string) => 
             <div className="flex items-center gap-2">
               <Plus className="w-4 h-4 text-white/30" />
               <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-white/[0.03] cursor-pointer transition-colors">
-                <Sparkles className="w-4 h-4 text-amber-400/60" />
+                <Sparkles className="w-4 h-4 text-white/40" />
                 <span className="text-sm text-white/70">Claude Sonnet 4.6</span>
                 <ChevronDown className="w-3 h-3 text-white/30" />
               </div>
@@ -216,7 +216,7 @@ function ProductPreview() {
       <div className="flex items-center justify-between px-3 py-2 border-b border-white/[0.04] bg-white/[0.02]">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-violet-500/30 to-purple-500/30 flex items-center justify-center">
-            <Bot className="w-3.5 h-3.5 text-violet-400" />
+            <Bot className="w-3.5 h-3.5 text-white/60" />
           </div>
           <span className="text-xs font-semibold text-white">VoiceAI Studio</span>
         </div>
@@ -237,7 +237,7 @@ function ProductPreview() {
               className={cn(
                 "p-2 rounded-lg border transition-all",
                 voice.selected 
-                  ? "bg-violet-500/10 border-violet-500/20" 
+                  ? "bg-white/[0.06] border-white/[0.12]" 
                   : "bg-white/[0.02] border-white/[0.04] hover:border-white/[0.08]"
               )}
             >
@@ -280,9 +280,9 @@ function ProductPreview() {
         </div>
 
         <div className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.02] border border-white/[0.04]">
-          <Mic className="w-4 h-4 text-violet-400/60" />
+          <Mic className="w-4 h-4 text-white/40" />
           <span className="flex-1 text-[10px] text-white/30">Type or speak your text...</span>
-          <Send className="w-4 h-4 text-violet-400/60" />
+          <Send className="w-4 h-4 text-white/40" />
         </div>
       </div>
     </div>
@@ -408,14 +408,14 @@ export function InteractiveDashboard() {
                     className={cn(
                       "w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm transition-all duration-200 cursor-pointer",
                       isActive 
-                        ? cn(stage.bgClass, stage.accentClass, "font-medium") 
+                        ? "bg-white/[0.06] text-white font-medium" 
                         : "text-white/50 hover:bg-white/[0.03] hover:text-white/70"
                     )}
                   >
-                    <stage.icon className={cn("w-4 h-4", isActive ? stage.accentClass : "text-white/40")} />
+                    <stage.icon className={cn("w-4 h-4", isActive ? "text-white/70" : "text-white/40")} />
                     <span>{stage.name}</span>
                     {isActive && (
-                      <div className={cn("ml-auto w-1.5 h-1.5 rounded-full", stage.accentClass.replace("text-", "bg-"))} />
+                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white/50" />
                     )}
                   </button>
                 )
@@ -435,7 +435,7 @@ export function InteractiveDashboard() {
             </div>
             
             <div className="flex items-center gap-2.5 px-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center text-xs font-bold text-amber-400/80">
+              <div className="w-8 h-8 rounded-full bg-white/[0.08] flex items-center justify-center text-xs font-bold text-white/60">
                 A
               </div>
               <div>
@@ -452,7 +452,7 @@ export function InteractiveDashboard() {
             <div className="flex items-center gap-3">
               {activeStage !== "home" && currentStage ? (
                 <>
-                  <span className={cn("px-2 py-1 rounded-md text-xs font-medium", currentStage.bgClass, currentStage.accentClass)}>
+                  <span className="px-2 py-1 rounded-md text-xs font-medium bg-white/[0.06] text-white/80">
                     {currentStage.name}
                   </span>
                   <span className="text-sm font-medium text-white hidden sm:inline">{projectName}</span>
@@ -494,14 +494,14 @@ export function InteractiveDashboard() {
                           animate={{ opacity: ideateStep >= 1 ? 1 : 0, x: ideateStep >= 1 ? 0 : 20 }}
                           className="flex items-start gap-3 justify-end"
                         >
-                          <div className="max-w-[85%] p-3 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                          <div className="max-w-[85%] p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
                             <p className="text-sm text-white/80">
                               {ideateStep >= 1 && (
                                 <TypingText text={projectIdea} speed={18} />
                               )}
                             </p>
                           </div>
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center text-xs font-bold text-amber-400/80 flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-white/[0.08] flex items-center justify-center text-xs font-bold text-white/60 flex-shrink-0">
                             H
                           </div>
                         </motion.div>
@@ -511,8 +511,8 @@ export function InteractiveDashboard() {
                           animate={{ opacity: ideateStep >= 2 ? 1 : 0, x: ideateStep >= 2 ? 0 : -20 }}
                           className="flex items-start gap-3"
                         >
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
-                            <Sparkles className="w-4 h-4 text-sky-400" />
+                          <div className="w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center flex-shrink-0">
+                            <Sparkles className="w-4 h-4 text-white/60" />
                           </div>
                           <div className="max-w-[85%] p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
                             {ideateStep >= 2 && (
@@ -530,11 +530,11 @@ export function InteractiveDashboard() {
                                     <div className="flex items-center gap-2 text-emerald-400">
                                       <Check className="w-4 h-4" /><span>Creator economy = 50M+ users</span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-sky-400">
+                                    <div className="flex items-center gap-2 text-white/70">
                                       <Zap className="w-4 h-4" /><span>Differentiator: Multi-language + accent control</span>
                                     </div>
-                                    <div className="mt-3 p-2 rounded-lg bg-sky-500/10 border border-sky-500/20">
-                                      <button onClick={() => setActiveStage("discover")} className="text-sky-400 text-xs font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                                    <div className="mt-3 p-2 rounded-lg bg-white/[0.04] border border-white/[0.08]">
+                                      <button onClick={() => setActiveStage("discover")} className="text-white/70 text-xs font-medium flex items-center gap-1 hover:gap-2 transition-all">
                                         → Proceed to Discovery <ChevronRight className="w-3 h-3" />
                                       </button>
                                     </div>
@@ -548,7 +548,7 @@ export function InteractiveDashboard() {
 
                       <div className="mt-4 flex items-center gap-2 p-3 rounded-lg border border-white/[0.06] bg-white/[0.02]">
                         <input type="text" placeholder="Refine your idea..." className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 outline-none" />
-                        <button className="px-3 py-1.5 rounded-md bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium flex items-center gap-1 transition-colors">
+                        <button className="px-3 py-1.5 rounded-md bg-white/[0.1] hover:bg-white/[0.15] text-white text-sm font-medium flex items-center gap-1 transition-colors">
                           <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
@@ -599,7 +599,7 @@ export function InteractiveDashboard() {
                       <div className="p-4 rounded-lg border border-white/[0.04] bg-white/[0.01]">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-sm font-medium text-white">Competitor Analysis</span>
-                          <span className="text-[10px] text-violet-400">Live Research</span>
+                          <span className="text-[10px] text-white/50">Live Research</span>
                         </div>
                         <div className="space-y-2">
                           {[
@@ -611,7 +611,7 @@ export function InteractiveDashboard() {
                               <span className="font-medium text-white">{comp.name}</span>
                               <span className="text-white/50">{comp.price}</span>
                               <span className="text-white/50">{comp.users}</span>
-                              <span className="text-amber-400">{comp.gap}</span>
+                              <span className="text-white/60">{comp.gap}</span>
                             </motion.div>
                           ))}
                         </div>
@@ -659,7 +659,7 @@ export function InteractiveDashboard() {
                           <p className="text-xs text-white/50">{insight.desc}</p>
                         </motion.div>
                       ))}
-                      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} onClick={() => setActiveStage("define")} className="w-full mt-2 p-2 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-medium flex items-center justify-center gap-1 hover:bg-violet-500/20 transition-colors">
+                      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} onClick={() => setActiveStage("define")} className="w-full mt-2 p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 text-xs font-medium flex items-center justify-center gap-1 hover:bg-white/[0.06] transition-colors">
                         Continue to Define <ChevronRight className="w-3 h-3" />
                       </motion.button>
                     </div>
@@ -678,15 +678,15 @@ export function InteractiveDashboard() {
                         { name: "Feature List", status: "active" },
                         { name: "Technical Spec", status: "pending" },
                       ].map((section, i) => (
-                        <motion.div key={section.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }} className={cn("flex items-center gap-3 p-2 rounded-md text-sm transition-colors", section.status === "active" ? "bg-teal-500/10 text-teal-400" : section.status === "complete" ? "text-emerald-400" : "text-white/30")}>
+                        <motion.div key={section.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }} className={cn("flex items-center gap-3 p-2 rounded-md text-sm transition-colors", section.status === "active" ? "bg-white/[0.04] text-white" : section.status === "complete" ? "text-emerald-400" : "text-white/30")}>
                           {section.status === "complete" ? <Check className="w-4 h-4" /> : section.status === "active" ? <FileText className="w-4 h-4" /> : <div className="w-4 h-4 rounded-full border border-current" />}
                           <span>{section.name}</span>
                           {section.status === "active" && (
-                            <div className="ml-auto w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
+                            <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white/60 animate-pulse" />
                           )}
                         </motion.div>
                       ))}
-                      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} onClick={() => setActiveStage("design")} className="w-full mt-3 p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-medium flex items-center justify-center gap-1 hover:bg-teal-500/20 transition-colors">
+                      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} onClick={() => setActiveStage("design")} className="w-full mt-3 p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 text-xs font-medium flex items-center justify-center gap-1 hover:bg-white/[0.06] transition-colors">
                         Continue to Design <ChevronRight className="w-3 h-3" />
                       </motion.button>
                     </div>
@@ -694,7 +694,7 @@ export function InteractiveDashboard() {
                       <div className="p-4 rounded-lg border border-white/[0.04] bg-white/[0.01]">
                         <div className="flex items-center justify-between mb-4">
                           <span className="text-sm font-medium text-white">Core Features</span>
-                          <span className="text-xs text-teal-400">6 features defined</span>
+                          <span className="text-xs text-white/50">6 features defined</span>
                         </div>
                         <div className="space-y-2">
                           {[
@@ -707,11 +707,11 @@ export function InteractiveDashboard() {
                           ].map((feature, i) => (
                             <motion.div key={feature.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + i * 0.08 }} className="flex items-center justify-between p-2 rounded-md bg-white/[0.02] text-sm">
                               <div className="flex items-center gap-2">
-                                <Check className="w-3.5 h-3.5 text-teal-400" />
+                                <Check className="w-3.5 h-3.5 text-emerald-400" />
                                 <span className="text-white/80">{feature.name}</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", feature.priority === "P0" ? "bg-red-500/10 text-red-400" : feature.priority === "P1" ? "bg-amber-500/10 text-amber-400" : "bg-white/[0.06] text-white/50")}>{feature.priority}</span>
+                                <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", feature.priority === "P0" ? "bg-red-500/10 text-red-400" : feature.priority === "P1" ? "bg-white/[0.06] text-white/50" : "bg-white/[0.04] text-white/40")}>{feature.priority}</span>
                                 <span className="text-xs text-white/40">{feature.effort}</span>
                               </div>
                             </motion.div>
@@ -746,7 +746,7 @@ export function InteractiveDashboard() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-white/50">Generating UI for</span>
-                        <span className="text-sm font-medium text-purple-400">{projectName}</span>
+                        <span className="text-sm font-medium text-white/70">{projectName}</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs">
                         <span className="text-emerald-400">6/6 screens ready</span>
@@ -778,12 +778,12 @@ export function InteractiveDashboard() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
                               </div>
                               <div className="flex-1" />
-                              <screen.icon className="w-2.5 h-2.5 text-purple-400" />
+                              <screen.icon className="w-2.5 h-2.5 text-white/50" />
                             </div>
                             <div className="flex-1 space-y-1">
                               <div className="h-2 w-3/4 bg-white/10 rounded" />
                               <div className="h-2 w-1/2 bg-white/[0.06] rounded" />
-                              <div className="h-6 w-full bg-purple-500/5 rounded mt-2" />
+                              <div className="h-6 w-full bg-white/[0.04] rounded mt-2" />
                               <div className="grid grid-cols-2 gap-1 mt-1">
                                 <div className="h-4 bg-white/[0.04] rounded" />
                                 <div className="h-4 bg-white/[0.04] rounded" />
@@ -798,7 +798,7 @@ export function InteractiveDashboard() {
                       ))}
                     </div>
 
-                    <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} onClick={() => setActiveStage("develop")} className="w-full p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium flex items-center justify-center gap-2 hover:bg-purple-500/20 transition-colors">
+                    <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} onClick={() => setActiveStage("develop")} className="w-full p-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 text-sm font-medium flex items-center justify-center gap-2 hover:bg-white/[0.06] transition-colors">
                       Continue to Develop <ChevronRight className="w-4 h-4" />
                     </motion.button>
                   </div>
@@ -823,7 +823,7 @@ export function InteractiveDashboard() {
                           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-emerald-400">✓ Installing dependencies (47 packages)</motion.div>
                           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-emerald-400">✓ Generating components from designs</motion.div>
                           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="text-emerald-400">✓ Adding API routes & database schema</motion.div>
-                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }} className="text-sky-400">ℹ Running tests... 24/24 passed</motion.div>
+                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }} className="text-white/60">ℹ Running tests... 24/24 passed</motion.div>
                           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }} className="text-emerald-400">✓ Build complete in 2.4s</motion.div>
                           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="text-white/50">$ <span className="animate-pulse">_</span></motion.div>
                         </div>

@@ -16,57 +16,52 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Project stats - using warm brand accents (amber/orange/teal) consistent with rest of page
+// Project stats - Linear-style monochrome with minimal accents
 const projectStats = [
-  { label: "Competitors Analyzed", value: "12", icon: Search, accentClass: "text-amber-400", bgClass: "bg-amber-500/10" },
-  { label: "UI Screens Generated", value: "24", icon: Layers, accentClass: "text-orange-400", bgClass: "bg-orange-500/10" },
-  { label: "User Stories Created", value: "18", icon: Users, accentClass: "text-teal-400", bgClass: "bg-teal-500/10" },
-  { label: "Code Components", value: "47", icon: Code, accentClass: "text-emerald-400", bgClass: "bg-emerald-500/10" },
+  { label: "Competitors Analyzed", value: "12", icon: Search },
+  { label: "UI Screens Generated", value: "24", icon: Layers },
+  { label: "User Stories Created", value: "18", icon: Users },
+  { label: "Code Components", value: "47", icon: Code },
 ]
 
-// Key deliverables with consistent brand colors
+// Key deliverables - Linear-style monochrome, status colors only
 const deliverables = [
   { 
     name: "Market Research Report", 
     description: "12 competitors, 3 market gaps identified",
     status: "complete", 
     icon: Search,
-    accentClass: "text-amber-400",
-    bgClass: "bg-amber-500/10"
+    progress: undefined
   },
   { 
     name: "Product Requirements Doc", 
     description: "18 user stories, 6 epics defined",
     status: "complete", 
     icon: FileText,
-    accentClass: "text-teal-400",
-    bgClass: "bg-teal-500/10"
+    progress: undefined
   },
   { 
     name: "UI Design System", 
     description: "24 screens, 47 components",
     status: "complete", 
     icon: Palette,
-    accentClass: "text-orange-400",
-    bgClass: "bg-orange-500/10"
+    progress: undefined
   },
   { 
     name: "Production Codebase", 
     description: "Next.js app with full test coverage",
     status: "in-progress", 
     icon: Code,
-    accentClass: "text-emerald-400",
-    bgClass: "bg-emerald-500/10",
     progress: 75
   },
 ]
 
-// Recent activity with matching colors
+// Recent activity - Linear-style monochrome
 const recentActivity = [
-  { time: "2m ago", action: "Completed dashboard wireframes", agent: "Design Agent", icon: Palette, accentClass: "text-orange-400", bgClass: "bg-orange-500/10" },
-  { time: "15m ago", action: "Generated 4 new UI screens", agent: "Design Agent", icon: Layers, accentClass: "text-orange-400", bgClass: "bg-orange-500/10" },
-  { time: "1h ago", action: "Finalized PRD v2.0", agent: "PRD Agent", icon: FileText, accentClass: "text-teal-400", bgClass: "bg-teal-500/10" },
-  { time: "2h ago", action: "Found 3 new competitor insights", agent: "Research Agent", icon: Search, accentClass: "text-amber-400", bgClass: "bg-amber-500/10" },
+  { time: "2m ago", action: "Completed dashboard wireframes", agent: "Design Agent", icon: Palette },
+  { time: "15m ago", action: "Generated 4 new UI screens", agent: "Design Agent", icon: Layers },
+  { time: "1h ago", action: "Finalized PRD v2.0", agent: "PRD Agent", icon: FileText },
+  { time: "2h ago", action: "Found 3 new competitor insights", agent: "Research Agent", icon: Search },
 ]
 
 export function ProjectStatusDashboard() {
@@ -127,12 +122,12 @@ export function ProjectStatusDashboard() {
             }}
           />
 
-      {/* Header Bar */}
+      {/* Header Bar - Linear-style with subtle status */}
       <div className="relative flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-sm font-medium text-white">AI Voice Assistant</span>
-          <span className="text-xs text-amber-400 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+          <span className="text-xs text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
             Ready to ship
           </span>
         </div>
@@ -144,7 +139,7 @@ export function ProjectStatusDashboard() {
         </div>
       </div>
 
-      {/* Stats Grid */}
+      {/* Stats Grid - Linear-style monochrome */}
       <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-4 p-6 border-b border-white/[0.06]">
         {projectStats.map((stat, i) => {
           const Icon = stat.icon
@@ -158,8 +153,8 @@ export function ProjectStatusDashboard() {
               className="group p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.03] transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110", stat.bgClass)}>
-                  <Icon className={cn("size-4", stat.accentClass)} />
+                <div className="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center transition-transform group-hover:scale-110">
+                  <Icon className="size-4 text-white/50" />
                 </div>
               </div>
               <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
@@ -170,10 +165,10 @@ export function ProjectStatusDashboard() {
       </div>
 
       <div className="relative grid lg:grid-cols-[1fr_320px] divide-x divide-white/[0.06]">
-        {/* Left: Key Deliverables */}
+        {/* Left: Key Deliverables - Linear-style */}
         <div className="p-6">
           <h4 className="text-sm font-medium text-white mb-4 flex items-center gap-2">
-            <Rocket className="size-4 text-amber-400" />
+            <Rocket className="size-4 text-white/50" />
             Key Deliverables
           </h4>
           <div className="space-y-3">
@@ -188,9 +183,9 @@ export function ProjectStatusDashboard() {
                   transition={{ delay: i * 0.05 + 0.4 }}
                   className="group flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 border border-white/[0.06] hover:border-white/[0.1]"
                 >
-                  {/* Icon */}
-                  <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105", item.bgClass)}>
-                    <Icon className={cn("size-5", item.accentClass)} />
+                  {/* Icon - monochrome */}
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                    <Icon className="size-5 text-white/50" />
                   </div>
                   
                   {/* Content */}
@@ -203,13 +198,13 @@ export function ProjectStatusDashboard() {
                         </div>
                       )}
                       {item.status === "in-progress" && item.progress && (
-                        <span className="text-xs text-amber-400 font-medium">{item.progress}%</span>
+                        <span className="text-xs text-white/50 font-medium">{item.progress}%</span>
                       )}
                     </div>
                     <span className="text-xs text-white/40">{item.description}</span>
                   </div>
                   
-                  {/* Progress bar for in-progress items */}
+                  {/* Progress bar for in-progress items - subtle */}
                   {item.status === "in-progress" && item.progress && (
                     <div className="w-20 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
                       <motion.div
@@ -217,7 +212,7 @@ export function ProjectStatusDashboard() {
                         whileInView={{ width: `${item.progress}%` }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.6, duration: 0.8 }}
-                        className="h-full bg-gradient-to-r from-amber-500/60 to-orange-500/60 rounded-full"
+                        className="h-full bg-white/30 rounded-full"
                       />
                     </div>
                   )}
@@ -227,10 +222,10 @@ export function ProjectStatusDashboard() {
           </div>
         </div>
 
-        {/* Right: Activity Feed */}
+        {/* Right: Activity Feed - Linear-style */}
         <div className="p-6 bg-white/[0.01]">
           <h4 className="text-sm font-medium text-white mb-4 flex items-center gap-2">
-            <BarChart3 className="size-4 text-teal-400" />
+            <BarChart3 className="size-4 text-white/50" />
             Recent Activity
           </h4>
           <div className="space-y-4">
@@ -245,8 +240,8 @@ export function ProjectStatusDashboard() {
                   transition={{ delay: i * 0.1 + 0.5 }}
                   className="flex gap-3 group"
                 >
-                  <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105", activity.bgClass)}>
-                    <Icon className={cn("size-4", activity.accentClass)} />
+                  <div className="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                    <Icon className="size-4 text-white/50" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-white/80">{activity.action}</p>
@@ -261,11 +256,11 @@ export function ProjectStatusDashboard() {
             })}
           </div>
           
-          {/* Project readiness indicator - using amber/orange consistent with brand */}
-          <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-amber-500/5 to-orange-500/5 border border-amber-500/20">
+          {/* Project readiness indicator - subtle emerald for positive status */}
+          <div className="mt-6 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 flex items-center justify-center">
-                <GitBranch className="size-5 text-amber-400" />
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                <GitBranch className="size-5 text-emerald-400" />
               </div>
               <div>
                 <div className="text-sm font-medium text-white">Deploy Ready</div>

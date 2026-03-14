@@ -17,14 +17,12 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Agent data - 5 ProductOS agents with subtle brand colors
+// Agent data - Linear-style monochrome with status colors only
 const agents = [
   {
     id: "ideation",
     name: "Ideation Agent",
     icon: Sparkles,
-    accentClass: "text-amber-400",
-    bgClass: "bg-amber-500/10",
     status: "Refining your idea...",
     result: "Vision crystallized. 3 unique value props identified.",
     metric: "Ready for discovery"
@@ -33,8 +31,6 @@ const agents = [
     id: "discovery",
     name: "Discovery Agent",
     icon: Search,
-    accentClass: "text-sky-400",
-    bgClass: "bg-sky-500/10",
     status: "Analyzing market...",
     result: "Found 12 competitors. Market size: $4.2B.",
     metric: "Opportunity Score: 8.4/10"
@@ -43,8 +39,6 @@ const agents = [
     id: "define",
     name: "Define Agent", 
     icon: FileText,
-    accentClass: "text-teal-400",
-    bgClass: "bg-teal-500/10",
     status: "Writing specifications...",
     result: "PRD generated with 8 user stories.",
     metric: "Est: 5 days to ship"
@@ -53,8 +47,6 @@ const agents = [
     id: "design",
     name: "Design Agent",
     icon: Palette,
-    accentClass: "text-purple-400",
-    bgClass: "bg-purple-500/10",
     status: "Creating UI designs...",
     result: "5 UI screens with responsive layouts.",
     metric: "Figma sync ready"
@@ -63,8 +55,6 @@ const agents = [
     id: "develop",
     name: "Develop Agent",
     icon: Code,
-    accentClass: "text-emerald-400",
-    bgClass: "bg-emerald-500/10",
     status: "Generating code...",
     result: "Next.js app with 24 passing tests.",
     metric: "Deploy ready"
@@ -264,9 +254,9 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                     <Plus className="size-4" />
                   </button>
                   
-                  {/* Model Selector */}
+                  {/* Model Selector - Linear-style */}
                   <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.06] cursor-pointer transition-colors shrink-0">
-                    <Sparkles className="size-3.5 text-amber-400/60 shrink-0" />
+                    <Sparkles className="size-3.5 text-white/40 shrink-0" />
                     <span className="text-sm text-white/50 whitespace-nowrap">Claude Sonnet 4.6</span>
                     <ChevronDown className="size-3 text-white/30 shrink-0" />
                   </div>
@@ -286,10 +276,10 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
         
         {/* Right: Agent Workflow */}
         <div className="flex-1 flex flex-col bg-white/[0.01] overflow-hidden">
-          {/* Header */}
+          {/* Header - Linear-style */}
           <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-4 text-amber-400/70" />
+              <Sparkles className="size-4 text-white/50" />
               <span className="text-sm font-medium text-white">ProductOS Agents</span>
             </div>
             {phase === "complete" && (
@@ -299,7 +289,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
             )}
           </div>
           
-          {/* Agent Cards */}
+          {/* Agent Cards - Linear-style monochrome */}
           <div className="flex-1 p-3 overflow-hidden">
             <div className="space-y-2 h-full">
               {agents.map((agent, index) => {
@@ -312,19 +302,19 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                     className={cn(
                       "p-2.5 rounded-xl border transition-all duration-300 h-[64px] flex items-center",
                       state === "complete" && "bg-white/[0.02] border-emerald-500/20",
-                      state === "active" && cn(agent.bgClass, "border-white/[0.08]"),
+                      state === "active" && "bg-white/[0.03] border-white/[0.08]",
                       state === "pending" && "bg-white/[0.01] border-white/[0.04] opacity-40"
                     )}
                   >
-                    {/* Agent Icon */}
+                    {/* Agent Icon - monochrome with status colors */}
                     <div className={cn(
                       "w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 mr-3",
                       state === "complete" && "bg-emerald-500/10",
-                      state === "active" && agent.bgClass,
+                      state === "active" && "bg-white/[0.06]",
                       state === "pending" && "bg-white/[0.03]"
                     )}>
                       {state === "active" ? (
-                        <Loader2 className={cn("size-4 animate-spin", agent.accentClass)} />
+                        <Loader2 className="size-4 animate-spin text-white/70" />
                       ) : state === "complete" ? (
                         <Check className="size-4 text-emerald-400" />
                       ) : (
@@ -337,7 +327,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                       <div className="flex items-center gap-2">
                         <span className={cn(
                           "text-sm font-medium",
-                          state === "active" && agent.accentClass,
+                          state === "active" && "text-white",
                           state === "complete" && "text-white/90",
                           state === "pending" && "text-white/40"
                         )}>
@@ -364,7 +354,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                               key={i}
                               animate={{ opacity: [0.3, 1, 0.3] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15 }}
-                              className={cn("w-1.5 h-1.5 rounded-full", agent.accentClass.replace("text-", "bg-"))}
+                              className="w-1.5 h-1.5 rounded-full bg-white/50"
                             />
                           ))}
                         </div>

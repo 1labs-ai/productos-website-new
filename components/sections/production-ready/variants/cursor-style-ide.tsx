@@ -162,10 +162,10 @@ export function CursorStyleIDE() {
               `
             }}
           />
-        {/* Window Chrome - simplified, no Mac dots */}
+        {/* Window Chrome - Linear-style minimal */}
         <div className="flex items-center justify-between px-4 py-3 bg-white/[0.02] border-b border-white/[0.06]">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-sm font-medium text-white">ProductOS Code</span>
           </div>
           <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">
@@ -184,17 +184,17 @@ export function CursorStyleIDE() {
         <div className="flex min-h-[400px]">
           {/* Left Panel - Agent Planning */}
           <div className="w-[280px] border-r border-white/[0.06] bg-[#0f0f10] flex flex-col">
-            {/* Panel Header */}
+            {/* Panel Header - Linear-style */}
             <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.04]">
-              <div className="p-1 rounded bg-amber-500/10 border border-amber-500/20">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <div className="p-1 rounded bg-white/[0.06] border border-white/[0.08]">
+                <Sparkles className="w-3.5 h-3.5 text-white/60" />
               </div>
               <span className="text-xs font-medium text-white">ProductOS Agent</span>
               {isGenerating && (
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="ml-auto w-1.5 h-1.5 rounded-full bg-amber-400"
+                  className="ml-auto w-1.5 h-1.5 rounded-full bg-white/60"
                 />
               )}
             </div>
@@ -219,7 +219,7 @@ export function CursorStyleIDE() {
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         className="mt-0.5"
                       >
-                        <Circle className="w-3.5 h-3.5 text-amber-500" />
+                        <Circle className="w-3.5 h-3.5 text-white/50" />
                       </motion.div>
                     ) : step.type === "success" ? (
                       <Check className="w-3.5 h-3.5 mt-0.5 text-emerald-500" />
@@ -227,7 +227,7 @@ export function CursorStyleIDE() {
                       <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-white/40" />
                     )}
                     <span className={`text-xs ${
-                      step.type === "thinking" ? "text-amber-400" :
+                      step.type === "thinking" ? "text-white/60" :
                       step.type === "success" ? "text-emerald-400" :
                       "text-white/50"
                     }`}>
@@ -270,10 +270,10 @@ export function CursorStyleIDE() {
 
           {/* Right Panel - Code Editor */}
           <div className="flex-1 flex flex-col bg-[#0a0a0a]">
-            {/* File Tabs */}
+            {/* File Tabs - Linear-style */}
             <div className="flex items-center border-b border-white/[0.04] bg-white/[0.01]">
               <div className="flex items-center gap-2 px-4 py-2 border-r border-white/[0.04] bg-white/[0.02]">
-                <FileCode2 className="w-3.5 h-3.5 text-amber-400" />
+                <FileCode2 className="w-3.5 h-3.5 text-white/50" />
                 <span className="text-xs text-white font-mono">dashboard.tsx</span>
                 <X className="w-3 h-3 text-white/30 hover:text-white/60 cursor-pointer" />
               </div>
@@ -282,7 +282,7 @@ export function CursorStyleIDE() {
                 <motion.button
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-1.5 mr-3 px-3 py-1 rounded-md bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-medium transition-colors"
+                  className="flex items-center gap-1.5 mr-3 px-3 py-1 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium transition-colors"
                 >
                   <Play className="w-3 h-3" />
                   Deploy
@@ -315,12 +315,12 @@ export function CursorStyleIDE() {
                         </span>
                       ))}
                     </span>
-                    {/* Typing cursor */}
+                    {/* Typing cursor - Linear-style subtle */}
                     {lineIndex === currentCodeLine && isGenerating && (
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.5, repeat: Infinity }}
-                        className="w-0.5 h-4 ml-0.5 bg-amber-400 inline-block"
+                        className="w-0.5 h-4 ml-0.5 bg-white/70 inline-block"
                       />
                     )}
                   </motion.div>
