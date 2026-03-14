@@ -143,15 +143,15 @@ export function CursorStyleIDE() {
           <div className="w-[280px] border-r border-zinc-800 bg-zinc-900/30 flex flex-col">
             {/* Panel Header */}
             <div className="flex items-center gap-2 px-3 py-2 border-b border-zinc-800/50">
-              <div className="p-1 rounded bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/20">
-                <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+              <div className="p-1 rounded bg-zinc-800/50 border border-zinc-700/50">
+                <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
               </div>
               <span className="text-xs font-medium text-zinc-300">ProductOS Agent</span>
               {isGenerating && (
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-500"
+                  className="ml-auto w-1.5 h-1.5 rounded-full bg-zinc-400"
                 />
               )}
             </div>
@@ -277,7 +277,7 @@ export function CursorStyleIDE() {
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.5, repeat: Infinity }}
-                        className="w-0.5 h-4 ml-0.5 bg-violet-400 inline-block"
+                        className="w-0.5 h-4 ml-0.5 bg-zinc-400 inline-block"
                       />
                     )}
                   </motion.div>
