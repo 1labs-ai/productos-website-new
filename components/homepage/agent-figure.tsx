@@ -34,12 +34,12 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
       <div className="relative w-[320px] h-[320px] rounded-3xl overflow-visible flex items-center justify-center">
 
         {/* Connection Lines (SVG) */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible text-foreground dark:text-white">
           <defs>
             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.02)" />
-              <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
+              <stop offset="0%" className="[stop-color:currentColor]" stopOpacity="0.02" />
+              <stop offset="50%" className="[stop-color:currentColor]" stopOpacity="0.15" />
+              <stop offset="100%" className="[stop-color:currentColor]" stopOpacity="0.02" />
             </linearGradient>
           </defs>
           
@@ -64,9 +64,9 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
               y1="50%"
               x2={agent.pos.x}
               y2={agent.pos.y}
-              stroke="white"
+              stroke="currentColor"
               strokeWidth="0.5"
-              strokeOpacity="0.08"
+              strokeOpacity="0.15"
               strokeDasharray="2 4"
             />
           ))}
@@ -91,8 +91,8 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
                     "relative z-10 rounded-full flex items-center justify-center transition-all duration-500",
                     isHub ? 'w-14 h-14' : 'w-9 h-9',
                     isActive 
-                      ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
-                      : 'bg-white/[0.03] text-white/40 border border-white/10 hover:border-white/30'
+                      ? 'bg-foreground text-background shadow-[0_0_20px_rgba(0,0,0,0.15)] dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
+                      : 'bg-foreground/[0.03] text-foreground/40 border border-foreground/10 hover:border-foreground/30 dark:bg-white/[0.03] dark:text-white/40 dark:border-white/10 dark:hover:border-white/30'
                   )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -102,7 +102,7 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
                   {/* Active Pulse Ring */}
                   {isActive && (
                     <motion.div
-                      className="absolute inset-0 rounded-full border-2 border-white"
+                      className="absolute inset-0 rounded-full border-2 border-foreground dark:border-white"
                       initial={{ scale: 1, opacity: 0.5 }}
                       animate={{ scale: 1.5, opacity: 0 }}
                       transition={{ duration: 1.5, repeat: Infinity }}
@@ -111,14 +111,14 @@ export const AgentFigure = ({ className }: AgentFigureProps) => {
 
                   {/* Outer Ring for Hub */}
                   {isHub && (
-                    <div className="absolute inset-[-8px] rounded-full border border-white/10" />
+                    <div className="absolute inset-[-8px] rounded-full border border-foreground/10 dark:border-white/10" />
                   )}
                 </motion.button>
 
                 {/* Label - shows when active */}
                 <motion.span 
                   className={cn(
-                    "absolute -bottom-5 text-[7px] font-mono uppercase tracking-[0.15em] text-white/60 transition-all duration-500 whitespace-nowrap",
+                    "absolute -bottom-5 text-[7px] font-mono uppercase tracking-[0.15em] text-foreground/60 dark:text-white/60 transition-all duration-500 whitespace-nowrap",
                     isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1'
                   )}
                 >

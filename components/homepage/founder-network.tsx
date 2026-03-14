@@ -22,7 +22,7 @@ export const FounderNetwork = ({ className }: FounderNetworkProps) => {
       <div className="relative w-[320px] h-[320px] flex items-center justify-center">
 
         {/* SVG for Organic Connections */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 320 320">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none text-foreground dark:text-white" viewBox="0 0 320 320">
           <defs>
             <filter id="glow-neural">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -32,9 +32,9 @@ export const FounderNetwork = ({ className }: FounderNetworkProps) => {
               </feMerge>
             </filter>
             <linearGradient id="line-grad-fn" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="50%" stopColor="rgba(255,255,255,0.2)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="0%" className="[stop-color:currentColor]" stopOpacity="0" />
+              <stop offset="50%" className="[stop-color:currentColor]" stopOpacity="0.25" />
+              <stop offset="100%" className="[stop-color:currentColor]" stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -69,7 +69,7 @@ export const FounderNetwork = ({ className }: FounderNetworkProps) => {
                   <motion.circle
                     key={j}
                     r="1.5"
-                    fill="white"
+                    fill="currentColor"
                     filter="url(#glow-neural)"
                     initial={{ offsetDistance: "0%", opacity: 0 }}
                     animate={{
