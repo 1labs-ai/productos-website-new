@@ -30,7 +30,8 @@ import {
   Share2,
   Send,
   Home,
-  Bot
+  Bot,
+  Rocket
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
@@ -1051,8 +1052,8 @@ export function InteractiveDashboard() {
                         ))}
                       </div>
                       <button className="w-full py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-sm font-medium flex items-center justify-center gap-2 transition-colors">
-                        <svg className="w-4 h-4" viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" /></svg>
-                        Deploy to Vercel
+                        <Rocket className="w-4 h-4" />
+                        Deploy to Production
                       </button>
                     </div>
                     <div className="flex flex-col gap-2">
