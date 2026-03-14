@@ -66,7 +66,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       {/* Rating */}
       <div className="flex gap-0.5 mb-3">
         {[...Array(testimonial.rating)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-white/80 text-white/80" />
+          <Star key={i} className="w-4 h-4 fill-amber-500/80 text-amber-500/80" />
         ))}
       </div>
 
@@ -188,7 +188,7 @@ export function TestimonialsFlow() {
           <div className="flex items-center gap-1.5">
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-white/70 text-white/70" />
+                <Star key={i} className="w-4 h-4 fill-amber-500/80 text-amber-500/80" />
               ))}
             </div>
             <span>4.9/5 average rating</span>

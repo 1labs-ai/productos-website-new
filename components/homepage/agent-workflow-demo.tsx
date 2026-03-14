@@ -17,12 +17,14 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Agent data - 5 ProductOS agents (minimal monochrome style)
+// Agent data - 5 ProductOS agents with subtle brand colors
 const agents = [
   {
     id: "ideation",
     name: "Ideation Agent",
     icon: Sparkles,
+    accentClass: "text-amber-400",
+    bgClass: "bg-amber-500/10",
     status: "Refining your idea...",
     result: "Vision crystallized. 3 unique value props identified.",
     metric: "Ready for discovery"
@@ -31,6 +33,8 @@ const agents = [
     id: "discovery",
     name: "Discovery Agent",
     icon: Search,
+    accentClass: "text-sky-400",
+    bgClass: "bg-sky-500/10",
     status: "Analyzing market...",
     result: "Found 12 competitors. Market size: $4.2B.",
     metric: "Opportunity Score: 8.4/10"
@@ -39,6 +43,8 @@ const agents = [
     id: "define",
     name: "Define Agent", 
     icon: FileText,
+    accentClass: "text-teal-400",
+    bgClass: "bg-teal-500/10",
     status: "Writing specifications...",
     result: "PRD generated with 8 user stories.",
     metric: "Est: 5 days to ship"
@@ -47,6 +53,8 @@ const agents = [
     id: "design",
     name: "Design Agent",
     icon: Palette,
+    accentClass: "text-purple-400",
+    bgClass: "bg-purple-500/10",
     status: "Creating UI designs...",
     result: "5 UI screens with responsive layouts.",
     metric: "Figma sync ready"
@@ -55,6 +63,8 @@ const agents = [
     id: "develop",
     name: "Develop Agent",
     icon: Code,
+    accentClass: "text-emerald-400",
+    bgClass: "bg-emerald-500/10",
     status: "Generating code...",
     result: "Next.js app with 24 passing tests.",
     metric: "Deploy ready"
@@ -164,15 +174,15 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
           <div className="flex-1 p-6 flex flex-col">
             {/* User Avatar & Label */}
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                <span className="text-xs font-bold text-white/80">H</span>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
+                <span className="text-xs font-bold text-amber-400/80">H</span>
               </div>
               <div>
                 <div className="text-sm font-medium text-white">You</div>
                 <div className="text-xs text-white/40">Founder</div>
               </div>
               {phase !== "typing" && (
-                <div className="ml-auto flex items-center gap-1.5 text-xs text-white/60">
+                <div className="ml-auto flex items-center gap-1.5 text-xs text-emerald-400/80">
                   <Check className="size-3" />
                   Sent
                 </div>
@@ -211,7 +221,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                   
                   {/* Model Selector */}
                   <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.06] cursor-pointer transition-colors shrink-0">
-                    <Sparkles className="size-3.5 text-white/40 shrink-0" />
+                    <Sparkles className="size-3.5 text-amber-400/60 shrink-0" />
                     <span className="text-sm text-white/50 whitespace-nowrap">Claude Sonnet 4.6</span>
                     <ChevronDown className="size-3 text-white/30 shrink-0" />
                   </div>
@@ -234,11 +244,11 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
           {/* Header */}
           <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-4 text-white/60" />
+              <Sparkles className="size-4 text-amber-400/70" />
               <span className="text-sm font-medium text-white">ProductOS Agents</span>
             </div>
             {phase === "complete" && (
-              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-white/70 text-xs font-medium">
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
                 Complete
               </span>
             )}
@@ -256,22 +266,22 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                     key={agent.id}
                     className={cn(
                       "p-2.5 rounded-xl border transition-all duration-300 h-[64px] flex items-center",
-                      state === "complete" && "bg-white/[0.03] border-white/[0.08]",
-                      state === "active" && "bg-white/[0.04] border-white/[0.12]",
+                      state === "complete" && "bg-white/[0.02] border-emerald-500/20",
+                      state === "active" && cn(agent.bgClass, "border-white/[0.08]"),
                       state === "pending" && "bg-white/[0.01] border-white/[0.04] opacity-40"
                     )}
                   >
                     {/* Agent Icon */}
                     <div className={cn(
                       "w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 mr-3",
-                      state === "complete" && "bg-white/[0.06]",
-                      state === "active" && "bg-white/[0.08]",
+                      state === "complete" && "bg-emerald-500/10",
+                      state === "active" && agent.bgClass,
                       state === "pending" && "bg-white/[0.03]"
                     )}>
                       {state === "active" ? (
-                        <Loader2 className="size-4 animate-spin text-white/70" />
+                        <Loader2 className={cn("size-4 animate-spin", agent.accentClass)} />
                       ) : state === "complete" ? (
-                        <Check className="size-4 text-white/80" />
+                        <Check className="size-4 text-emerald-400" />
                       ) : (
                         <Icon className="size-4 text-white/30" />
                       )}
@@ -282,7 +292,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                       <div className="flex items-center gap-2">
                         <span className={cn(
                           "text-sm font-medium",
-                          state === "active" && "text-white",
+                          state === "active" && agent.accentClass,
                           state === "complete" && "text-white/90",
                           state === "pending" && "text-white/40"
                         )}>
@@ -298,7 +308,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                       {state === "complete" && (
                         <div className="flex items-center gap-2 mt-0.5">
                           <span className="text-xs text-white/50">{agent.result}</span>
-                          <span className="text-xs text-white/60 font-medium">{agent.metric}</span>
+                          <span className="text-xs text-emerald-400/80 font-medium">{agent.metric}</span>
                         </div>
                       )}
                       
@@ -309,7 +319,7 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
                               key={i}
                               animate={{ opacity: [0.3, 1, 0.3] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15 }}
-                              className="w-1.5 h-1.5 rounded-full bg-white/60"
+                              className={cn("w-1.5 h-1.5 rounded-full", agent.accentClass.replace("text-", "bg-"))}
                             />
                           ))}
                         </div>
@@ -330,18 +340,18 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
             <div className={cn(
               "p-3 rounded-xl border transition-all duration-500",
               phase === "complete" 
-                ? "bg-white/[0.03] border-white/[0.08] opacity-100" 
+                ? "bg-emerald-500/5 border-emerald-500/20 opacity-100" 
                 : "bg-transparent border-transparent opacity-0"
             )}>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center">
-                  <Check className="size-4 text-white/80" />
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                  <Check className="size-4 text-emerald-400" />
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-medium text-white">Ready to deploy!</div>
                   <div className="text-xs text-white/40">Complete in 5 days</div>
                 </div>
-                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black text-xs font-medium hover:bg-white/90 transition-colors">
+                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 text-white text-xs font-medium hover:bg-emerald-600 transition-colors">
                   Deploy <ArrowRight className="size-3" />
                 </button>
               </div>
