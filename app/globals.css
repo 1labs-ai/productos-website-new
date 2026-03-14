@@ -81,6 +81,20 @@
   --stage-define-bg: hsl(168 76% 95%);
   --stage-design-bg: hsl(271 91% 95%);
   --stage-develop-bg: hsl(38 92% 95%);
+  
+  /* Dashboard Surface Colors - Light Mode */
+  --dashboard-bg: hsl(0 0% 98%);
+  --dashboard-bg-secondary: hsl(0 0% 96%);
+  --dashboard-surface: hsl(0 0% 100%);
+  --dashboard-surface-hover: hsl(0 0% 98%);
+  --dashboard-border: hsl(0 0% 0% / 10%);
+  --dashboard-border-subtle: hsl(0 0% 0% / 6%);
+  --dashboard-text: hsl(0 0% 9%);
+  --dashboard-text-muted: hsl(0 0% 45%);
+  --dashboard-text-subtle: hsl(0 0% 60%);
+  --dashboard-highlight: hsl(0 0% 0% / 4%);
+  --dashboard-inset-shadow: hsl(0 0% 0% / 3%);
+  --dashboard-glow: hsl(0 0% 100%);
 }
 
 /* ============================================
@@ -126,6 +140,20 @@
   --stage-define-bg: hsl(168 50% 15%);
   --stage-design-bg: hsl(271 50% 15%);
   --stage-develop-bg: hsl(38 50% 15%);
+  
+  /* Dashboard Surface Colors - Dark Mode */
+  --dashboard-bg: hsl(240 10% 5%);
+  --dashboard-bg-secondary: hsl(240 10% 6%);
+  --dashboard-surface: hsl(240 10% 7%);
+  --dashboard-surface-hover: hsl(240 10% 9%);
+  --dashboard-border: hsl(0 0% 100% / 8%);
+  --dashboard-border-subtle: hsl(0 0% 100% / 4%);
+  --dashboard-text: hsl(0 0% 95%);
+  --dashboard-text-muted: hsl(0 0% 55%);
+  --dashboard-text-subtle: hsl(0 0% 40%);
+  --dashboard-highlight: hsl(0 0% 100% / 4%);
+  --dashboard-inset-shadow: hsl(0 0% 100% / 5%);
+  --dashboard-glow: hsl(0 0% 100% / 3%);
 }
 
 /* ============================================

@@ -152,72 +152,12 @@ export function AgentWorkflowDemo({ className }: AgentWorkflowDemoProps) {
       transition={{ duration: 0.6, delay: 0.2 }}
       className={cn("relative", className)}
     >
-      {/* Main dashboard container - clean Linear-style */}
-      <div 
-        className="relative rounded-2xl overflow-hidden"
-        style={{
-          background: 'linear-gradient(to bottom, #0c0c0e 0%, #09090a 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: `
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-            0 0 0 1px rgba(0, 0, 0, 0.2),
-            0 4px 16px rgba(0, 0, 0, 0.12),
-            0 16px 48px rgba(0, 0, 0, 0.08)
-          `
-        }}
-      >
-        {/* Inner frame with surface depth */}
-        <div 
-          className="relative rounded-xl overflow-hidden"
-          style={{
-            background: 'linear-gradient(180deg, #0b0b0c 0%, #0a0a0a 100%)',
-          }}
-        >
-          {/* Primary glossy shine - top left light source */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background: `
-                radial-gradient(ellipse 300px 150px at 15% 0%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 30%, transparent 70%),
-                radial-gradient(ellipse 200px 100px at 85% 5%, rgba(255,255,255,0.04) 0%, transparent 60%)
-              `,
-            }}
-          />
-          
-          {/* Secondary shine - creates dimension */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 10%, transparent 25%)',
-            }}
-          />
-          
-          {/* Top edge highlight - sharp reflection line */}
-          <div 
-            className="absolute inset-x-0 top-0 h-px pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.12) 20%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.12) 80%, transparent 95%)'
-            }}
-          />
-          
-          {/* Left edge subtle highlight */}
-          <div 
-            className="absolute inset-y-0 left-0 w-px pointer-events-none z-10"
-            style={{
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 30%, transparent 60%)'
-            }}
-          />
-          
-          {/* Inner ambient glow - diffuse lighting */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: `
-                radial-gradient(ellipse 100% 50% at 50% -20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 40%)
-              `
-            }}
-          />
+      {/* Main dashboard container - theme-aware */}
+      <div className="relative rounded-2xl overflow-hidden bg-card border border-border shadow-lg">
+        {/* Inner frame */}
+        <div className="relative rounded-xl overflow-hidden bg-muted/30">
+          {/* Top edge highlight */}
+          <div className="absolute inset-x-0 top-0 h-px pointer-events-none z-10 bg-gradient-to-r from-transparent via-foreground/10 to-transparent dark:via-white/15" />
       
       {/* FIXED HEIGHT CONTAINER */}
       <div className="flex flex-col lg:flex-row h-[520px]">
